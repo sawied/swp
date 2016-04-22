@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.6.4.201503051146-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/resources/spring-mvc-servlet.xml</config>
+		<config>src/main/resources/application-context.xml</config>
+		<config>src/main/resources/com/danan/webservice/spring-ws-content.xml</config>
+		<config>src/main/resources/com/danan/database/spring-db-content.xml</config>
+		<config>src/main/resources/com/danan/sftp/spring-sftp-context.xml</config>
+		<config>src/main/resources/com/danan/mail/spring-mail-content.xml</config>
+		<config>src/test/resources/com/danan/database/spring-db-content-test.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

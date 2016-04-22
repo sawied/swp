@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>README</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+
+
+<h2>##安装maven 的依赖包ojdbc</h2>
+<ul>
+<li>
+mvn install:install-file -Dfile=ojdbc14.jar -DgroupId=ojdbc -DartifactId=ojdbc -Dversion=14 -Dpackaging=jar -DgeneratePom=true
+</li>
+<li>
+mvn install:install-file -Dfile=sipservlet.jar -DgroupId=javax.servlet -DartifactId=sip-api -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+</li>
+<li>
+mvn install:install-file -DgroupId=oracleJdbcDriver -DartifactId=oracleJdbcDriver -Dpackaging=jar -Dversion=6 -DgeneratePom=true -Dfile=C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar
+</li>
+</ul>
+
+<h2>
+##安装mongodb,注意使用管理员身份执行命令
+</h2>
+<ul>
+<li>
+mongod --logpath "D:/Oracle/mongodb/logs/log.log" --dbpath  "D:/Oracle/mongodb/data/db" --install  --auth
+</li>
+</ul>
+
+<h2>
+##set server time 
+</h2>
+<ul>
+<li>
+w32tm /config /manualpeerlist:"time.windows.com time.nist.gov" /syncfromflags:manual /reliable:yes /update
+</li>
+</ul>
+
+<h2>
+##generate the keytab file
+</h2>
+<ul>
+<li>
+setspn -A HTTP/appserver.danan.local appserver
+</li>
+<li>
+ktpass /out appserver.keytab /princ HTTP/appserver.danan.local@DANAN.LOCAL /mapuser appserver@DANAN.LOCAL /pass Danan.2015 /crypto RC4-HMAC-NT /kvno 0 /ptype KRB5_NT_PRINCIPAL
+</li>
+<li>
+ksetup /SetEncTypeAttr HADOOP.COM DES-CBC-CRC DES-CBC-MD5 RC4-HMAC-MD5 AES128-CTS-HMAC-SHA1-96 AES256-CTS-HMAC-SHA1-96
+</li>
+<li>
+cd D:\Program Files\IBM\WebSphere\AppServer\profiles\AppSrv01\bin
+<br>
+wsadmin<br>
+$AdminTask getUser {-uniqueName cn=wasadmin,cn=Users,dc=danan,dc=local}
+$AdminTask getMembershipOfUser {-uniqueName cn=Administrator,cn=Users,dc=danan,dc=local}
+$AdminTask createKrbConfigFile {-krbPath c:/java/config/krb5.ini -realm DANAN.LOCAL -kdcHost dc01.danan.local -dns danan.local -keytabPath c:/java/config/appserver.keytab}
+</code>
+</li>
+</ul>
+
+<h2>
+##WSDL referation
+</h2>
+<ul>
+<li>
+wsimport -B-enableIntrospection -b D:\works\wsdl\bindings.xml -d D:\works\wsdl -extension -Xsetters -Xsetters-mode=direct -keep -Xnocompile D:\works\wsdl\appManagment.wsdl
+</li>
+</ul>
+
+<h2>
+##glassfish:
+</h2>
+<ul>
+<li>
+asadmin
+</li>
+<li>
+create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname oracle.jdbc.pool.OracleDataSource --property "user=danan:password=danan:url=jdbc\\:oracle\\:thin\\:@127.0.0.1\\:1521\\:xe" oracle-Pool
+</li>
+<li>
+start-domain domain1
+</li>
+<li>
+stop-domain domain1
+</li>
+<li>
+list applications
+</li>
+<li>
+change-admin-password
+</li>
+<li>
+enable-secure-admin
+</li>
+<li>
+disable-secure-admin
+</li>
+<li>
+deploy jenkins.war
+</li>
+<li>
+create-custom-resource --restype java.lang.String --factoryclass org.glassfish.resources.custom.factory.PrimitivesAndStringFactory --enabled=true --description "Jenkins home" --property value="D\:/works/jenkins_home" JENKINS_HOME 
+</li>
+<li>
+delete-custom-resource JENKINS_HOME
+</li>
+</ul>
+
+
+
+
+
+</body>
+</html>

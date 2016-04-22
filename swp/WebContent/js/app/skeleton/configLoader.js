@@ -1,0 +1,3 @@
+define("skeleton/configLoader",[],function(){
+	
+});

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="shortcut icon" href="#springUrl('/favicon.ico')" />
+<link type="text/css" rel="stylesheet" href="#springUrl('/resources/css/login.css')"/>
+<title>login smartDoc system </title>
+</head>
+<body>
+	
+<div id="header"></div>
+<div class="content">
+<form action="#springUrl('/j_spring_security_check')" method="post">
+
+<ul>
+<li class="title">Please Login</li>
+<li>
+<label for="j_username">Account:</label><input type="text" name="j_username" class="input"/>
+</li>
+
+<li>
+<label for="j_password">Password:</label><input type="password" name="j_password" class="input"/>
+</li>
+
+<li> 
+<input type="submit" value="login"/>
+</li>
+</ul>
+
+
+</form>
+</div>
+
+
+</body>
+</html>

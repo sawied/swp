@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+
+
+
+
+	<!-- configuration for Hibernate Session Factory,the available properties 
+		as following : -->
+	<!-- hibernate.dialect -->
+	<!-- hibernate.hbm2ddl.auto enable auto DDL export -->
+	<!-- hibernate.transaction.factory_class the factory to use for instantiating 
+		Transactions. (Defaults to JdbcTransactionFactory.) -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	 <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<aop:config>
+	 <aop:pointcut expression="execution(* com.danan.business.smot.service.*.*(..))" id="defaultService"/>
+	 <aop:advisor advice-ref="transactionAdvice" pointcut-ref="defaultService"/>
+	</aop:config>
+	
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+	 <tx:attributes>
+	  <tx:method name="*" />
+	 </tx:attributes>
+	</tx:advice>
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/oracle" />
+		<property name="resourceRef" value="true" />
+		<property name="defaultObject" ref="defaultDS" />
+	</bean>
+
+	<bean id="defaultDS" class="org.springframework.jdbc.datasource.SingleConnectionDataSource">
+	<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"></property>
+	<property name="url" value="jdbc:derby:memory:db;create=true"></property>
+	</bean>
+
+
+</beans>

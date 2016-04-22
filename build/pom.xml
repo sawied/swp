@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.danan.swp</groupId>
+	<artifactId>build</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>building-all</name>
+	<description>This project used to do all tasks of building .</description>
+
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.jdbc.url>jdbc:oracle:thin:@localhost:1521:xe</sonar.jdbc.url>
+				<sonar.jdbc.driver>oracle.jdbc.OracleDriver</sonar.jdbc.driver>
+				<sonar.jdbc.username>danan</sonar.jdbc.username>
+				<sonar.jdbc.password>danan</sonar.jdbc.password>
+				<!-- SERVER ON A REMOTE HOST -->
+				<sonar.host.url>http://localhost:9000</sonar.host.url>
+			</properties>
+		</profile>
+	</profiles>
+
+
+	<modules>
+		<module>../parent</module>
+		<module>../model</module>
+		<module>../service</module>
+		<module>../kerberos</module>
+		<module>../deploy-all-ear</module>
+	</modules>
+
+
+
+</project>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+                           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+
+	<!-- <beans:bean id="userLoginEvnet" class="com.danan.business.smot.web.UserLoginLogEvent"></beans:bean> -->
+
+	<!-- <security:http security="none" pattern="/file.htm" /> -->
+
+	<security:http entry-point-ref="spnegoEntryPoint"
+		use-expressions="true">
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/home" access="permitAll" />
+		<security:intercept-url pattern="/**.htm" access="authenticated" />
+		<security:custom-filter ref="spnegoAuthenticationProcessingFilter"
+			before="BASIC_AUTH_FILTER" />
+	</security:http>
+
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			ref="kerberosAuthenticationProvider" />
+		<security:authentication-provider
+			ref="kerberosServiceAuthenticationProvider"></security:authentication-provider>
+	</security:authentication-manager>
+
+	<bean id="kerberosAuthenticationProvider"
+		class="org.springframework.security.kerberos.authentication.KerberosAuthenticationProvider">
+		<property name="kerberosClient">
+			<bean
+				class="org.springframework.security.kerberos.authentication.sun.SunJaasKerberosClient">
+				<property name="debug" value="true" />
+			</bean>
+		</property>
+		<property name="userDetailsService" ref="dummyUserDetailsService" />
+	</bean>
+
+
+	<bean id="kerberosServiceAuthenticationProvider"
+		class="org.springframework.security.kerberos.authentication.KerberosServiceAuthenticationProvider">
+		<property name="ticketValidator">
+			<bean
+				class="org.springframework.security.kerberos.authentication.sun.SunJaasKerberosTicketValidator">
+				<property name="servicePrincipal" value="HTTP/appserver.danan.local@DANAN.LOCAL" />
+				<property name="keyTabLocation" value="file:C:/java/config/appserver.keytab" />
+				<property name="debug" value="true" />
+			</bean>
+		</property>
+		<property name="userDetailsService" ref="dummyUserDetailsService" />
+	</bean>
+
+	<bean
+		class="org.springframework.security.kerberos.authentication.sun.GlobalSunJaasKerberosConfig">
+		<property name="debug" value="true" />
+		<property name="krbConfLocation" value="C:/java/config/krb5.conf" />
+	</bean>
+
+
+	<bean id="spnegoAuthenticationProcessingFilter"
+		class="org.springframework.security.kerberos.web.authentication.SpnegoAuthenticationProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+
+
+	<bean id="spnegoEntryPoint"
+		class="org.springframework.security.kerberos.web.authentication.SpnegoEntryPoint">
+		<!-- <constructor-arg value="/login" /> -->
+	</bean>
+
+	<bean id="dummyUserDetailsService" class="com.danan.business.smot.web.DummyUserDetail">
+	</bean>
+
+
+
+
+	<!-- ldif="classpath:data.ldif" <security:ldap-server url="ldap://localhost:389/dc=danan,dc=com"/> 
+		<security:authentication-manager> <security:ldap-authentication-provider 
+		group-search-base="ou=Groups" user-search-base="ou=Users" user-search-filter="(uid={0})" 
+		group-role-attribute="cn" group-search-filter="(uniqueMember={0})"> <security:password-compare 
+		hash="plaintext" ></security:password-compare> </security:ldap-authentication-provider> 
+		</security:authentication-manager> -->
+
+
+
+
+
+
+</beans>

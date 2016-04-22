@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+
+    
+   <security:http entry-point-ref="defaultAuthenticationEntryPoint" create-session="always">
+       <security:intercept-url pattern="/*" access="hasRole('authenticatedUser') and hasRole('PSWPUser')"/>
+       <security:custom-filter ref="j2eePreAuthFilter" position="FORM_LOGIN_FILTER"/>
+   </security:http>
+   
+   <security:authentication-manager alias="authenticationManager">
+       <security:authentication-provider ref="preAuthenticatedAuthenticationProvider"></security:authentication-provider>       
+   </security:authentication-manager>
+   
+   <security:debug/>
+   
+   <bean id="adamAuthenticationProvider" class="com.danan.swp.kerberos.web.security.AdamAuthenticationProvider"></bean>
+   
+   
+   <bean id="preAuthenticatedAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+		<property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/>
+	</bean>
+   <bean id="preAuthenticatedUserDetailsService"
+			class="com.danan.swp.kerberos.web.security.AdamGrantedAuthoritiesUserDetailsService"/>
+	
+			
+
+	<!-- j2ee pre auth filter. -->   
+   <bean id="j2eePreAuthFilter" class="org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>	
+	</bean>
+
+   <bean class="com.danan.swp.kerberos.web.security.AuthenticationSuccessHandler"></bean>
+    
+   <bean id="defaultAuthenticationEntryPoint" class="com.danan.swp.kerberos.web.security.DefaultAuthenticationEntryPoint"></bean>
+   
+   
+</beans>

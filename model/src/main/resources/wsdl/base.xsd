@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.danan.org/bean/commons"
+	xmlns:cm="http://www.danan.org/bean/commons" xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	 elementFormDefault="qualified">
+	<annotation>
+	<documentation xml:lang="en">
+	 This schema defined the objects of commons. 
+	</documentation>
+	</annotation>
+	
+	<complexType name="sObject">
+        <sequence>
+            <element name="fieldsToNull" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="Opportunity">
+        <complexContent>
+            <extension base="cm:sObject">
+                <sequence>
+                <element name="Sales_Opportunity_Number__c" nillable="true" minOccurs="0" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+	
+	
+	
+	
+</schema>

@@ -1,0 +1,19 @@
+#####root
+##dn:dc=danan,dc=com
+##dc:danan
+##o:danan.com
+##objectClass:top
+##objectClass:dcObject
+##objectClass:organization
+
+####users
+##dn:ou=Users,dc=danan,dc=com
+##ou:Users
+##description:danan dept's users
+##objectClass:organizationalUnit
+
+###Groups
+dn:ou=Groups,dc=danan,dc=com
+ou:Groups
+description:danan users's Groups
+objectClass:organizationalUnit

@@ -1,0 +1,40 @@
+##安装maven 的依赖包ojdbc
+mvn install:install-file -Dfile=ojdbc14.jar -DgroupId=ojdbc -DartifactId=ojdbc -Dversion=14 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=sipservlet.jar -DgroupId=javax.servlet -DartifactId=sip-api -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+##安装mongodb,注意使用管理员身份执行命令
+mongod --logpath "D:/Oracle/mongodb/logs/log.log" --dbpath  "D:/Oracle/mongodb/data/db" --install  --auth
+
+w32tm /config /manualpeerlist:"time.windows.com time.nist.gov" /syncfromflags:manual /reliable:yes /update
+ktpass /out appserver.keytab /princ HTTP/appserver.danan.com@DANAN.COM /mapuser appserver /pass Danan.2015 /ptype KRB5_NT_PRINCIPAL
+
+glassfish:
+asadmin
+create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname oracle.jdbc.pool.OracleDataSource --property "user=danan:password=danan:url=jdbc\\:oracle\\:thin\\:@127.0.0.1\\:1521\\:xe" oracle-Pool
+
+##start domain
+start-domain domain1
+stop-domain domain1
+##list appliactions
+list applications
+##change  administor password
+change-admin-password
+## enable admin security
+enable-secure-admin
+disable-secure-admin
+
+##deploy package
+deploy jenkins.war
+
+create-custom-resource --restype java.lang.String --factoryclass org.glassfish.resources.custom.factory.PrimitivesAndStringFactory --enabled=true --description "Jenkins home" --property value="D\:/works/jenkins_home" JENKINS_HOME 
+delete-custom-resource JENKINS_HOME
+
+
+
+
+
+
+
+wsimport -B-enableIntrospection -b D:\works\wsdl\bindings.xml -d D:\works\wsdl -extension -Xsetters -Xsetters-mode=direct -keep -Xnocompile D:\works\wsdl\appManagment.wsdl
+
+
+mvn install:install-file -DgroupId=oracleJdbcDriver -DartifactId=oracleJdbcDriver -Dpackaging=jar -Dversion=6 -DgeneratePom=true -Dfile=C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: oracleJdbcDriver:oracleJdbcDriver:6">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/oracleJdbcDriver/oracleJdbcDriver/6/oracleJdbcDriver-6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/oracleJdbcDriver/oracleJdbcDriver/6/oracleJdbcDriver-6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/oracleJdbcDriver/oracleJdbcDriver/6/oracleJdbcDriver-6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

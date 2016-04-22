@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon Apr 06 21:22:30 CST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-014c-8ee5-8af6-0000008ba090 
+on database directory memory:C:\Users\danan\git\SMOT\smot\db with class loader sun.misc.Launcher$AppClassLoader@1c87031 
+Loaded from file:/C:/Users/danan/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_45-b18
+user.dir=C:\Users\danan\git\SMOT\smot
+os.name=Windows 7
+os.arch=x86
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

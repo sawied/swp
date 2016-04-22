@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:int-sftp="http://www.springframework.org/schema/integration/sftp"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+		http://www.springframework.org/schema/integration/sftp http://www.springframework.org/schema/integration/sftp/spring-integration-sftp-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="classpath:com/danan/ftp.properties"></property>
+	</bean>
+
+	<int:channel id="ftpOutboundChannel">
+	</int:channel>
+	
+	
+	<!-- 
+	<int:dispatcher task-executor="taskExecutor"/>
+	<task:executor id="taskExecutor" pool-size="3" rejection-policy="CALLER_RUNS"/>
+	 -->
+
+	<bean id="ftpSessionFactory"
+		class="org.springframework.integration.sftp.session.DefaultSftpSessionFactory">
+		<property name="host" value="${ftp.host}"></property>
+		<property name="port" value="${ftp.port}"></property>
+		<property name="user" value="${ftp.name}"></property>
+		<property name="password" value="${ftp.password}"></property>
+	</bean>
+	
+	 <int-sftp:outbound-channel-adapter session-factory="ftpSessionFactory" channel="ftpOutboundChannel" remote-directory="store">
+	 </int-sftp:outbound-channel-adapter>
+
+</beans>
