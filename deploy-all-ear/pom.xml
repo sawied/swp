@@ -7,7 +7,7 @@
 	<description>This project used to do deployment.</description>
 
 	<parent>
-		<groupId>com.danan.swp</groupId>
+		<groupId>com.github.sawied</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../parent/pom.xml</relativePath>
@@ -15,7 +15,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.danan.swp</groupId>
+			<groupId>com.github.sawied</groupId>
 			<artifactId>kerberos</artifactId>
 			<type>war</type>
 			<version>1.0.0-SNAPSHOT</version>

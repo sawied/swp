@@ -12,14 +12,5 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 		
 		
-		
-		<bean id="oracleDs" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		 <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		 <property name="url" value="dbc:oracle:thin:@localhost:1521"></property>
-		 <property name="username" value="danan"></property>
-		 <property name="password" value="danan"></property>
-		</bean>
-		
-		
 
 </beans>

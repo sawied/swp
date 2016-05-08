@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.danan.swp</groupId>
+	<groupId>com.github.sawied</groupId>
 	<artifactId>parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -13,6 +13,7 @@
 		<compile.version>1.7</compile.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<spring.security.version>4.0.3.RELEASE</spring.security.version>
+		<hiberate.version>5.1.0.Final</hiberate.version>
 	</properties>
 
 	<build>
@@ -33,11 +34,11 @@
 			</plugin>
 		</plugins>
 	</build>
- 
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.danan.swp</groupId>
+				<groupId>com.github.sawied</groupId>
 				<artifactId>model</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 				<exclusions>
@@ -46,6 +47,14 @@
 						<groupId>commons-logging</groupId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<!--spring related dependencies -->
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>1.10.1.RELEASE</version>
 			</dependency>
 
 			<dependency>
@@ -83,17 +92,6 @@
 				<artifactId>spring-web</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-orm</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
-				<version>4.3.8.Final</version>
-			</dependency>
 
 			<dependency>
 				<groupId>org.apache.velocity</groupId>
@@ -101,7 +99,7 @@
 				<version>1.7</version>
 			</dependency>
 
-			<!--spring security -->
+
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
@@ -132,8 +130,6 @@
 				<version>1.0.1.RELEASE</version>
 			</dependency>
 
-
-
 			<!-- spring integration web service -->
 			<dependency>
 				<groupId>org.springframework.integration</groupId>
@@ -145,6 +141,20 @@
 						<groupId>commons-logging</groupId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<!-- hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hiberate.version}</version>
+			</dependency>
+
+			<!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hiberate.version}</version>
 			</dependency>
 
 
@@ -368,13 +378,13 @@
 		</dependencies>
 
 	</dependencyManagement>
-	
+
 	<distributionManagement>
-	<snapshotRepository>
-	<id>oschina-public-snapshot</id>
-	<name>oschina public repository</name>
-	<url>http://maven.oschina.net/content/groups/public/</url>
-	</snapshotRepository>
+		<snapshotRepository>
+			<id>oschina-public-snapshot</id>
+			<name>oschina public repository</name>
+			<url>http://maven.oschina.net/content/groups/public/</url>
+		</snapshotRepository>
 	</distributionManagement>
 
 
