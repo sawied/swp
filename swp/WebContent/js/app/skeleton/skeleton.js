@@ -3,8 +3,9 @@ define([ "dojo/query", "dojo/dom", "dojo/dom-construct", "dojo/html",
 		"dojo/request/xhr",
 		"dojo/request/iframe",
 		"dojo/i18n!skeleton/i18n/nls/i18n",
+		"skeleton/configLoader!a.jsp",
 		"dojo/domReady!" ], function(query, dom, domConstruct, htm, template,
-		on,xhr,iframe,nls) {
+		on,xhr,iframe,nls,configLoader) {
 	var node = domConstruct.toDom(template);
 	var rootDom=dom.byId("app-root");
 	domConstruct.place(node,rootDom, "last");
