@@ -1,4 +1,4 @@
-define("skeleton/configLoader",["dojo/require","dojo/request","dojo/cache"],function(require,request,cache){
+define("skeleton/loader",["dojo/require","dojo/request","dojo/cache"],function(require,request,cache){
 	
 	var getText= function(url, sync, load){
 		request(url, {sync:!!sync, headers: { 'X-Requested-With': null } }).then(load);
@@ -17,6 +17,7 @@ define("skeleton/configLoader",["dojo/require","dojo/request","dojo/cache"],func
 		load: function(id, require, load){
 			var
 			parts= id.split("!"),
+			stripFlag= parts.length>1,
 			finish = function(text){
 				load(stripFlag ? strip(text) : text);
 			},

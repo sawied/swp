@@ -83,3 +83,28 @@ iframe#ins {
 iframe#ins[src*="hao123"]{
 	height: 200px;
 }
+
+
+/************************************************************
+overlay CSS style
+*************************************************************/
+div#loadingOverlay{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    position: absolute;
+    background-color: rgba(200,200,200,0.1);
+}
+p.overlay-icon{
+	width:50px;
+	height: 50px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-left: -25px;
+	margin-right:25px;
+	background-image: url("images/loading.gif");
+	
+}

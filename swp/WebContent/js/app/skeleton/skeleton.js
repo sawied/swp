@@ -3,9 +3,10 @@ define([ "dojo/query", "dojo/dom", "dojo/dom-construct", "dojo/html",
 		"dojo/request/xhr",
 		"dojo/request/iframe",
 		"dojo/i18n!skeleton/i18n/nls/i18n",
-		"skeleton/configLoader!a.jsp",
+		"skeleton/loader!README.txt",
+		"skeleton/overlay",
 		"dojo/domReady!" ], function(query, dom, domConstruct, htm, template,
-		on,xhr,iframe,nls,configLoader) {
+		on,xhr,iframe,nls,configLoader,overlay) {
 	var node = domConstruct.toDom(template);
 	var rootDom=dom.byId("app-root");
 	domConstruct.place(node,rootDom, "last");
@@ -22,9 +23,12 @@ define([ "dojo/query", "dojo/dom", "dojo/dom-construct", "dojo/html",
 	console.dir(nls);
 	
 	
+	
+	
 	on(downloadBtn, "click", function(event) {
 		console.log("starting download");
-		formNode.submit();
+		overlay.show();
+		//formNode.submit();
 /*		var frame=iframe.create("hrx");
 		iframe.post("resources/sample.pdf",{data:{a:1,b:2}}).then(function(){
 			console.log("data return");
@@ -38,6 +42,7 @@ define([ "dojo/query", "dojo/dom", "dojo/dom-construct", "dojo/html",
 		//iframe.get("http://localhost:8888/smot/file.htm",{"handleAs":"text"})
 		
 		//iframe.setSrc(frame, "http://localhost:8888/smot/file.htm", true);
+	
 	});
 	
 	
