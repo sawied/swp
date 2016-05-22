@@ -4,14 +4,17 @@
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 		
 		
 		<!-- datasource -->
-		<jdbc:embedded-database id="default.datasource" database-name="sawied" type="DERBY"></jdbc:embedded-database>
+		<jee:jndi-lookup jndi-name="jdbc/oracleDS" id="default.datasource"></jee:jndi-lookup>
+		
 		
 		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		 <property name="entityManagerFactory" ref="entityManagerFactory"></property>

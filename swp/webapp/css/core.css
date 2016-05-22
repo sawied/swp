@@ -1,0 +1,162 @@
+@CHARSET "UTF-8";
+
+div#root-container{
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:10px;
+}
+div#top-header{
+	background-color: #333;
+	z-index:100;
+	height: 50px;
+	position: absolute;
+	left:0;
+	right:0;
+	top:0;
+}
+div#footer{
+	height: 20px;
+	background-color: #333;
+	z-index: 100px;
+	position: absolute;
+	left:0;
+	right:0;
+	bottom:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div#header{
+	height:30px;
+	background-color: #000;
+	color: #fff;
+	line-height: 30px;
+}
+div#header div#banner{
+	height: 30px;
+	width:480px;
+	float:left;
+	font-size: 18px;
+	text-indent: 1em;
+	line-height: 30px;
+}
+div#header div#banner ol li{
+	display: inline-block;
+	line-height: 30px;
+	position: relative;
+	vertical-align: top;
+	
+}
+div#header div#banner a{
+	color: #fff;
+}
+div#header div#banner span.header_line{
+	display: block;
+	width: 1px;
+	height: 30px;
+	background: url("img/headerBg.png") no-repeat 0 0; 
+}
+div#header div#userInfo{
+	height:30px;
+	float:right;
+	width:200px;
+	text-align: right;
+}
+a#userInfo_ar{
+	margin-right:5px;
+	line-height: 30px;
+	color: #fff;
+	text-decoration: none;
+	
+}
+
+div.body{
+	margin: 0 auto;
+	width: 100%;
+	
+	/*min-height: 500px;*/
+	background-color: #efefef;
+	position: absolute;
+	bottom: 0;
+	top:30px;
+	
+}
+div#left{
+	width:200px;
+	border: 1px solid #D8D8D8;
+	background-color: #fff;
+	padding: 10px;
+	bottom:5px;
+	top:5px;
+	left:5px;
+	position:absolute;
+}
+
+div#right{
+	border: 1px solid #D8D8D8;
+	position: absolute;
+	left:234px;
+	float: right;
+	bottom: 5px;
+	top:5px;
+	right:5px;
+	background-color: #fff;
+	
+}
+iframe#ins {
+	width: 100%;
+	height: 50px;	
+}
+iframe#ins[src*="hao123"]{
+	height: 200px;
+}
+
+
+/************************************************************
+overlay CSS style
+*************************************************************/
+div#loadingOverlay{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    position: absolute;
+    background-color: rgba(200,200,200,0.1);
+}
+p.overlay-icon{
+	width:50px;
+	height: 50px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-left: -25px;
+	margin-right:25px;
+	background-image: url("images/loading.gif");
+	
+}
