@@ -1,5 +1,5 @@
 define({
-	dummy:false,
+	dummy:true,
 	globalSettings:{
 		async:true,
 		beforeSend:null,
@@ -8,7 +8,6 @@ define({
 		processData:false,
 		"contentType":'application/x-www-form-urlencoded; charset=UTF-8'
 	},
-	
 	services:{
 		"retrieveUsers":{			
 			method:"post",

@@ -1,12 +1,5 @@
 @CHARSET "UTF-8";
 
-div#root-container{
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:10px;
-}
 div#top-header{
 	background-color: #333;
 	z-index:100;
@@ -15,6 +8,14 @@ div#top-header{
 	left:0;
 	right:0;
 	top:0;
+}
+div#root-container{
+	position:absolute;
+	top:50px;
+	left:0;
+	right:0;
+	bottom:20px;
+	overflow: hidden;
 }
 div#footer{
 	height: 20px;
@@ -149,14 +150,67 @@ div#loadingOverlay{
     position: absolute;
     background-color: rgba(200,200,200,0.1);
 }
+@-webkit-keyframes doRotate
+{
+from{-webkit-transform:rotate(0deg);}
+to{-webkit-transform:rotate(365deg);}
+}
 p.overlay-icon{
-	width:50px;
-	height: 50px;
 	position: absolute;
 	top:50%;
 	left:50%;
-	margin-left: -25px;
-	margin-right:25px;
-	background-image: url("images/loading.gif");
+	font-size: xx-large;
+}
+p.overlay-icon span.glyphicon{
+	display:block;
+	animation:doRotate 1s infinite;
+	-webkit-animation:doRotate 1s infinite;	
+	color: indigo;
+}
+
+
+/********************************************************************
+sidePanel CSS style
+*********************************************************************/
+div#sidePanel{
+	position: fixed;
+	right:0;
+	width: 320px;
+	overflow: hidden;
+	transform:translateX(320px);
+	/**border-left: 1px solid rgba(0,0,0,.2);**/
+	background-color: #f7f7f9;
+	top: 50px;
+	bottom:20px;
+	-webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    -moz-transition:transform 2s; /* Firefox 4 */
+	-webkit-transition:transform 2s; /* Safari and Chrome */
+	-o-transition:transform 2s; /* Opera */
+	z-index: 9999;
 	
 }
+
+div#sidePanel.open{
+	transform:translateX(0px);
+}
+div#sidePanel div.flexbox-container{
+	width:640px;
+	display:-webkit-box;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    overflow: hidden;
+    -webkit-transition:transform 2s;
+}
+div#sidePanel div.flexbox-container.moveLeft{
+	transform:translateX(-320px);
+}
+
+
+div#sidePanel div.flex-item{
+	width: 320px;
+	height: 100%;
+	/**-webkit-box-flex: 1;**/
+	
+}
+

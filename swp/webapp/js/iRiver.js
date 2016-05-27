@@ -6,11 +6,20 @@ requirejs.config({
 		"jquery":"lib/jquery-1.12.3",
 		"text":"lib/text",
 		"mustache":"lib/mustache",
-		"core" : "core"
+		"bootstrap":"lib/bootstrap/bootstrap",
+		"dummy":"application/dummy",
+		"core" : "application/core",
+		"switcher":"application/switcher"
 	},
 	deps : [ "core/core" ],
 	callback : function(a, b, c) {
 
+	},
+	shim:{
+		"bootstrap":{
+			deps: ["jquery"],
+			exports:"$",
+		}
 	}
 
 });

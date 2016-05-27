@@ -23,5 +23,17 @@ define(["jquery","core/topic","core/overlay","config"],function($,topic,overlay,
 	};
 	
 	
-	return proxyCall;
+	var dummyCall = function(serviceName){
+		
+		overlay.show();
+		var defer=$.Deferred();
+		 require(["dummy/"+serviceName+"_dummy"],function(data){	
+			 console.log("dummy call from ",serviceName," and the response "+data);
+			 setTimeout(function(){overlay.close();defer.resolve(data);}, 1500);	
+		});
+		 return defer;
+	};
+	
+	
+	return config.dummy?dummyCall:proxyCall;
 });
