@@ -1,12 +1,4 @@
-<div class="" id="user-dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
-					<span>&times;</span>
-				</button>
-				<h4 class="modal-title">User list</h4>
-			</div>
+
 			<div class="modal-body" id="userlist">
 				<table class="table table-bordered">
 					<thead>
@@ -22,7 +14,7 @@
 						<tr>
 							<td>{{id}}
 							</td>
-							<td>{{name}}</td>
+							<td><a data-event="userDetail">{{name}}</a></td>
 							<td>{{birthday}}</td>
 							<td>{{comments}}</td>
 						</tr>
@@ -32,16 +24,6 @@
 
 
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" data-event="switcherOpen">Save changes</button>
-			</div>
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
 
 
 
