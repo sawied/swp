@@ -1,10 +1,10 @@
-define(["bootstrap", "text!switcher/template/sidePanel.html"], function ($, template) {
+define(["bootstrap", "text!switcher/template/sidePanel.html","switcher/detail"], function ($, template,detail) {
 
 
     // Forces the JavaScript engine into strict mode: http://tinyurl.com/2dondlh
     "use strict";
 
-    function Switcher(root, param) {
+    function Switcher(root,cname, param) {
 
 
         if (!(this instanceof Switcher)) {
@@ -14,6 +14,11 @@ define(["bootstrap", "text!switcher/template/sidePanel.html"], function ($, temp
         var self = this;
         self.root = $(root);
         self.root.html(template);
+        self.cname=cname;
+        self.components=[];
+        self.currentPage=null;
+        self.opened=false;
+
         _bindEvent();
         /**
          * binding all the events marked with data-event and mapping the handler as data-handler
@@ -26,7 +31,27 @@ define(["bootstrap", "text!switcher/template/sidePanel.html"], function ($, temp
             });
         }
 
+        /**
+         * init first component
+         */
+        self.pages=[];
+        self.root.find("div[data-name]").each(function(index,item,items) {
+            var $this=$(this);
+            return self.pages[$this.data("name")]=$this;
+        });
+
+        if(!self.components[self.cname]){
+           self.components[cname]=new Switcher.MODULES[self.cname](self.pages[cname],this,{});
         }
+
+
+    }
+
+    Switcher.MODULES={
+        "detail":detail
+    };
+
+
 
 
         /**
@@ -36,8 +61,8 @@ define(["bootstrap", "text!switcher/template/sidePanel.html"], function ($, temp
         Switcher.MAX=3;
 
 
-        Switcher.create=function (root,param) {
-            var result=new Switcher(root,param);
+        Switcher.create=function (root,cname,param) {
+            var result=new Switcher(root,cname,param);
             return result;
         }
 
@@ -55,9 +80,24 @@ define(["bootstrap", "text!switcher/template/sidePanel.html"], function ($, temp
              * @param name component name
              * @param param
              */
-            goTo:function (name,param) {
-                
+            moveTo:function (name,param) {
+                if(!(this.currentPage&&this.opened)){
+                    this.open();
+                    this.currentPage=name;
+                    this.opened=true;
+                }
+            },
+
+
+            open:function(){
+                this.root.addClass("open");
+            },
+
+            close:function () {
+                this.root.removeClass("open");
             }
+
+
 
 
         }

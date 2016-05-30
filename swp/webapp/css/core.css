@@ -190,3 +190,28 @@ div#sidePanel div.flex-item{
 	
 }
 
+/***************************************************************
+Tip panel CSS style
+*****************************************************************/
+div.tip-panel{
+	position: fixed;
+	display: none;
+	top: 10px;
+	text-align: center;
+	width: 100%;
+	z-index: 200;
+}
+div.tip-panel.open{
+	display: block;!important;
+}
+
+div.tip-panel span.msg{
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	padding: 3px 15px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+

@@ -1,5 +1,5 @@
 define({
-	dummy:false,
+	dummy:true,
 	globalSettings:{
 		async:true,
 		beforeSend:null,

@@ -37,7 +37,7 @@ define(["jquery","core/topic","core/overlay","config"],function($,topic,overlay,
 
 
 	function isJSONRequest(serviceName){
-		var service=services[serviceName];
+		var service=config.services[serviceName];
 		return (service["contentType"]&&"application/json"== service["contentType"]);
 	};
 	
