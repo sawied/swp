@@ -12,11 +12,16 @@
 					<tbody>
 						{{#data}}
 						<tr>
-							<td>{{id}}
-							</td>
-							<td><a data-event="userDetail">{{name}}</a></td>
+							<td>{{id}}</td>
+							<td><a data-event="userDetail" data-json='{{json}}'>{{name}}</a></td>
 							<td>{{birthday}}</td>
-							<td>{{comments}}</td>
+							<td>{{#comments}}
+								{{comments}}
+								{{/comments}}
+								{{^comments}}
+								No Comments
+								{{/comments}}
+							</td>
 						</tr>
 						{{/data}}
 					</tbody>
