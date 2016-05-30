@@ -12,15 +12,16 @@ define(["jquery","core/topic","core/overlay","config"],function($,topic,overlay,
 		var services=config.services,
 			service=services[serviceName],
 			data=service;
-		if(param){
-			//assume all the parameters are JSON
-			data=$.extend({},service,{data:JSON.stringify(param)});
+		if(param&&$.isPlainObject(param)){
+			data=$.extend({},service,{data:isJSONRequest(serviceName)?JSON.stringify(param):param});
 		}
 		overlay.show();
-		
+		console.log("do service",serviceName,data);
 		return $.ajax(service.url,data).always(function(){overlay.close();topic("ajaxComplated").publish({a:1});}).fail(_failProcessor);
 		
 	};
+
+
 	
 	
 	var dummyCall = function(serviceName){
@@ -32,6 +33,12 @@ define(["jquery","core/topic","core/overlay","config"],function($,topic,overlay,
 			 setTimeout(function(){overlay.close();defer.resolve(data);}, 1500);	
 		});
 		 return defer;
+	};
+
+
+	function isJSONRequest(serviceName){
+		var service=services[serviceName];
+		return (service["contentType"]&&"application/json"== service["contentType"]);
 	};
 	
 	
