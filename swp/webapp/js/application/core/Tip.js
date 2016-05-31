@@ -14,6 +14,7 @@ define(["jquery","text!core/template/Tip.html"],function($,template){
         if(!status){
             status="showed";
             dataContent.html(msg);
+            $root.get(0).innerHeight;
             $root.addClass("open");
             setTimeout(function () {
                 $root.removeClass("open");
