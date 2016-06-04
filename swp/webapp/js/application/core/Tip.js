@@ -1,15 +1,22 @@
-define(["jquery","text!core/template/Tip.html"],function($,template){
+define(["jquery","text!core/template/Tip.html","domReady!"],function($,template){
+
+
+    /**
+     * init default template
+     * @type {null}
+     */
 
     var $root=null,
         status=null,
         dataContent=null;
 
+    if(!$root){
+        $("body").append(template);
+        $root=$("#tip-container");
+        dataContent=$root.find("[data-content]");
+    }
+
     function show(msg) {
-        if(!$root){
-            $("body").append(template);
-            $root=$("#tip-container");
-            dataContent=$root.find("[data-content]");
-        }
 
         if(!status){
             status="showed";

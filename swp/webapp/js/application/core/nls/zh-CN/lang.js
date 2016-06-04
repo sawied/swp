@@ -1,3 +1,3 @@
 define({
-	 "applicationName": "ÌìÏß"
+	 "applicationName": "æˆ‘çš„åº”ç”¨"
 });

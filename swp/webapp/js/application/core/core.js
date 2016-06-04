@@ -1,15 +1,16 @@
 define(["bootstrap",
-        "domReady",
         "mustache",
         "core/model/users",
         "core/Tip",
         "text!core/template/layout.html",
         "switcher/switcher",
-        "core/Person"
+        "core/Person",
+        "core/Alert",
+        "domReady!",
     ],
-    function ($, domReady, mustache, userService, tip,template, switcher, Person) {
+    function ($, mustache, userService, tip,template, switcher, Person,alt) {
 
-        domReady(function () {
+
 
             var $root = $("#doc-root");
 
@@ -17,6 +18,13 @@ define(["bootstrap",
                     var dom = mustache.render(template, data);
                     $root.html(dom);
 //			$("#user-dialog").modal({"show":true});
+
+                $("[data-event='modelTest']").on("click",function () {
+                    alt("Hello world!","model.test").done(function (expected) {
+                        console.log("user's select ",expected);
+                    });
+                });
+                
                 }
             );
 
@@ -39,5 +47,4 @@ define(["bootstrap",
             });
 
 
-        });
     });

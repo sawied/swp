@@ -200,10 +200,11 @@ div#tip-container{
 	width: 100%;
 	z-index: 200;
 	-webkit-transition:top 1s;;
-	top: 0px;
+	top: -30px;
 }
 div#tip-container.open{
-	top:30px !important;
+	top:0px !important;
+	display: block;
 }
 
 div.tip-inner{
@@ -213,7 +214,7 @@ div.tip-inner{
 	border-radius: 4px;
 }
 span.text-msg{
-	padding-left: 5px;
+	/**padding-left: 5px;**/
 }
 
 
