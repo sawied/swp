@@ -3,12 +3,13 @@ define(["bootstrap",
         "core/model/users",
         "core/Tip",
         "text!core/template/layout.html",
+    "text!core/template/Shapes.html",
         "switcher/switcher",
         "core/Person",
         "core/Alert",
         "domReady!",
     ],
-    function ($, mustache, userService, tip,template, switcher, Person,alt) {
+    function ($, mustache, userService, tip,template,shapesTemplate, switcher, Person,alt) {
 
 
 
@@ -20,13 +21,18 @@ define(["bootstrap",
 //			$("#user-dialog").modal({"show":true});
 
                 $("[data-event='modelTest']").on("click",function () {
-                    alt("Hello world!","model.test").done(function (expected) {
+                    alt({title:"Hello world!",content:"model.test"}).done(function (expected) {
                         console.log("user's select ",expected);
                     });
                 });
+
+                    $root.find("#shapes").html(shapesTemplate);
                 
                 }
             );
+
+
+
 
 
             console.log(Person.create("danan", 30));
