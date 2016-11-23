@@ -1,2 +1,2 @@
 #SMOT
-This project any for personal study. 
+This project only for personal study. 
