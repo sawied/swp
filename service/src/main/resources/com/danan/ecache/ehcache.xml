@@ -22,7 +22,9 @@
      maxEntriesLocalDisk="50" 
      diskExpiryThreadIntervalSeconds="120" 
      memoryStoreEvictionPolicy="LRU"> 
+     <!-- 
      <persistence strategy="localTempSwap"/>
+      -->
   </defaultCache> 
   
  
@@ -32,6 +34,7 @@
  	maxBytesLocalOffHeap="5M"
  	maxBytesLocalDisk="100M"
  	eternal="false"
+ 	overflowToOffHeap="false"
  	overflowToDisk="true"
  	timeToIdleSeconds="900" 
     timeToLiveSeconds="1800"
