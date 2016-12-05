@@ -1,0 +1,4 @@
+/target/
+**/WEB-INF/classes/
+**/WEB-INF/lib/
+.settings/

@@ -10,7 +10,6 @@
 
 
 
-
 	<int:channel id="inputChannel"></int:channel>
 	<int-ws:outbound-gateway id="webservice"
 		request-channel="inputChannel" message-factory="messageFactory"

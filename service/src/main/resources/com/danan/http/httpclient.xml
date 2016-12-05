@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+
+<bean id="defaultEhcache"  class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+	<property name="configLocation" value="classpath:com/danan/ecache/ehcache.xml"></property>
+	<property name="shared" value="true"></property>
+	<property name="acceptExisting" value="true"></property>
+	<property name="cacheManagerName" value="httpClientCache"></property>
+</bean>
+
+<bean id="staticEhcache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+	<property name="cacheManager"></property>
+	<property name="cacheName" value="staticResourceCache"></property>
+</bean>
+
+
+<!-- cache storage  -->
+<bean id="cacheStorage" class="org.apache.http.impl.client.cache.ehcache.EhcacheHttpCacheStorage">
+ <property name="cache" ref="staticEhcache"></property>
+</bean>
+
+
+<bean id="" class="org.apache.http.client.config.RequestConfig"></bean>
+
+
+
+
+
+<bean id="cacheableHTTPClient" class=""></bean>
+
+		
+</beans>
