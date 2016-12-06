@@ -14,7 +14,7 @@
 
 <bean id="staticEhcache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
 	<property name="cacheManager" ref="defaultEhcacheManager"></property>
-	<property name="cacheName" value="staticResourceCache"></property>
+	<property name="cacheName" value="static"></property>
 </bean>
 
 

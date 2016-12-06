@@ -40,6 +40,7 @@ public class CachingHTTPClientCreator implements FactoryBean<CloseableHttpClient
 				.setSocketTimeout(60000) //the timeout for waiting for data
 				.build();
 		
+		
 		return CachingHttpClients.custom().setCacheConfig(cacheConfig)
 				.setHttpCacheStorage(cacheStorage)
 				.setConnectionManager(connectionManager)

@@ -213,6 +213,12 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>javax.media</groupId>
+			<artifactId>jai_core</artifactId>
+			<version>1.1.3</version>
+		</dependency>
+
 
 
 		<dependency>
@@ -249,6 +255,13 @@
 			<scope>test</scope> </dependency> -->
 
 	</dependencies>
+	
+	<repository>
+    <id>com.springsource.repository.bundles.external</id>
+    <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+    <url>http://central.maven.org/maven2/</url>
+</repository>
+	
 
 
 

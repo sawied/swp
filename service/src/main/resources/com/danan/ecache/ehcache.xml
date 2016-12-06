@@ -5,41 +5,36 @@
 	monitoring="autodetect" 
 	dynamicConfig="false"
 	name="httpClientCache"
-	maxBytesLocalHeap="5M"
-	maxBytesLocalOffHeap="10M"
+	maxBytesLocalHeap="10M"
 	maxBytesLocalDisk="100M"
 	> 
 	
 	
-  <diskStore path="java.io.tmpdir"/>   
+  <diskStore path="C:/works/temp/"/>   
    
   <defaultCache 
-     maxEntriesLocalHeap="5" 
+     maxBytesLocalHeap="5M"
      eternal="false" 
-     overflowToDisk="true"
      timeToIdleSeconds="120" 
      timeToLiveSeconds="120" 
      maxEntriesLocalDisk="50" 
      diskExpiryThreadIntervalSeconds="120" 
      memoryStoreEvictionPolicy="LRU"> 
-     <!-- 
      <persistence strategy="localTempSwap"/>
-      -->
   </defaultCache> 
   
  
  <cache 
- 	name="staticResourceCache"
- 	maxBytesLocalHeap="3M"
- 	maxBytesLocalOffHeap="5M"
- 	maxBytesLocalDisk="100M"
+ 	name="static"
+ 	maxBytesLocalHeap="5M"
+ 	maxEntriesLocalDisk="100"
  	eternal="false"
- 	overflowToOffHeap="false"
- 	overflowToDisk="true"
  	timeToIdleSeconds="900" 
     timeToLiveSeconds="1800"
     memoryStoreEvictionPolicy="LFU" 
- />
+ >
+  <persistence strategy="localTempSwap"/>
+ </cache>
   
   
   
