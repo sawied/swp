@@ -1,16 +1,22 @@
 package com.danan.intg.http;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.cache.CacheResponseStatus;
 import org.apache.http.client.cache.HttpCacheContext;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
@@ -20,9 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.itextpdf.text.pdf.PdfDocument;
-
+import com.sun.media.jai.codec.JPEGEncodeParam;
+import com.sun.media.jai.codecimpl.JPEGImageEncoder;
 import junit.framework.Assert;
 
 
@@ -33,6 +38,12 @@ public class CachingHttpClientTest {
 
     @Autowired
     private HttpClient httpClient; 
+    
+    
+    private final static String REPOSITORY="C:/works/temp/";
+    
+    
+    private final static String JPEG_Suffix=".jpg";
     
     
     @Test
@@ -79,10 +90,16 @@ public class CachingHttpClientTest {
     	try {
 			HttpResponse response = httpClient.execute(new HttpGet("http://localhost/sample.pdf"));
 			int statusCode =  response.getStatusLine().getStatusCode();
-			if(statusCode==200 && "application/pdf".equals(response.getHeaders("Content-Type"))){
-				InputStream content = response.getEntity().getContent();
+			if(statusCode==200 && "application/pdf".equals(response.getFirstHeader("Content-Type").getValue())){
+				HttpEntity httpEntity=response.getEntity();
+				if(!httpEntity.isRepeatable()){		
+					httpEntity = new BufferedHttpEntity(httpEntity);
+				}
 				
-				
+				ByteArrayInputStream content = (ByteArrayInputStream) httpEntity.getContent();
+				char[] encode = Hex.encode(DigestUtils.sha256(content));
+				content.reset();
+				Pdf2Images(content,new String(encode));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -113,14 +130,14 @@ public class CachingHttpClientTest {
     
     
     
-    private void Pdf2Images(InputStream input){
+    private void Pdf2Images(InputStream input,String hashCode){
     	
     	try {
 			PDDocument pdDocument = PDDocument.load(input);
 			int numberOfPages = pdDocument.getNumberOfPages();
 			for(int i =0;i<numberOfPages;i++){
 				BufferedImage bufferedImage = new PDFRenderer(pdDocument).renderImageWithDPI(i,300,ImageType.RGB);
-				
+				saveImage2JPEG(bufferedImage,new File(REPOSITORY,hashCode),StringUtils.leftPad(String.valueOf(i), 3,"0"));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -130,11 +147,36 @@ public class CachingHttpClientTest {
     
     
     
-    private void saveImage2JPEG(BufferedImage bufferedImage){
-    	JPEGEncodeParam jpegEncodeParam=new JPEGEncodeParam();
-    	jpegEncodeParam.setQuality(0.8f);
-    	JPEGImageEncoder jpegImageEncoder=new JPEGImageEncoder(fileOutputStream,jpegEncodeParam);
-    	jpegImageEncoder.encode(image);
+    private void saveImage2JPEG(BufferedImage bufferedImage,File dirctory,String name){
+    	if(!dirctory.exists()){
+    		dirctory.mkdirs();
+    	}else{
+    		System.out.println("why the flow can step in here ?");
+    	}
+    	File dist = new File(dirctory,name + JPEG_Suffix);
+    	
+    	FileOutputStream outputStream=null;
+    	
+		try {
+			outputStream = new FileOutputStream(dist);
+			JPEGEncodeParam jpegEncodeParam=new JPEGEncodeParam();
+			jpegEncodeParam.setQuality(0.7f);
+			JPEGImageEncoder jpegImageEncoder=new JPEGImageEncoder(outputStream,jpegEncodeParam);
+			jpegImageEncoder.encode(bufferedImage);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if(outputStream!=null){
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+    	
     }
     
     
