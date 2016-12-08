@@ -49,12 +49,12 @@ public class CachingHttpClientTest {
     @Test
     public void getCachedResponseSuccess(){
 	try {
-	    HttpResponse response = httpClient.execute(new HttpGet("http://localhost/sample.pdf"));
+	    HttpResponse response = httpClient.execute(new HttpGet("https://localhost/sample.pdf"));
 	    int statusCode = response.getStatusLine().getStatusCode();
 	    Assert.assertEquals(200, statusCode);
 	    
 	    HttpCacheContext context = new HttpCacheContext();
-	    response = httpClient.execute(new HttpGet("http://localhost/sample.pdf"),context);
+	    response = httpClient.execute(new HttpGet("https://localhost/sample.pdf"),context);
 	   
 	    CacheResponseStatus cacheResponseStatus = context.getCacheResponseStatus();
 	     
@@ -88,7 +88,7 @@ public class CachingHttpClientTest {
     @Test
     public void pdfResponseToImages(){
     	try {
-			HttpResponse response = httpClient.execute(new HttpGet("http://localhost/sample.pdf"));
+			HttpResponse response = httpClient.execute(new HttpGet("https://localhost/sample.pdf"));
 			int statusCode =  response.getStatusLine().getStatusCode();
 			if(statusCode==200 && "application/pdf".equals(response.getFirstHeader("Content-Type").getValue())){
 				HttpEntity httpEntity=response.getEntity();
@@ -114,7 +114,7 @@ public class CachingHttpClientTest {
     	char[] encode =null;
     	HttpResponse response;
 		try {
-			response = httpClient.execute(new HttpGet("http://localhost/sample.pdf"));
+			response = httpClient.execute(new HttpGet("https://localhost/sample.pdf"));
 			int statusCode =  response.getStatusLine().getStatusCode();
 			if(statusCode==200){
 				InputStream inputstream = response.getEntity().getContent();
