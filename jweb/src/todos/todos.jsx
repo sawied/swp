@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {fetchTodoList} from './actions/actions';
 class Todos extends React.Component {
 
 
-
+ componentDidMount(){
+    const {dispatch} = this.props;
+    dispatch(fetchTodoList(dispatch));
+ }
 
   render() {
 

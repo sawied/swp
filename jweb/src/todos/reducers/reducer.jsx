@@ -31,6 +31,8 @@ const todos = (state = [], action) => {
       return state.map(t =>
         todo(t, action)
       )
+      case 'RECEIVE_TODOLIST':
+       return [...state,action.todoList]
     default:
       return state
   }
