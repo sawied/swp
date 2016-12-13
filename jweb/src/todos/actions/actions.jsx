@@ -6,11 +6,14 @@ export function addTodo(text){
 }
 
 
-export const receiveTodoList = (json) => ({
-  type: RECEIVE_TODOLIST,
-  todoList: json.data.map(child => child.data),
-  receivedAt: Date.now()
-})
+export const receiveTodoList = (json) => {
+  console.log('the retrieved response from server: ',json);
+ return {
+   type: RECEIVE_TODOLIST,
+   todoList: json.data.map(child => child.data),
+   receivedAt: Date.now()
+ };
+}
 
 
 export function fetchTodoList(dispatch){
