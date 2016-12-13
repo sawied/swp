@@ -9,6 +9,7 @@
 
 
 	<properties>
+	    <project.phase>SNAPSHOT</project.phase>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<compile.version>1.7</compile.version>
 		<ehcache.version>2.10.3</ehcache.version>
@@ -19,6 +20,7 @@
 	</properties>
 
 	<build>
+	   <finalName>${artifactId}-${project.phase}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
