@@ -8,14 +8,26 @@
 
 
 	<!-- <bean id="userLoginEvnet" class="com.danan.business.smot.web.UserLoginLogEvent"></bean> -->
+	
+	<!-- controller package for scanning -->
+	<context:component-scan base-package="com.danan.business.smot.rest"></context:component-scan>
+
+	<!-- sign in page -->
+	<mvc:view-controller path="/login.htm" view-name="login" />
+	
+	<!-- exception handler -->
 
 
+
+
+
+
+	<!--  -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<ref bean="stringHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
 
 	<bean id="stringHttpMessageConverter"
 		class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -27,16 +39,9 @@
 		</property>
 	</bean>
 
-
-
-	<mvc:view-controller path="/login.htm" view-name="login" />
-
-
-	<context:component-scan base-package="com.danan.business.smot.web"></context:component-scan>
-
-
-
 	<!-- jackson JSON processor -->
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+	</bean>
 
 	<bean id="jacksonJsonView"
 		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
@@ -44,12 +49,7 @@
 		</property>
 	</bean>
 
-	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
-	</bean>
-
-
-
-	<!-- application web -->
+	<!-- velocity view resolver -->
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath" value="/WEB-INF/velocity"></property>

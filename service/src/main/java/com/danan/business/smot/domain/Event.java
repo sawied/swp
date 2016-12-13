@@ -13,6 +13,15 @@ public class Event {
 	
 	private String title =null;
 
+	public Event() {
+	    super();
+	}
+
+	public Event(String id, String title) {
+	    this.id=id;
+	    this.title=title;
+	}
+
 	public String getId() {
 		return id;
 	}

@@ -9,9 +9,10 @@ import com.danan.business.smot.domain.Event;
  * @author James X W Zhang
  *
  */
+
 public interface EventManager {
 	
-	
-	 List<Event> retrieveEvent() throws Exception;
+  
+    List<Event> retrieveEvent( String id) throws Exception;
 
 }
