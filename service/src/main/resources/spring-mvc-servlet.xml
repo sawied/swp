@@ -16,7 +16,24 @@
 	<mvc:view-controller path="/login.htm" view-name="login" />
 	
 	<!-- exception handler -->
-
+	 <!-- Allow Exceptions to be handled in annotated methods if desired.  Otherwise fallback to the
+         'restExceptionResolver' below: -->
+    <bean id="restExceptionResolver" class="com.danan.business.smot.web.exception.ServiceErrorHandlerResolver">
+        <property name="order" value="100"/>
+        <property name="errorResolver">
+            <bean class="com.danan.business.smot.web.exception.DefaultExceptionErrorResolver">
+                <property name="exceptionMappingDefinitions">
+                    <map>
+                        <!-- 400 -->
+                        <entry key="com.danan.business.smot.rest.NotEventException" value="400,360,Not Id exception"/>
+                        <!-- 500 (catch all): -->
+                        <entry key="java.lang.Throwable" value="500,550,unknowException"/>
+                    </map>
+                </property>
+            </bean>
+        </property>
+    </bean>
+	
 
 	<!--  -->
 	<mvc:annotation-driven>
@@ -24,6 +41,7 @@
 			<ref bean="stringHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+	
 
 	<bean id="stringHttpMessageConverter"
 		class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -34,6 +52,16 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1"/>
+        <property name="defaultViews">
+            <list>
+               <ref bean="jacksonJsonView"/>
+            </list>
+        </property>
+    </bean>
+	
 
 	<!-- jackson JSON processor -->
 	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">

@@ -11,12 +11,12 @@ import org.springframework.http.HttpStatus;
  */
 public class ServiceError {
 
-	 	private final HttpStatus status;
+	    private final HttpStatus status;
 	    private final int code;
 	    private final String message;
 	    private final String developerMessage;
 	    private final String moreInfoUrl;
-	    private final Throwable throwable;
+	    private final String throwable;
 
 	    public ServiceError(HttpStatus status, int code, String message, String developerMessage, String moreInfoUrl, Throwable throwable) {
 	        if (status == null) {
@@ -27,7 +27,7 @@ public class ServiceError {
 	        this.message = message;
 	        this.developerMessage = developerMessage;
 	        this.moreInfoUrl = moreInfoUrl;
-	        this.throwable = throwable;
+	        this.throwable = throwable!=null?throwable.getClass().getSimpleName():null;
 	    }
 	    
 	    
@@ -112,7 +112,7 @@ public class ServiceError {
 		}
 
 
-		public Throwable getThrowable() {
+		public String getThrowable() {
 			return throwable;
 		}
 	    

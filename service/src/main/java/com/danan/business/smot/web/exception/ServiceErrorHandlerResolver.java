@@ -19,13 +19,19 @@ public class ServiceErrorHandlerResolver extends AbstractHandlerExceptionResolve
 		ServletWebRequest webRequest = new ServletWebRequest(request, response);
 		ServiceError serviceError = errorResolver.resolveError(webRequest, handler, ex);
 		applyResponseStatus(webRequest,serviceError);
-		return null;
+		return new ModelAndView().addObject(serviceError);
 	}
 
 	private void applyResponseStatus(ServletWebRequest request, ServiceError serviceError) {
-		if(WebUtils.isIncludeRequest(request.getRequest())){			
+		if(!WebUtils.isIncludeRequest(request.getRequest())){			
 			request.getResponse().setStatus(serviceError.getStatus().value());
 		}
 	}
+
+	public void setErrorResolver(ExceptionErrorResolver errorResolver) {
+	    this.errorResolver = errorResolver;
+	}
+	
+	
 
 }

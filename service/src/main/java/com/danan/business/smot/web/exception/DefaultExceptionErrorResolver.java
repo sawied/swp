@@ -25,6 +25,8 @@ public class DefaultExceptionErrorResolver implements ExceptionErrorResolver,Ini
 	
 	 public static final String DEFAULT_EXCEPTION_MESSAGE_VALUE = "unknow";
 	 
+	 public static final String DEFAULT_EXCEPTION_CODE ="550";
+	 
 	 public static final String DEFAULT_MESSAGE_VALUE = "unknow";
 	
 	private Map<String,ServiceError> exceptionMappings =  Collections.emptyMap();
@@ -42,7 +44,7 @@ public class DefaultExceptionErrorResolver implements ExceptionErrorResolver,Ini
 		builder.setMessage(serviceError.getMessage());
 		builder.setDeveloperMessage(ex.getMessage());
 		builder.setMoreInfoUrl(null);
-		builder.setThrowable(ex.getCause());
+		builder.setThrowable(ex);
 		return builder.build();
 	}
 	
@@ -150,7 +152,7 @@ public class DefaultExceptionErrorResolver implements ExceptionErrorResolver,Ini
 	}
 
 	private void applyDef(Map<String, String> m, String key, HttpStatus status) {
-		m.put(key, status.value() + ", " + DEFAULT_EXCEPTION_MESSAGE_VALUE);
+		m.put(key, status.value() + ","+DEFAULT_EXCEPTION_CODE+"," + DEFAULT_EXCEPTION_MESSAGE_VALUE);
 	}
 	
 	
@@ -187,8 +189,8 @@ public class DefaultExceptionErrorResolver implements ExceptionErrorResolver,Ini
 	        
 	        ServiceError.Builder builder =new ServiceError.Builder();
 	        
-	        builder.setStatus(getHttpStatus(values[0]));
-	        builder.setCode(Integer.parseInt(values[1]));
+	        builder.setStatus(getHttpStatus(values[0].trim()));
+	        builder.setCode(Integer.parseInt(values[1].trim()));
 	        builder.setMessage(values[2]);
 		return builder.build();
 	}
@@ -202,6 +204,18 @@ public class DefaultExceptionErrorResolver implements ExceptionErrorResolver,Ini
 		int status =Integer.parseInt(code);
 		return HttpStatus.valueOf(status);
 	}
+
+
+
+	public void setExceptionMappingDefinitions(
+		Map<String, String> exceptionMappingDefinitions) {
+	    this.exceptionMappingDefinitions = exceptionMappingDefinitions;
+	}
+
+
+
+	
+	
 	
 	
 }
