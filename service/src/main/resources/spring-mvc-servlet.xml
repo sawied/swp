@@ -60,6 +60,11 @@
                <ref bean="jacksonJsonView"/>
             </list>
         </property>
+        <property name="viewResolvers">
+        <list>
+              <ref bean="velocityViewResolver"/>
+        </list>
+        </property>
     </bean>
 	
 
@@ -88,7 +93,7 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="viewResolver"
+	<bean id="velocityViewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<property name="prefix" value=""></property>
 		<property name="suffix" value=".vm"></property>

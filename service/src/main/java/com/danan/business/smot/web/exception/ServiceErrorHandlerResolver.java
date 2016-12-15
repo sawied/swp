@@ -10,7 +10,9 @@ import org.springframework.web.util.WebUtils;
 
 public class ServiceErrorHandlerResolver extends AbstractHandlerExceptionResolver {
 
-
+    
+    
+	private static final String DEFAULT_ERROR_VIEW_NAME = "ERROR";
 	private ExceptionErrorResolver errorResolver =null;
 	
 	@Override
@@ -19,7 +21,7 @@ public class ServiceErrorHandlerResolver extends AbstractHandlerExceptionResolve
 		ServletWebRequest webRequest = new ServletWebRequest(request, response);
 		ServiceError serviceError = errorResolver.resolveError(webRequest, handler, ex);
 		applyResponseStatus(webRequest,serviceError);
-		return new ModelAndView().addObject(serviceError);
+		return new ModelAndView(DEFAULT_ERROR_VIEW_NAME).addObject(serviceError);
 	}
 
 	private void applyResponseStatus(ServletWebRequest request, ServiceError serviceError) {

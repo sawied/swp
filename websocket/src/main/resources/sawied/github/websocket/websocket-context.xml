@@ -9,9 +9,10 @@
 
 
 <websocket:handlers >
- <websocket:mapping handler="simpleMessgae" path="/console"/>
+ 	<websocket:mapping handler="simpleMessgae" path="/console"/>
  	<websocket:sockjs />
 </websocket:handlers>
+
 
 <bean id="simpleMessgae" class="com.github.sawied.websocket.SimpleMessageWebsocketHandler"></bean>
 
