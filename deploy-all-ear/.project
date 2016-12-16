@@ -4,7 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>model</project>
-		<project>kerberos</project>
+		<project>websocket</project>
+		<project>service</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

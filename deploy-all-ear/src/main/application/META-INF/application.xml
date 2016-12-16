@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" id="Application_ID" version="7">
   <display-name>deploy-all-ear</display-name>
-  <module id="Module_1456237466384">
+  <module>
     <web>
-      <web-uri>kerberos-1.0.0-SNAPSHOT.war</web-uri>
-      <context-root>kerberos</context-root>
+      <web-uri>service.war</web-uri>
+      <context-root>service</context-root>
     </web>
   </module>
+  <!-- 
   <security-role>
     <description>All Authenticated users role.</description>
     <role-name>authenticatedUser</role-name>
   </security-role>
-  <library-directory>lib</library-directory>
+   -->
 </application>

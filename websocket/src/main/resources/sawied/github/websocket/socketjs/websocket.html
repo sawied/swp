@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>default</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="sockjs.js"></script>
+</head>
+<body>
+
+
+<input type="button" id="send" value="send"/>
+
+<script type="text/javascript">
+var sock = new SockJS('http://localhost:8080/service/socketjs/console');
+sock.onopen = function() {
+    console.log('open');
+};
+sock.onmessage = function(e) {
+    console.log('message', e.data);
+};
+sock.onclose = function() {
+    console.log('close');
+};
+
+document.getElementById("send").addEventListener("click",function(){
+sock.send('test');
+});
+
+</script>
+
+
+
+</body>
+</html>

@@ -9,6 +9,9 @@
 
 	<!-- <bean id="userLoginEvnet" class="com.danan.business.smot.web.UserLoginLogEvent"></bean> -->
 	
+	<!-- import websocket -->
+	<import resource="sawied/github/websocket/websocket-context.xml" />
+	
 	<!-- controller package for scanning -->
 	<context:component-scan base-package="com.danan.business.smot.rest"></context:component-scan>
 

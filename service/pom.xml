@@ -27,7 +27,13 @@
 			<groupId>com.github.sawied</groupId>
 			<artifactId>model</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>com.github.sawied</groupId>
+			<artifactId>websocket</artifactId>
+		</dependency>
+		
+		<!-- spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>

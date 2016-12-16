@@ -12,7 +12,7 @@ public class ServiceErrorHandlerResolver extends AbstractHandlerExceptionResolve
 
     
     
-	private static final String DEFAULT_ERROR_VIEW_NAME = "ERROR";
+	private static final String DEFAULT_ERROR_VIEW_NAME = "jacksonJsonView";
 	private ExceptionErrorResolver errorResolver =null;
 	
 	@Override

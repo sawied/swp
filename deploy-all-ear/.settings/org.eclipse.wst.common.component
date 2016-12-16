@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="deploy-all-ear-1.0.0-SNAPSHOT">
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+    <wb-module deploy-name="deploy-all-ear-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="kerberos-1.0.0-SNAPSHOT.war" deploy-path="/" handle="module:/resource/kerberos/kerberos">
+        <dependent-module archiveName="websocket.jar" deploy-path="/lib" handle="module:/resource/websocket/websocket">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="service.war" deploy-path="/" handle="module:/resource/service/service">
+            <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
