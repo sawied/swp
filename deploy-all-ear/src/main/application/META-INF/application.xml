@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" id="Application_ID" version="7">
   <display-name>deploy-all-ear</display-name>
-  <module>
+  <module id="Module_1481897634897">
     <web>
       <web-uri>service.war</web-uri>
       <context-root>service</context-root>
     </web>
   </module>
-  <!-- 
-  <security-role>
-    <description>All Authenticated users role.</description>
-    <role-name>authenticatedUser</role-name>
-  </security-role>
-   -->
+  <library-directory>lib</library-directory>
 </application>

@@ -1,30 +1,43 @@
-##安装maven 的依赖包ojdbc
-mvn install:install-file -Dfile=ojdbc14.jar -DgroupId=ojdbc -DartifactId=ojdbc -Dversion=14 -Dpackaging=jar -DgeneratePom=true
-mvn install:install-file -Dfile=sipservlet.jar -DgroupId=javax.servlet -DartifactId=sip-api -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
-##安装mongodb,注意使用管理员身份执行命令
-mongod --logpath "D:/Oracle/mongodb/logs/log.log" --dbpath  "D:/Oracle/mongodb/data/db" --install  --auth
+>####安装maven 的依赖包ojdbc####
+>`mvn install:install-file -Dfile=ojdbc14.jar -DgroupId=ojdbc -DartifactId=ojdbc -Dversion=14 -Dpackaging=jar -DgeneratePom=true`
+>
+>`mvn install:install-file -Dfile=sipservlet.jar -DgroupId=javax.servlet -DartifactId=sip-api -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true`
+**************************************************
 
-w32tm /config /manualpeerlist:"time.windows.com time.nist.gov" /syncfromflags:manual /reliable:yes /update
-ktpass /out appserver.keytab /princ HTTP/appserver.danan.com@DANAN.COM /mapuser appserver /pass Danan.2015 /ptype KRB5_NT_PRINCIPAL
 
-glassfish:
-asadmin
-create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname oracle.jdbc.pool.OracleDataSource --property "user=danan:password=danan:url=jdbc\\:oracle\\:thin\\:@127.0.0.1\\:1521\\:xe" oracle-Pool
+>####install mongodb,note:please use *administrator* to run the command ####
+>`mongod --logpath "D:/Oracle/mongodb/logs/log.log" --dbpath  "D:/Oracle/mongodb/data/db" --install  --auth`
 
-##start domain
-start-domain domain1
-stop-domain domain1
-##list appliactions
-list applications
-##change  administor password
-change-admin-password
-## enable admin security
-enable-secure-admin
-disable-secure-admin
+>`w32tm /config /manualpeerlist:"time.windows.com time.nist.gov" /syncfromflags:manual /reliable:yes /update`
 
-##deploy package
-deploy jenkins.war
+>`ktpass /out appserver.keytab /princ HTTP/appserver.danan.com@DANAN.COM /mapuser appserver /pass Danan.2015 /ptype KRB5_NT_PRINCIPAL`
 
+>####glassfish####
+>`asadmin create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname oracle.jdbc.pool.OracleDataSource --property "user=danan:password=danan:url=jdbc\\:oracle\\:thin\\:@127.0.0.1\\:1521\\:xe" oracle-Pool`
+
+* start domain
+
+>`start-domain domain1`
+>`stop-domain domain1`
+
+* list appliactions
+
+>`list applications`
+
+* change  administor password
+
+>`change-admin-password`
+
+* enable admin security
+
+>`enable-secure-admin`
+>`disable-secure-admin`
+
+* deploy package
+
+>`deploy jenkins.war`
+
+*****************************************************************
 create-custom-resource --restype java.lang.String --factoryclass org.glassfish.resources.custom.factory.PrimitivesAndStringFactory --enabled=true --description "Jenkins home" --property value="D\:/works/jenkins_home" JENKINS_HOME 
 delete-custom-resource JENKINS_HOME
 
@@ -40,3 +53,14 @@ wsimport -B-enableIntrospection -b D:\works\wsdl\bindings.xml -d D:\works\wsdl -
 
 
 mvn install:install-file -DgroupId=oracleJdbcDriver -DartifactId=oracleJdbcDriver -Dpackaging=jar -Dversion=6 -DgeneratePom=true -Dfile=C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar
+
+
+wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+/etc/profile
+/usr/local/maven
+JAVA_HOME=/usr/local/java/jdk1.8.0_91
+M2_HOME=/usr/local/maven
+PATH=$PATH:$JAVA_HOME/bin:$M2_HOME/bin
+export JAVA_HOME
+export M2_HOME
+export PATH

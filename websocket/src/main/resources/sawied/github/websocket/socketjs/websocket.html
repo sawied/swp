@@ -4,14 +4,28 @@
 <title>default</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="sockjs.js"></script>
+<script type="text/javascript" src="stomp.js"></script>
 </head>
 <body>
 
-
 <input type="button" id="send" value="send"/>
+<input type="button" id="connect" value="connect"/>
+<input type="button" id="disconnect" value="disconnect"/>
 
 <script type="text/javascript">
-var sock = new SockJS('http://localhost:8080/service/socketjs/console');
+
+var sock = new SockJS('http://localhost:8888/service/endpoint');
+var client =Stomp.over(sock);
+
+  
+  client.connect({}, function(){
+  	console.log("connected");
+  });
+
+ client.disconnect(function(){
+    console.log("See you next time!");
+  });
+/**
 sock.onopen = function() {
     console.log('open');
 };
@@ -21,9 +35,10 @@ sock.onmessage = function(e) {
 sock.onclose = function() {
     console.log('close');
 };
+**/
 
 document.getElementById("send").addEventListener("click",function(){
-sock.send('test');
+
 });
 
 </script>

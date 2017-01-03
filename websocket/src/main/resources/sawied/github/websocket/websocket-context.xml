@@ -11,16 +11,15 @@
 
 
 <bean id="simpleMessgae" class="com.github.sawied.websocket.SimpleMessageWebsocketHandler"></bean>
-<websocket:handlers >
- 	<websocket:mapping path="/socketjs/console" handler="simpleMessgae"/>
- 	<websocket:sockjs>
- 	</websocket:sockjs>
-</websocket:handlers>
+ 
 
-<websocket:message-broker>
-	<websocket:simple-broker />
+<websocket:message-broker application-destination-prefix="/console">
+<websocket:stomp-endpoint path="/endpoint">
+	<websocket:sockjs name="console" websocket-enabled="true">
+	</websocket:sockjs>
+</websocket:stomp-endpoint>
+<websocket:simple-broker prefix="/topic"/>
 </websocket:message-broker>
-
 <mvc:resources location="classpath:sawied/github/websocket/socketjs/" mapping="/socketjs/**"></mvc:resources>
 
 </beans>

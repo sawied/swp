@@ -17,6 +17,7 @@
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<spring.security.version>4.0.3.RELEASE</spring.security.version>
 		<hiberate.version>5.1.0.Final</hiberate.version>
+		<spring.mobile.version>1.1.4.RELEASE</spring.mobile.version>
 	</properties>
 
 	<build>
@@ -90,6 +91,12 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			
+				<dependency>
+		<groupId>org.springframework.mobile</groupId>  
+    <artifactId>spring-mobile-device</artifactId>
+    <version>${spring.mobile.version}</version>
+    </dependency>
 
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -173,6 +180,14 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>${hiberate.version}</version>
+			</dependency>
+			
+			<!-- oracle JDBC Driver -->
+			
+			<dependency>
+			<groupId>ojdbc</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>11</version>
 			</dependency>
 
 
@@ -407,6 +422,7 @@
 		</dependencies>
 
 	</dependencyManagement>
+	
 
 	<distributionManagement>
 		<snapshotRepository>
