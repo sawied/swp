@@ -22,6 +22,11 @@
 		
 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		 <property name="dataSource" ref="default.datasource"></property>
+		 <property name="mappingResources">
+		 	<list>
+		 	<value></value>
+		 	</list>
+		 </property>
 		</bean>
 		
 		

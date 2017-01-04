@@ -1,4 +1,5 @@
-> ####This is a project for the owner practice of spring MVC,Spring JPA and Restjs ,so on.
+> This is a project for the owner practice of spring MVC,Spring JPA and Restjs ,so on.
+>
 >***All the project are in progress.***
 
 _______

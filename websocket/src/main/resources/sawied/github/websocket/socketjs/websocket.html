@@ -11,7 +11,7 @@
 <input type="button" id="send" value="send"/>
 
 <script type="text/javascript">
-var sock = new SockJS('http://localhost:8080/service/socketjs/console');
+var sock = new SockJS('/service/socketjs-console');
 sock.onopen = function() {
     console.log('open');
 };

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+  <appender name="websocketAppender" class="com.github.sawied.websocket.WebSocketAppender">
+    <encoder>
+      <pattern>"%d - %m%n"</pattern>
+    </encoder>
+  </appender>
+</included>

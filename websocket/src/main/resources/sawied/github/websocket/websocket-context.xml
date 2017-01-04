@@ -9,18 +9,24 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd">
 
-
+<!-- 
 <bean id="simpleMessgae" class="com.github.sawied.websocket.SimpleMessageWebsocketHandler"></bean>
 <websocket:handlers >
  	<websocket:mapping path="/socketjs/console" handler="simpleMessgae"/>
  	<websocket:sockjs>
  	</websocket:sockjs>
 </websocket:handlers>
+ -->
 
-<websocket:message-broker>
-	<websocket:simple-broker />
+<websocket:message-broker
+	application-destination-prefix="logback">
+	<websocket:stomp-endpoint path="/socketjs-console">
+		<websocket:sockjs websocket-enabled="true"></websocket:sockjs>
+	</websocket:stomp-endpoint>
+	<websocket:simple-broker prefix="/topic"/>
 </websocket:message-broker>
 
-<mvc:resources location="classpath:sawied/github/websocket/socketjs/" mapping="/socketjs/**"></mvc:resources>
+<mvc:resources location="classpath:sawied/github/websocket/socketjs/" mapping="/socketjs/**" >
+</mvc:resources>
 
 </beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<named-native-query name="" result-class="" result-set-mapping="">
+	<query>
+	</query>
+	<hint name="" value=""></hint>
+	</named-native-query>
+	
+	<sql-result-set-mapping name="">
+	 <entity-result entity-class="">
+	  <field-result name="" column=""/>
+	 </entity-result>
+	 <column-result name=""/>
+	</sql-result-set-mapping>
+</entity-mappings>

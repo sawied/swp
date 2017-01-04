@@ -10,5 +10,6 @@
 		<property name="hibernate.show_sql" value="true"/>
 		<property name="hibernate.hbm2ddl.auto" value="update"/>
 		</properties>
+		<mapping-file>classpath:sawied/persistent/orm/persistent.orm.xml</mapping-file>
 	</persistence-unit>
 </persistence>

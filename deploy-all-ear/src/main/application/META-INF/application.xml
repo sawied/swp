@@ -7,10 +7,5 @@
       <context-root>service</context-root>
     </web>
   </module>
-  <!-- 
-  <security-role>
-    <description>All Authenticated users role.</description>
-    <role-name>authenticatedUser</role-name>
-  </security-role>
-   -->
+  <library-directory>lib</library-directory>
 </application>
