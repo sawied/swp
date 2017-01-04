@@ -13,7 +13,7 @@
 		
 		
 		<!-- datasource -->
-		<jee:jndi-lookup jndi-name="jdbc/oracleDS" id="default.datasource"></jee:jndi-lookup>
+		<jee:jndi-lookup jndi-name="jdbc/oracleDS" id="datasource" default-ref="default.datasource"></jee:jndi-lookup>
 		
 		
 		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -21,12 +21,7 @@
 		</bean>
 		
 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		 <property name="dataSource" ref="default.datasource"></property>
-		 <property name="mappingResources">
-		 	<list>
-		 	<value></value>
-		 	</list>
-		 </property>
+		 <property name="dataSource" ref="datasource"></property>
 		</bean>
 		
 		

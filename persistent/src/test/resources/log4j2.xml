@@ -11,9 +11,18 @@
         </File>
 		
 	</Appenders>
+	
+	
+	
 	<Loggers>
-		<Root level="INFO">
+	
+	<Logger name="org.apache.http.wire" level="INFO" additivity="true">
+		<AppenderRef ref="Console" />
+	</Logger>
+	
+		<Root level="DEBUG">
 			<AppenderRef ref="Console"/>
 		</Root>
+		
 	</Loggers>
 </Configuration>
