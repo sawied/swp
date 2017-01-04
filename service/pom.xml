@@ -33,6 +33,11 @@
 			<artifactId>websocket</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.github.sawied</groupId>
+			<artifactId>jwt</artifactId>
+		</dependency>
+		
 		<!-- spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>

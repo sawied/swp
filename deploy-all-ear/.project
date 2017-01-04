@@ -6,6 +6,7 @@
 		<project>model</project>
 		<project>websocket</project>
 		<project>service</project>
+		<project>jwt</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -38,11 +38,14 @@
     </bean>
 	
 
-	<!--  -->
+	<!-- String converter & requestJwt -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<ref bean="stringHttpMessageConverter" />
 		</mvc:message-converters>
+		<mvc:argument-resolvers>
+		 	<bean class="com.github.sawied.jwt.security.service.RequestJwtArgumentResolver"></bean>
+		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	
 

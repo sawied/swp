@@ -12,10 +12,9 @@ import java.lang.annotation.Target;
  *
  */
 
-@Target(ElementType.METHOD)  
+@Target(ElementType.PARAMETER)  
 @Retention(RetentionPolicy.RUNTIME)  
 @Documented
 public @interface JwtAuthentication {
 
-	String value() ;
 }
