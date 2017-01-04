@@ -4,8 +4,5 @@
         <dependent-module archiveName="kerberos-1.0.0-SNAPSHOT.war" deploy-path="/" handle="module:/resource/kerberos/kerberos">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="jwt.jar" deploy-path="/lib" handle="module:/resource/jwt/jwt">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
     </wb-module>
 </project-modules>

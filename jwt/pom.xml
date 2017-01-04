@@ -33,6 +33,24 @@
 		<groupId>org.springframework.mobile</groupId>  
     <artifactId>spring-mobile-device</artifactId>
     </dependency>
+    
+    <!-- JSON Processor -->
+    
+    	<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		
+		<!-- JSON　web token -->
+		<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+</dependency>
 		
 		
 		<dependency>

@@ -18,6 +18,7 @@
 		<spring.security.version>4.0.3.RELEASE</spring.security.version>
 		<hiberate.version>5.1.0.Final</hiberate.version>
 		<spring.mobile.version>1.1.4.RELEASE</spring.mobile.version>
+		<jjwt.version>0.7.0</jjwt.version>
 	</properties>
 
 	<build>
@@ -405,6 +406,15 @@
 				<artifactId>jackson-databind</artifactId>
 				<version>2.3.0</version>
 			</dependency>
+			
+			<!-- JSON　web token -->
+			
+			<dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+			
 
 			<dependency>
 				<groupId>org.apache.derby</groupId>
