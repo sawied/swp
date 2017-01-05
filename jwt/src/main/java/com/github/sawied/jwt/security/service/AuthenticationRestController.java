@@ -22,9 +22,6 @@ import com.github.sawied.jwt.security.TDESCipherer;
 @RequestMapping("auth")
 public class AuthenticationRestController {
 
-	@Autowired
-	private TDESCipherer cipherer = null;
-
 	@RequestMapping(value = "/{certification}", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@PathVariable("certification") String certification,
 			Device device) throws CertificationNotPresentException {
@@ -33,11 +30,11 @@ public class AuthenticationRestController {
 		}
 
 		try {
+			
 			JwtAuthenticationRequest request = extractJwtRequest(certification);
 			
-			if(validateCertification(request)){
-				
-			}
+			
+			
 			
 			
 			
