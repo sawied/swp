@@ -11,7 +11,7 @@ define({
 	services:{
 		"retrieveUsers":{			
 			method:"post",
-			url:"service/users/",
+			url:"service/users/{id}",
 			"contentType":"application/json"
 		}
 	}

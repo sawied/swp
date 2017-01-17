@@ -1,6 +1,8 @@
 package com.github.sawied.persistent.repositoryTest;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,14 @@ public class UserAuditLogTest {
 	@Autowired
 	private UserAuditLogRepository userAuditLogRepository;
 	
+	
+	@BeforeClass
+	public static void setup(){
+		
+	}
+	
+	
+	@Ignore
 	@Test
 	public void createUserAuditLogTest(){
 		Assert.assertNotNull(userAuditLogRepository);

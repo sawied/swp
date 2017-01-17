@@ -4,12 +4,9 @@ import java.lang.annotation.Annotation;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.context.request.NativeWebRequest;
-
-import com.github.sawied.jwt.security.TDESCipherer;
 
 /**
  * extract the http header entity. 
@@ -17,13 +14,9 @@ import com.github.sawied.jwt.security.TDESCipherer;
  *
  */
 public class RequestJwtArgumentResolver implements WebArgumentResolver {
-
-	
-	@Autowired
-	private TDESCipherer cipherer=null;
 	
 	
-	public static final 
+	public static final String CLIENT_ID="client-id";
 	 
 	
 	@Override

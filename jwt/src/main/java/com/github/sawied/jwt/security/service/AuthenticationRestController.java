@@ -1,26 +1,40 @@
 package com.github.sawied.jwt.security.service;
 
-import java.io.IOException;
-import java.util.Calendar;
-
-import javax.json.Json;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.sawied.jwt.security.CiphertextAuthenticationToken;
+import com.github.sawied.jwt.security.JwtTokenUtil;
 import com.github.sawied.jwt.security.TDESCipherer;
 
 @RestController
 @RequestMapping("auth")
 public class AuthenticationRestController {
+	
+	@Autowired
+	private TDESCipherer cipherer;
+	
+	@Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    
+   private final ObjectMapper om = new ObjectMapper();
+    
+    
+	
 
 	@RequestMapping(value = "/{certification}", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@PathVariable("certification") String certification,
@@ -31,12 +45,20 @@ public class AuthenticationRestController {
 
 		try {
 			
-			JwtAuthenticationRequest request = extractJwtRequest(certification);
 			
+			CiphertextAuthenticationToken ciphertext = new CiphertextAuthenticationToken(certification, null);
 			
+			Authentication authentication = authenticationManager.authenticate(ciphertext);
 			
+			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
+			AbstractAuthenticationToken authenticationToken = (AbstractAuthenticationToken)authentication;
 			
+			UserDetails userDetails =(UserDetails)authenticationToken.getDetails();
+			
+			final String token = jwtTokenUtil.generateToken(userDetails, device);
+			
+			 return ResponseEntity.ok(new JwtAuthenticationResponse(token));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,18 +67,5 @@ public class AuthenticationRestController {
 		return null;
 	}
 
-	private boolean validateCertification(JwtAuthenticationRequest request) {
-		Calendar calender = Calendar.getInstance();
-		calender.setTimeInMillis(request.getTimestamp());
-		Calendar lastday =Calendar.getInstance();
-		return calender.before(lastday);
-	}
-
-	private JwtAuthenticationRequest extractJwtRequest(String certification) throws Exception {
-		byte[] decryptText = cipherer.decrypt(certification.getBytes());
-		String clearText = new String(decryptText);
-		ObjectMapper om = new ObjectMapper();
-		return om.readValue(clearText, JwtAuthenticationRequest.class);
-	}
 
 }
