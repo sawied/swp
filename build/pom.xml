@@ -6,16 +6,15 @@
 	<packaging>pom</packaging>
 	<name>building-all</name>
 	<description>This project used to do all tasks of building .</description>
-	
+
 	<parent>
 		<groupId>com.github.sawied</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
-	
-	<!-- PAO
-	 -->
+
+	<!-- PAO -->
 	<profiles>
 		<profile>
 			<id>sonar</id>
@@ -44,6 +43,24 @@
 		<module>../kerberos</module>
 		<module>../deploy-all-ear</module>
 	</modules>
+
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.17</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 
 
 

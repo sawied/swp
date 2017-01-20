@@ -14,4 +14,3 @@
 | be         |          be |      be      
 | left       |       right |    center    
 | aligned    |     aligned |   aligned
-

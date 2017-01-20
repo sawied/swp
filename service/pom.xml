@@ -12,7 +12,7 @@
 		<groupId>com.github.sawied</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../parent/pom.xml</relativePath>
+		<relativePath>pom.xml</relativePath>
 	</parent>
 
 
@@ -303,14 +303,6 @@
 
 	</dependencies>
 	
-	
-	<repositories>
-	<repository>
-	<id>Geotk</id>
-	<url>http://maven.geotoolkit.org/</url>
-	</repository>
-	
-	</repositories>
 
 
 
