@@ -28,10 +28,12 @@
 			<artifactId>model</artifactId>
 		</dependency>
 		
+		<!-- 
 		<dependency>
 			<groupId>com.github.sawied</groupId>
 			<artifactId>websocket</artifactId>
 		</dependency>
+		 -->
 		
 		<dependency>
 			<groupId>com.github.sawied</groupId>

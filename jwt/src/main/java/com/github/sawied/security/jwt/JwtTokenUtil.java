@@ -1,4 +1,4 @@
-package com.github.sawied.jwt.security;
+package com.github.sawied.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -73,6 +73,9 @@ public class JwtTokenUtil implements Serializable {
         }
         return audience;
     }
+  
+    
+    
 
     private Claims getClaimsFromToken(String token) {
         Claims claims;

@@ -8,5 +8,6 @@
     <security-role name="authenticatedUser">
         <special-subject type="ALL_AUTHENTICATED_USERS"/>
     </security-role>
+    
 
 </application-bnd>

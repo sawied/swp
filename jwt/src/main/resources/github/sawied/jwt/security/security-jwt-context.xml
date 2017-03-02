@@ -13,11 +13,11 @@
 
 	<context:property-placeholder location="classpath:github/sawied/jwt/security/keystore.properties"/>
 	
-	<bean id="sipherer" class="com.github.sawied.jwt.security.TDESCipherer">
+	<bean id="sipherer" class="com.github.sawied.security.jwt.TDESCipherer">
 		<property name="keystoreResource" value="classpath:github/sawied/jwt/security/keystore-3DES.jks"></property>
 	</bean>
 	
-	<bean id="unauthorizedHandler" class="com.github.sawied.jwt.security.JwtAuthenticationEntryPoint"></bean>
+	<bean id="unauthorizedHandler" class="com.github.sawied.security.jwt.JwtAuthenticationEntryPoint"></bean>
 	
 	<security:http auto-config="true" create-session="stateless" entry-point-ref="unauthorizedHandler"
 		request-matcher="ant">
@@ -25,7 +25,7 @@
 	</security:http>
 
 	
-	<bean id="securityKeyAuthenticationProvider" class="com.github.sawied.jwt.security.TDESSecurityKeyAuthenticationProvider">
+	<bean id="securityKeyAuthenticationProvider" class="com.github.sawied.security.jwt.TDESSecurityKeyAuthenticationProvider">
 	</bean>
 
 	<security:authentication-manager alias="authentication">

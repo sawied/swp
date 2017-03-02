@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.sawied.jwt.security.CiphertextAuthenticationToken;
-import com.github.sawied.jwt.security.JwtTokenUtil;
-import com.github.sawied.jwt.security.TDESCipherer;
+import com.github.sawied.security.jwt.CiphertextAuthenticationToken;
+import com.github.sawied.security.jwt.JwtTokenUtil;
+import com.github.sawied.security.jwt.TDESCipherer;
 
 @RestController
 @RequestMapping("auth")
@@ -32,9 +32,6 @@ public class AuthenticationRestController {
     private JwtTokenUtil jwtTokenUtil;
     
    private final ObjectMapper om = new ObjectMapper();
-    
-    
-	
 
 	@RequestMapping(value = "/{certification}", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@PathVariable("certification") String certification,

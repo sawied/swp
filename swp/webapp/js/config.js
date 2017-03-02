@@ -13,7 +13,28 @@ define({
 			method:"post",
 			url:"service/users/{id}",
 			"contentType":"application/json"
+		},
+		"latestversion":{			
+			method:"post",
+			url:"upgrade/latestversion/{typr}/{guid}",
+			"contentType":"application/json"
+		},
+		"retrieveUsers":{			
+			method:"post",
+			url:"upgrade/download/{id}",
+			"contentType":"application/json"
+		},
+		"retrieveUsers":{			
+			method:"post",
+			url:"upgrade/download/{id}",
+			"contentType":"application/json"
+		},
+		"retrieveUsers":{			
+			method:"post",
+			url:"upgrade/download/{id}",
+			"contentType":"application/json"
 		}
+		
 	}
 	
 });

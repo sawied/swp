@@ -12,7 +12,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
-	<import resource="entity-manager-context.xml"/>
-	<jpa:repositories base-package="com.github.sawied.persistent.repository"></jpa:repositories>
+		<!-- datasource -->
+		<import resource="datasource-configration.xml"/>
+		<import resource="entity-manager-context.xml"/>
 
 </beans>

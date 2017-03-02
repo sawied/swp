@@ -11,5 +11,5 @@
 	<enable-file-serving value="true"/>
 	<enable-reloading value="true"/>
 	<enable-serving-servlets-by-class-name value="false" />
-
+	
 </web-ext>

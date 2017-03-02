@@ -24,6 +24,7 @@
 
 
 	<build>
+	<finalName>deploy-all-ear</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-ear-plugin</artifactId>

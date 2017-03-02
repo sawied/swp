@@ -15,13 +15,13 @@
 		<profile>
 			<id>sonar</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
 				<sonar.jdbc.url>jdbc:oracle:thin:@localhost:1521:xe</sonar.jdbc.url>
 				<sonar.jdbc.driver>oracle.jdbc.OracleDriver</sonar.jdbc.driver>
-				<sonar.jdbc.username>danan</sonar.jdbc.username>
-				<sonar.jdbc.password>danan</sonar.jdbc.password>
+				<sonar.jdbc.username>sonar</sonar.jdbc.username>
+				<sonar.jdbc.password>password</sonar.jdbc.password>
 				<!-- SERVER ON A REMOTE HOST -->
 				<sonar.host.url>http://localhost:9000</sonar.host.url>
 			</properties>
@@ -32,6 +32,7 @@
 	<modules>
 		<module>model</module>
 		<module>jwt</module>
+		<module>agent</module>
 		<module>websocket</module>
 		<module>persistent</module>
 		<module>service</module>
@@ -110,6 +111,8 @@
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 		<dependency.locations.enabled>false</dependency.locations.enabled>
 		<mpir.skip>true</mpir.skip>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   		<sonar.language>java</sonar.language>
 	</properties>
 
 	<build>
@@ -129,6 +132,17 @@
 					<webappDirectory>webapp</webappDirectory>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+				</plugin>
+				
+			  <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.2</version>
+      </plugin>
 			
 			
 		</plugins>

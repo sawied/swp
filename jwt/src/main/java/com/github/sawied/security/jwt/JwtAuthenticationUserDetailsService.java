@@ -1,4 +1,4 @@
-package com.github.sawied.jwt.security;
+package com.github.sawied.security.jwt;
 
 import java.util.Collections;
 

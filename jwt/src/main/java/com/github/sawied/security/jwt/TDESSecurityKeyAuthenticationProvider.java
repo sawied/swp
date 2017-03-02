@@ -1,4 +1,4 @@
-package com.github.sawied.jwt.security;
+package com.github.sawied.security.jwt;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.AuthenticationUserDetailsSe
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.sawied.jwt.security.TDESCipherer;
 import com.github.sawied.jwt.security.service.JwtAuthenticationRequest;
+import com.github.sawied.security.jwt.TDESCipherer;
 
 public class TDESSecurityKeyAuthenticationProvider implements AuthenticationProvider {
 	
