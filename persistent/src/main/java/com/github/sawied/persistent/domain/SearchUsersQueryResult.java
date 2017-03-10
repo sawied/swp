@@ -17,4 +17,14 @@ public class SearchUsersQueryResult {
     public void setName(String name) {
         this.name = name;
     }
+
+	public int getCountNumber() {
+		return countNumber;
+	}
+
+	public void setCountNumber(int countNumber) {
+		this.countNumber = countNumber;
+	}
+    
+    
 }

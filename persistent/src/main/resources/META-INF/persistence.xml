@@ -5,11 +5,6 @@
 	version="2.0">
 	<persistence-unit name="com.github.sawied.persistent">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<properties>
-		<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
-		<property name="hibernate.show_sql" value="true"/>
-		<property name="hibernate.hbm2ddl.auto" value="update"/>
-		</properties>
-		<mapping-file>classpath:sawied/persistent/orm/persistent.orm.xml</mapping-file>
+		<mapping-file>sawied/persistent/orm/persistent.orm.xml</mapping-file>
 	</persistence-unit>
 </persistence>

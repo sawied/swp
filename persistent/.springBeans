@@ -10,7 +10,7 @@
 		<config>src/main/resources/jpa-repository-context.xml</config>
 		<config>src/main/resources/entity-manager-context.xml</config>
 		<config>src/main/resources/datasource-configuration.xml</config>
-		<config>src/test/resources/datasource-test-context.xml</config>
+		<config>src/test/resources/sawied/persistent/test/datasource-test-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

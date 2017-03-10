@@ -51,7 +51,7 @@ public class AgentAuthenticationSuccessHandler implements AuthenticationSuccessH
 		String token =agentTokenUtil.generateToken((UserDetails) authentication.getPrincipal(), device);
 		LOG.info("authenticate success, generated token is " + token);
 		Cookie cookie = new Cookie(JwtAuthenticationCookieFilter.JWT_TOKEN_NAME, token);
-		cookie.setMaxAge(24*3600);
+		cookie.setMaxAge(9*3600);
 		return cookie;
 	}
 

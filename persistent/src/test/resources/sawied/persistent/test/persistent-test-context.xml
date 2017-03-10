@@ -4,9 +4,19 @@
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-
-
-
+	
+	
+		<util:properties id="jpaProperties">
+		 <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
+		 <prop key="hibernate.show_sql">true</prop>
+		 <!-- 
+		 <prop key="hibernate.default_schema">sawied</prop>
+		  -->
+		 <prop key="hibernate.hbm2ddl.auto">update</prop>
+		</util:properties>
+		
+	<import resource="classpath:sawied/persistent/test/datasource-test-context.xml"/>
+	<import resource="classpath:entity-manager-context.xml"/>
 
 
 

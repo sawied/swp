@@ -12,6 +12,40 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
+
+		<!-- JPA properties -->
+		<!-- 
+		hibernate.dialect classname of org.hibernate.dialect.Dialect subclass 
+		hibernate.connection.provider_class classname of ConnectionProvider subclass (if not specified hueristics are used) 
+		hibernate.connection.username database username 
+		hibernate.connection.password database password 
+		hibernate.connection.url JDBC URL (when using java.sql.DriverManager) 
+		hibernate.connection.driver_class classname of JDBC driver 
+		hibernate.connection.isolation JDBC transaction isolation level (only when using java.sql.DriverManager)  
+		hibernate.connection.pool_size the maximum size of the connection pool (only when using java.sql.DriverManager)  
+		hibernate.connection.datasource databasource JNDI name (when using javax.sql.Datasource) 
+		hibernate.jndi.url JNDI InitialContext URL 
+		hibernate.jndi.class JNDI InitialContext classname 
+		hibernate.max_fetch_depth maximum depth of outer join fetching 
+		hibernate.jdbc.batch_size enable use of JDBC2 batch API for drivers which support it 
+		hibernate.jdbc.fetch_size set the JDBC fetch size 
+		hibernate.jdbc.use_scrollable_resultset enable use of JDBC2 scrollable resultsets (you only need this specify this property when using user supplied connections) 
+		hibernate.jdbc.use_getGeneratedKeys enable use of JDBC3 PreparedStatement.getGeneratedKeys() to retrieve natively generated keys after insert. Requires JDBC3+ driver and JRE1.4+ 
+		hibernate.hbm2ddl.auto enable auto DDL export 
+		hibernate.default_schema use given schema name for unqualified tables (always optional) 
+		hibernate.default_catalog use given catalog name for unqualified tables (always optional) 
+		hibernate.session_factory_name If set, the factory attempts to bind this name to itself in the JNDI context. This name is also used to support cross JVM Session (de)serialization. 
+		hibernate.transaction.jta.platform classname of org.hibernate.engine.transaction.jta.platform.spi.JtaPlatform implementor 
+		hibernate.transaction.factory_class the factory to use for instantiating Transactions. (Defaults to JdbcTransactionFactory.) 
+		hibernate.query.substitutions query language token substitutions 
+			 -->	
+		
+		<util:properties id="jpaProperties">
+		 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+		 <prop key="hibernate.show_sql">true</prop>
+		 <prop key="hibernate.hbm2ddl.auto">update</prop>
+		</util:properties>
+		
 		<!-- datasource -->
 		<import resource="datasource-configration.xml"/>
 		<import resource="entity-manager-context.xml"/>
