@@ -26,7 +26,15 @@
 		 <property name="jpaProperties" ref="jpaProperties"></property>
 		</bean>
 		
-		<jpa:repositories base-package="com.github.sawied.persistent.repository"></jpa:repositories>
+		<jpa:repositories base-package="com.github.sawied.persistent.repository">
+		</jpa:repositories>
+		
+		
+		<tx:annotation-driven proxy-target-class="true"/>
+		
+		<bean id="userAuditLogRepository" class="com.github.sawied.persistent.repository.UserAuditLogRepository">
+		 <constructor-arg ref="entityManagerFactory"></constructor-arg>
+		</bean>
 		
 
 
