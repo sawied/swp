@@ -32,8 +32,13 @@
 
 <security:debug/>
 
-<security:http create-session="stateless" use-expressions="true">
-	<security:form-login login-page="/logon.html" 
+<bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+ <constructor-arg value="/logonRedirectServlet"></constructor-arg>
+ <property name="useForward" value="true"></property>
+</bean>
+
+<security:http create-session="stateless" use-expressions="true" entry-point-ref="loginUrlAuthenticationEntryPoint">
+	<security:form-login 
 		authentication-failure-url="/logon.html?logonerror=true"
 		authentication-success-handler-ref="agentAuthenticationSuccessHandler" />
 	<security:logout delete-cookies="true"
@@ -42,15 +47,17 @@
 		<security:cache-control disabled="true" />
 	</security:headers>
 	
+	
 	<security:csrf disabled="true"/>
 
-	<security:intercept-url pattern="/logon.html*" access="permitAll" />
+	<security:intercept-url pattern="/logon.**" access="permitAll" />
 	<security:intercept-url pattern="/**"
 		access="hasRole('USER')" />
 	<security:custom-filter ref="deviceResolverRequestFilter" before="FIRST"/>
 	<security:custom-filter ref="cookieFilter"  before="FORM_LOGIN_FILTER"/>
 		
 </security:http>
+
 
 
 <security:authentication-manager alias="restAuth">
