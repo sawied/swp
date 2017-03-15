@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Mar 13 18:31:24 CST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-015a-c738-f95c-000005a12e58 
+Tue Mar 14 19:21:19 CST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-015a-cc8d-05af-00000795c200 
 on database directory memory:C:\works\sawied\swp\persistent\sawied with class loader sun.misc.Launcher$AppClassLoader@7a81197d 
 Loaded from file:/C:/Users/James%20X%20W%20Zhang/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation

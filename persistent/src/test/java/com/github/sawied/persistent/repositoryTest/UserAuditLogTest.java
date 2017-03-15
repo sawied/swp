@@ -32,7 +32,7 @@ public class UserAuditLogTest {
 	Assert.assertNotNull(userAuditLogRepository);
 	UserAuditLog userAuditLog = new UserAuditLog();
 	userAuditLog.setCode((short) 400);
-	userAuditLog.setMessage("0");
+	userAuditLog.setMessage("010");
 	userAuditLogRepository.save(userAuditLog);
 	Assert.assertEquals(1, userAuditLogRepository.count());
     }
@@ -41,7 +41,7 @@ public class UserAuditLogTest {
     public void searchAuditLogTest() {
 	PageRequest page = new PageRequest(10, 1);
 	HashMap<String, Object> map = new HashMap<String, Object>();
-	map.put("message", "0");
+	map.put("message", "1");
 	Page<UserAuditLog> result = userAuditLogRepository.searchUserLog(map, page);
 	Assert.assertEquals(1, result.getSize());
 

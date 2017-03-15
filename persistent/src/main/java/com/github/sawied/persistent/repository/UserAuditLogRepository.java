@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -100,8 +101,9 @@ public  class UserAuditLogRepository extends SimpleJpaRepository<UserAuditLog,Lo
     private List<Predicate> buildPridicate(Map<String,Object> params,Root<UserAuditLog> root,CriteriaBuilder cb){
     	List<Predicate> list = new ArrayList<Predicate>();
     	if(params.containsKey("message")){
-    		 ParameterExpression<String> p=cb.parameter(String.class, "message");
-    		 list.add(cb.like(root.<String>get("message"), p));
+    		ParameterExpression<String> p=cb.parameter(String.class, "message");
+    		 Expression<String> wp = cb.concat(cb.concat("%",p),"%");
+    		 list.add(cb.like(root.<String>get("message"), wp));
     	}
     	return list;
     }
