@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_1489998101260">
-  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="ApplicationDeployment_1489998101260" deploymentId="0" startingWeight="1" binariesURL="$(APP_INSTALL_ROOT)/localhostNode02Cell/group-vtc-service-web-0_0_17-SNAPSHOT.ear" useMetadataFromBinaries="false" enableDistribution="true" createMBeansForResources="true" reloadEnabled="false" appContextIDForSecurity="href:localhostNode02Cell/group-vtc-service-web-0_0_17-SNAPSHOT" filePermission=".*\.dll=755#.*\.so=755#.*\.a=755#.*\.sl=755" allowDispatchRemoteInclude="false" allowServiceRemoteInclude="false" asyncRequestDispatchType="DISABLED" standaloneModule="true" enableClientModule="false">
-    <targetMappings xmi:id="DeploymentTargetMapping_1489998101260" enable="true" target="ServerTarget_1489998101260"/>
-    <targetMappings xmi:id="DeploymentTargetMapping_1489998101261" enable="true" target="ServerTarget_1489998101261"/>
-    <classloader xmi:id="Classloader_1489998101260" mode="PARENT_LAST">
-      <libraries xmi:id="LibraryRef_1489999196304" libraryName="vtsLibrary_prod" sharedClassloader="true"/>
-    </classloader>
-    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1489998101260" deploymentId="1" startingWeight="10000" uri="group-vtc-service-web-0.0.17-SNAPSHOT.war" containsEJBContent="0">
-      <targetMappings xmi:id="DeploymentTargetMapping_1489998101262" target="ServerTarget_1489998101260"/>
-      <targetMappings xmi:id="DeploymentTargetMapping_1489998101263" target="ServerTarget_1489998101261"/>
-      <classloader xmi:id="Classloader_1489998101261"/>
+<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_1183122148265">
+  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="ApplicationDeployment_1183122148265" deploymentId="0" startingWeight="1" binariesURL="$(APP_INSTALL_ROOT)/$(CELL)/DefaultApplication.ear" useMetadataFromBinaries="false" enableDistribution="true" createMBeansForResources="false" reloadEnabled="false" appContextIDForSecurity="href:DefaultCell/DefaultApplication" filePermission=".*\.dll=755#.*\.so=755#.*\.a=755#.*\.sl=755" allowDispatchRemoteInclude="false" allowServiceRemoteInclude="false">
+    <targetMappings xmi:id="DeploymentTargetMapping_1183122148265" enable="true" target="ServerTarget_1183122148265"/>
+    <classloader xmi:id="Classloader_1183122148265" mode="PARENT_FIRST"/>
+    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1183122148265" deploymentId="1"  startingWeight="10000" uri="DefaultWebApplication.war">
+      <targetMappings xmi:id="DeploymentTargetMapping_1183122148266" target="ServerTarget_1183122148265"/>
+      <classloader xmi:id="Classloader_1183122148266"/>
     </modules>
-    <properties xmi:id="Property_1489998101261" name="metadata.complete" value="true"/>
+    <modules xmi:type="appdeployment:EJBModuleDeployment" xmi:id="EJBModuleDeployment_1183122148265" deploymentId="1" startingWeight="5000" uri="Increment.jar">
+      <targetMappings xmi:id="DeploymentTargetMapping_1183122148267" target="ServerTarget_1183122148265"/>
+    </modules>
   </deployedObject>
-  <deploymentTargets xmi:type="appdeployment:ServerTarget" xmi:id="ServerTarget_1489998101260" name="server1" nodeName="localhostNode02"/>
-  <deploymentTargets xmi:type="appdeployment:ServerTarget" xmi:id="ServerTarget_1489998101261" name="DEV_IHS" nodeName="localhostNode02"/>
+  <deploymentTargets xmi:type="appdeployment:ServerTarget" xmi:id="ServerTarget_1183122148265" name="server1" nodeName="jax60pNode02"/>
 </appdeployment:Deployment>
