@@ -179,12 +179,12 @@
     <repository>
    			<id>releases</id>  
             <name>Nexus Release Repository</name>  
-   			<url>http://10.100.4.150:10001/nexus/content/repositories/releases/</url>
+   			<url>http://10.100.40.209:8000/nexus/repository/maven-releases/</url>
    		</repository>
    		<snapshotRepository>
    			<id>snapshots</id>  
             <name>Nexus Snapshot Repository</name>  
-            <url>http://10.100.4.150:10001/nexus/content/repositories/snapshots/</url>  
+            <url>http://10.100.40.209:8000/nexus/repository/maven-snapshots/</url>  
    		</snapshotRepository>
     </distributionManagement>
 
@@ -215,8 +215,14 @@
 				<groupId>com.github.sawied</groupId>
 				<artifactId>jwt</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
-			</dependency>
-
+				</dependency>
+	
+	
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.11</version>
+		</dependency>
 
 			<!--spring related dependencies -->
 
@@ -471,6 +477,14 @@
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi-ooxml</artifactId>
 				<version>3.8</version>
+			</dependency>
+			
+			<!-- Dozer -->
+		
+			<dependency>
+				<groupId>net.sf.dozer</groupId>
+				<artifactId>dozer</artifactId>
+				<version>5.5.1</version>
 			</dependency>
 
 

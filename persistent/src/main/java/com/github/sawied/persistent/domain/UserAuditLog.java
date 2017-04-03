@@ -2,27 +2,51 @@ package com.github.sawied.persistent.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.persistence.Transient;
 
 @Entity
 public class UserAuditLog {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id =null;
-	
-	private Short code =null;
-	
-	private String message =null;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id = null;
+
+	private Short code = null;
+
+	private String message = null;
+
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date timestamp =null;
+	@Column(name = "starttimestamp")
+	private Date start = null;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "endtimestamp")
+	private Date end = null;
+
+	@Transient
+	private Double duration;
+
+	public UserAuditLog() {
+		super();
+	}
+	
+
+	public UserAuditLog(Long id, String message, Double duration) {
+		super();
+		this.id = id;
+		this.message = message;
+		this.duration = duration;
+	}
+
+
+
 
 	public Long getId() {
 		return id;
@@ -48,13 +72,28 @@ public class UserAuditLog {
 		this.message = message;
 	}
 
-	public Date getTimestamp() {
-		return timestamp;
+	public Date getStart() {
+		return start;
 	}
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public void setStart(Date start) {
+		this.start = start;
 	}
-	
+
+	public Date getEnd() {
+		return end;
+	}
+
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+
+	public Double getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Double duration) {
+		this.duration = duration;
+	}
 
 }

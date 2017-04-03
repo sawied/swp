@@ -7,7 +7,6 @@
 	<name>service</name>
 	<url>http://maven.apache.org</url>
 
-
 	<parent>
 		<groupId>com.github.sawied</groupId>
 		<artifactId>parent</artifactId>
@@ -194,6 +193,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		
+		<!-- Dozer -->
+		
+		<dependency>
+				<groupId>net.sf.dozer</groupId>
+				<artifactId>dozer</artifactId>
 		</dependency>
 
 

@@ -1,5 +1,6 @@
 package com.github.sawied.persistent.repository;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,15 +12,16 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.apache.commons.collections.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.query.QueryUtils;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +44,8 @@ public  class UserAuditLogRepository extends SimpleJpaRepository<UserAuditLog,Lo
 	this.em=em;
     }
     
+    
+    
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Page<UserAuditLog> searchUserLog(Map<String, Object> params, Pageable pageable) {
@@ -52,17 +56,22 @@ public  class UserAuditLogRepository extends SimpleJpaRepository<UserAuditLog,Lo
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
 		CriteriaQuery<UserAuditLog> query = cb.createQuery(UserAuditLog.class);
 		Root<UserAuditLog> root = query.from(UserAuditLog.class);
-		query.select(root);
+		//query.select(selection)
+		query.select(cb.construct(UserAuditLog.class, root.get("id"),root.get("message"),cb.prod(cb.diff(cb.sum(root.<Number>get("start"), 0),cb.sum(root.<Number>get("end"), 0)),86400).alias("duration")));
+		//query.multiselect(cb.prod(cb.diff(cb.sum(root.<Number>get("start"), 0),cb.sum(root.<Number>get("end"), 0)),86400).alias("duration"),root);
+		
 		List<Predicate> predicates=buildPridicate(params,root,cb);
     	if(!predicates.isEmpty()){    	
     		query.where(predicates.toArray(new Predicate[0]));
     	}
+    	if(pageable!=null&&pageable.getSort()!=null){
+    		 List<Order> orders = QueryUtils.toOrders(pageable.getSort(), root, cb);
+    		query.orderBy(orders);
+    	}
+    	
 		TypedQuery<UserAuditLog> q = em.createQuery(query);
 		q.setMaxResults(pageable.getPageSize());
 		q.setFirstResult(pageable.getOffset());
-		if(pageable!=null&&pageable.getSort()!=null){			
-			query.orderBy(IteratorUtils.toList(pageable.getSort().iterator()));
-		}
 		List<UserAuditLog> result = this.applyParameters(params, q).getResultList();
 		return new PageImpl<UserAuditLog>(result, pageable, count);
 	}

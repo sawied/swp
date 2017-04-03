@@ -43,11 +43,10 @@
 		<util:properties id="jpaProperties">
 		 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 		 <prop key="hibernate.show_sql">true</prop>
-		 <prop key="hibernate.hbm2ddl.auto">update</prop>
 		</util:properties>
 		
 		<!-- datasource -->
-		<import resource="datasource-configration.xml"/>
+		<import resource="datasource-configuration.xml"/>
 		<import resource="entity-manager-context.xml"/>
 
 </beans>

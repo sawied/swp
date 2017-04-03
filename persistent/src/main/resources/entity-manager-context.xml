@@ -36,6 +36,9 @@
 		 <constructor-arg ref="entityManagerFactory"></constructor-arg>
 		</bean>
 		
+		<bean id="userRepostory" class="com.github.sawied.persistent.repository.UserRepository">
+		 <constructor-arg ref="entityManagerFactory"></constructor-arg>
+		</bean>
 
 
 </beans>
