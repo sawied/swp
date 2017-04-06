@@ -1,6 +1,5 @@
 package com.github.sawied.persistent.repository;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,11 +11,14 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.ScrollableResults;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -44,8 +46,6 @@ public  class UserAuditLogRepository extends SimpleJpaRepository<UserAuditLog,Lo
 	this.em=em;
     }
     
-    
-    
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Page<UserAuditLog> searchUserLog(Map<String, Object> params, Pageable pageable) {
@@ -56,8 +56,9 @@ public  class UserAuditLogRepository extends SimpleJpaRepository<UserAuditLog,Lo
 		CriteriaBuilder cb = this.em.getCriteriaBuilder();
 		CriteriaQuery<UserAuditLog> query = cb.createQuery(UserAuditLog.class);
 		Root<UserAuditLog> root = query.from(UserAuditLog.class);
-		//query.select(selection)
-		query.select(cb.construct(UserAuditLog.class, root.get("id"),root.get("message"),cb.prod(cb.diff(cb.sum(root.<Number>get("start"), 0),cb.sum(root.<Number>get("end"), 0)),86400).alias("duration")));
+		root.fetch("logDetails");
+		query.select(root);
+		//query.select(cb.construct(UserAuditLog.class, root.get("id"),root.get("message"),cb.prod(cb.diff(cb.sum(root.<Number>get("start"), 0),cb.sum(root.<Number>get("end"), 0)),86400).alias("duration")));
 		//query.multiselect(cb.prod(cb.diff(cb.sum(root.<Number>get("start"), 0),cb.sum(root.<Number>get("end"), 0)),86400).alias("duration"),root);
 		
 		List<Predicate> predicates=buildPridicate(params,root,cb);
@@ -75,6 +76,15 @@ public  class UserAuditLogRepository extends SimpleJpaRepository<UserAuditLog,Lo
 		List<UserAuditLog> result = this.applyParameters(params, q).getResultList();
 		return new PageImpl<UserAuditLog>(result, pageable, count);
 	}
+	
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void exportLargeData(){
+	    Session session =(Session)this.em.getDelegate();
+	    ScrollableResults scroll = session.createSQLQuery("").scroll();
+	    
+	}
+	
     
     
     private Long countByCondition(Map<String,Object> params){

@@ -42,61 +42,61 @@
 
 
 	<reporting>
-	
+
 		<plugins>
-		
-
-	<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.9</version>
-        <reportSets>
-          <reportSet>
-            <reports><!-- select reports -->
-              <report>index</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
 
 
-	<plugin>
-	
-		<artifactId>maven-checkstyle-plugin</artifactId>
-		<version>2.17</version>
-		<reportSets>
-			<reportSet>
-			<inherited>false</inherited>
-				<reports>
-					<report>checkstyle-aggregate</report>
-				</reports>
-			</reportSet>
-		</reportSets>
-	</plugin>
-	
-	
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+				<reportSets>
+					<reportSet>
+						<reports><!-- select reports -->
+							<report>index</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
 
-	<plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-jxr-plugin</artifactId>
-		<version>2.5</version>
-		<reportSets>
-			<reportSet>
-				<inherited>false</inherited>
-				<configuration>
-				</configuration>
-				<id>aggregate</id>
-				<reports>
-					<report>aggregate</report>
-				</reports>
-			</reportSet>
-		</reportSets>
-	</plugin>
-			
+
+			<plugin>
+
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.17</version>
+				<reportSets>
+					<reportSet>
+						<inherited>false</inherited>
+						<reports>
+							<report>checkstyle-aggregate</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.5</version>
+				<reportSets>
+					<reportSet>
+						<inherited>false</inherited>
+						<configuration>
+						</configuration>
+						<id>aggregate</id>
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
 		</plugins>
 	</reporting>
-	
-	
+
+
 	<properties>
 		<project.phase>SNAPSHOT</project.phase>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -112,7 +112,7 @@
 		<dependency.locations.enabled>false</dependency.locations.enabled>
 		<mpir.skip>true</mpir.skip>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   		<sonar.language>java</sonar.language>
+		<sonar.language>java</sonar.language>
 	</properties>
 
 	<build>
@@ -132,65 +132,65 @@
 					<webappDirectory>webapp</webappDirectory>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-site-plugin</artifactId>
-				</plugin>
-				
-			  <plugin>
-        <groupId>org.sonarsource.scanner.maven</groupId>
-        <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.2</version>
-      </plugin>
-			
-			
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.2</version>
+			</plugin>
+
+
 		</plugins>
-		
+
 		<pluginManagement>
 
-	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-site-plugin</artifactId>
-			<version>3.6</version>
-			<dependencies>
-				<dependency><!-- add support for ssh/scp -->
-					<groupId>org.apache.maven.wagon</groupId>
-					<artifactId>wagon-webdav-jackrabbit</artifactId>
-					<version>2.10</version>
-				</dependency>
-			</dependencies>
-		</plugin>
-	</plugins>
-		
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.6</version>
+					<dependencies>
+						<dependency><!-- add support for ssh/scp -->
+							<groupId>org.apache.maven.wagon</groupId>
+							<artifactId>wagon-webdav-jackrabbit</artifactId>
+							<version>2.10</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+
 		</pluginManagement>
-		
+
 	</build>
 
 
-    <distributionManagement>
-    <site>
-    <id>sawied-id</id>
-    <name>sawied-project</name>
-    <url>dav://localhost/ci/sawied/</url>
-    </site>
-    
-    <repository>
-   			<id>releases</id>  
-            <name>Nexus Release Repository</name>  
-   			<url>http://10.100.40.209:8000/nexus/repository/maven-releases/</url>
-   		</repository>
-   		<snapshotRepository>
-   			<id>snapshots</id>  
-            <name>Nexus Snapshot Repository</name>  
-            <url>http://10.100.40.209:8000/nexus/repository/maven-snapshots/</url>  
-   		</snapshotRepository>
-    </distributionManagement>
+	<distributionManagement>
+		<site>
+			<id>sawied-id</id>
+			<name>sawied-project</name>
+			<url>dav://localhost/ci/sawied/</url>
+		</site>
+
+		<repository>
+			<id>releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://10.100.40.209:8000/nexus/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://10.100.40.209:8000/nexus/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 
 	<dependencyManagement>
-	
+
 		<dependencies>
 			<dependency>
 				<groupId>com.github.sawied</groupId>
@@ -215,14 +215,14 @@
 				<groupId>com.github.sawied</groupId>
 				<artifactId>jwt</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
-				</dependency>
-	
-	
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>0.9.11</version>
-		</dependency>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>0.9.11</version>
+			</dependency>
 
 			<!--spring related dependencies -->
 
@@ -345,11 +345,11 @@
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>${hiberate.version}</version>
 			</dependency>
-			
+
 			<dependency>
-			 <groupId>org.hibernate</groupId>
-			 <artifactId>hibernate-search-orm</artifactId>
-			 <version>${hiberate.version}</version>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-search-orm</artifactId>
+				<version>${hiberate.version}</version>
 			</dependency>
 
 			<!-- oracle JDBC Driver -->
@@ -478,9 +478,9 @@
 				<artifactId>poi-ooxml</artifactId>
 				<version>3.8</version>
 			</dependency>
-			
+
 			<!-- Dozer -->
-		
+
 			<dependency>
 				<groupId>net.sf.dozer</groupId>
 				<artifactId>dozer</artifactId>
@@ -590,6 +590,16 @@
 				<version>${jjwt.version}</version>
 			</dependency>
 
+			<!-- ehcache -->
+
+			<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>3.3.1</version>
+			</dependency>
+
+
+			<!-- test scope -->
 
 			<dependency>
 				<groupId>org.apache.derby</groupId>
@@ -624,7 +634,7 @@
 		</dependencies>
 
 	</dependencyManagement>
-	
+
 
 
 
@@ -640,24 +650,24 @@
 			<id>aliyun</id>
 			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
 			<releases>
-			<updatePolicy>never</updatePolicy>
+				<updatePolicy>never</updatePolicy>
 			</releases>
 			<snapshots>
-			<updatePolicy>never</updatePolicy>
+				<updatePolicy>never</updatePolicy>
 			</snapshots>
 		</repository>
-		
+
 		<repository>
-		<id>geotoolkit</id>
-		<name>geotoolkit</name>
-		<url>http://maven.geotoolkit.org/</url>
-		<releases>
-			<updatePolicy>never</updatePolicy>
-			<enabled>true</enabled>
+			<id>geotoolkit</id>
+			<name>geotoolkit</name>
+			<url>http://maven.geotoolkit.org/</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+				<enabled>true</enabled>
 			</releases>
 			<snapshots>
-			<updatePolicy>never</updatePolicy>
-			<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 	</repositories>

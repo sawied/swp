@@ -58,6 +58,13 @@
 			<artifactId>javaee-api</artifactId>
 		</dependency>
 		
+		<!-- ehcache -->
+		
+		<dependency>
+				<groupId>org.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				</dependency>
+		
 		
 
 		<!-- log4j 2 -->

@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd" 
-	updateCheck="true"
+<!--
+firstly,ehcache looks for configuration file called ehcache.xml in classpath.
+
+ 
+ -->
+
+
+
+<ehcache 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.ehcache.org http://www.ehcache.org/ehcache.xsd"
+     updateCheck="true"
 	monitoring="autodetect" 
 	dynamicConfig="false"
 	name="httpClientCache"
 	maxBytesLocalHeap="10M"
 	maxBytesLocalDisk="100M"
-	> 
+ > 
+         
+         
 	
-	
+
+
   <diskStore path="C:/works/temp/"/>   
    
   <defaultCache 
@@ -31,10 +44,10 @@
  	eternal="false"
  	timeToIdleSeconds="900" 
     timeToLiveSeconds="1800"
-    memoryStoreEvictionPolicy="LFU" 
- >
+    memoryStoreEvictionPolicy="LFU">
   <persistence strategy="localTempSwap"/>
  </cache>
+
   
   
   
