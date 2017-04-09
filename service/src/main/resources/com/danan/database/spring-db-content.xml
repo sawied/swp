@@ -36,5 +36,7 @@
 		name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"></property> 
 		<property name="url" value="jdbc:derby:memory:db;create=true"></property> 
 		</bean> -->
+		
+		<import resource="classpath:jpa-repository-context.xml"/>
 
 </beans>

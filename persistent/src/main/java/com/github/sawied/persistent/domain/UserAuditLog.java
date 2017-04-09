@@ -3,7 +3,6 @@ package com.github.sawied.persistent.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,6 +43,10 @@ public class UserAuditLog {
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="auditLog",cascade=CascadeType.PERSIST)
 	@Fetch(FetchMode.SUBSELECT)
 	private Collection<AuditLogDetail> logDetails =new ArrayList<AuditLogDetail>();
+	
+	@ManyToOne(targetEntity=User.class)
+	@JoinColumn(name="userId",nullable=false)
+	private User user=null;
 
 	@Transient
 	private Double duration;
@@ -116,5 +121,17 @@ public class UserAuditLog {
 	public void setDuration(Double duration) {
 		this.duration = duration;
 	}
+
+
+	public User getUser() {
+	    return user;
+	}
+
+
+	public void setUser(User user) {
+	    this.user = user;
+	}
+	
+	
 
 }

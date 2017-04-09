@@ -3,5 +3,11 @@
 <hibernate-mapping>
 
 
-<identifier-generator name="defaultGenerator" class=""/>
+
+<resultset name="searchAuditResponse">
+<return-scalar column="id" type="long"/>
+<return-scalar column="name"/>
+<return-scalar column="duration" type="integer" />
+</resultset>
+
 </hibernate-mapping>

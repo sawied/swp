@@ -105,7 +105,13 @@
 		<httpclient.version>4.5.2</httpclient.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<spring.security.version>4.0.3.RELEASE</spring.security.version>
+		<!-- 
 		<hiberate.version>5.1.0.Final</hiberate.version>
+		 -->
+		<hiberate.version>4.2.21.Final</hiberate.version>
+		
+		
+		
 		<spring.mobile.version>1.1.4.RELEASE</spring.mobile.version>
 		<jjwt.version>0.7.0</jjwt.version>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
@@ -202,6 +208,12 @@
 						<groupId>commons-logging</groupId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+			
+			<dependency>
+			 <groupId>com.github.sawied</groupId>
+			 <artifactId>persistent</artifactId>
+			 <version>1.0.0-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
@@ -477,6 +489,12 @@
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi-ooxml</artifactId>
 				<version>3.8</version>
+				<exclusions>
+			<exclusion>
+			 <groupId>xml-apis</groupId>
+  				<artifactId>xml-apis</artifactId>
+			</exclusion>
+			</exclusions>
 			</dependency>
 
 			<!-- Dozer -->

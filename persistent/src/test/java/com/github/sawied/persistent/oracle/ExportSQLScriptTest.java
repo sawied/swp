@@ -1,11 +1,11 @@
-package com.github.sawied.persistent.repositoryTest;
+package com.github.sawied.persistent.oracle;
 
-import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.naming.NamingException;
@@ -14,13 +14,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.BootstrapServiceRegistry;
-import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
-import org.hibernate.tool.hbm2ddl.SchemaExport.Action;
-import org.hibernate.tool.schema.TargetType;
+import junit.framework.TestCase;
+
+
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -38,6 +35,7 @@ import org.springframework.mock.jndi.SimpleNamingContextBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.github.sawied.persistent.domain.SearchAuditResponse;
 import com.github.sawied.persistent.domain.User;
 import com.github.sawied.persistent.domain.UserAuditLog;
 import com.github.sawied.persistent.repository.UserAuditLogRepository;
@@ -52,8 +50,8 @@ import com.github.sawied.persistent.repository.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:jpa-repository-context.xml" })
-public class ExportSQLScriptTest {
-	
+public class ExportSQLScriptTest extends TestCase {
+    
 	@Autowired
 	private UserAuditLogRepository userAuditLogRepository;
 	
@@ -72,8 +70,8 @@ public class ExportSQLScriptTest {
 		builder.bind("jdbc/oracleDS", dmds);
 		builder.activate();
 	}
-	
-	//@Ignore
+	/**
+	@Ignore
 	@Test
 	public void exportSQLSchema(){
 		final BootstrapServiceRegistry bsr = new BootstrapServiceRegistryBuilder().build();
@@ -95,6 +93,20 @@ public class ExportSQLScriptTest {
 		schemaExport.setOutputFile("schema.sql");
 		schemaExport.execute(EnumSet.of(TargetType.SCRIPT), Action.BOTH, sources.getMetadataBuilder().build());
 	}
+	**/
+	@Ignore
+	@Test
+	public void testSearchAuditLogByScalar(){
+	    List<SearchAuditResponse> searchAudit = userAuditLogRepository.searchAuditUssScalar();
+	    Assert.assertNotNull(searchAudit);
+	}
+	
+	@Test
+	public void testSearchAuditLogByMapping(){
+	    List<SearchAuditResponse> searchAudit = userAuditLogRepository.searchAuditUseResultMapping();
+	    Assert.assertNotNull(searchAudit);
+	}
+	
 	
 	@Ignore
 	@Test
@@ -102,11 +114,13 @@ public class ExportSQLScriptTest {
 		UserAuditLog userAuditLog = new UserAuditLog();
 		userAuditLog.setCode((short) 400);
 		userAuditLog.setMessage("00%000");
-		userAuditLog.setStart(new Date(1490693744842L));
+		userAuditLog.setStart(new Date(1491579684729L));
 		userAuditLog.setEnd(new Date());
-		userAuditLogRepository.save(userAuditLog);
+		
 		User user = new User();
+		user.getLogs().add(userAuditLog);
 		user.setName("road 2");
+		userAuditLog.setUser(user);
 		userRepository.save(user);
 	}
 	

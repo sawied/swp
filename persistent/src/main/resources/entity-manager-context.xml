@@ -24,6 +24,10 @@
 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		 <property name="dataSource"  ref="datasource"></property>
 		 <property name="jpaProperties" ref="jpaProperties"></property>
+		 <!-- 
+		 <property name="packagesToScan" value="com.github.sawied.persistent.domain"></property>
+		 <property name="persistenceProviderClass" value="org.hibernate.ejb.HibernatePersistence"></property>
+		  -->
 		</bean>
 		
 		<jpa:repositories base-package="com.github.sawied.persistent.repository">
