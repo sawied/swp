@@ -11,9 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.SQLDelete;
 
 
 @Entity(name="Users")
@@ -30,6 +29,9 @@ public class User {
 	@JoinTable(name="User_Address")
 	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	private List<Address> address =new ArrayList<Address>();
+	
+	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="user")
+	private List<UserAuditLog> logs=new ArrayList<UserAuditLog>();
 
 	public Long getId() {
 		return id;
@@ -54,10 +56,14 @@ public class User {
 	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
-	
-	
-	
-	
+
+	public List<UserAuditLog> getLogs() {
+	    return logs;
+	}
+
+	public void setLogs(List<UserAuditLog> logs) {
+	    this.logs = logs;
+	}
 	
 	
 }

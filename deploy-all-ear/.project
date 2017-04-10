@@ -7,6 +7,9 @@
 		<project>websocket</project>
 		<project>service</project>
 		<project>jwt</project>
+		<project>persistent</project>
+		<project>primary-source</project>
+		<project>logging</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

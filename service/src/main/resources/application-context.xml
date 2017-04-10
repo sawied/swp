@@ -6,7 +6,9 @@
                            
                            
      <beans:import resource="classpath:com/danan/webservice/spring-ws-content.xml"/>
+     <!-- 
      <beans:import resource="classpath:com/danan/web/spring-security-context.xml"/>
+      -->
      <beans:import resource="classpath:com/danan/database/spring-db-content.xml"/>
      
 	<context:annotation-config />

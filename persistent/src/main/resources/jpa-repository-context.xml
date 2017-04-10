@@ -43,6 +43,7 @@
 		<util:properties id="jpaProperties">
 		 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 		 <prop key="hibernate.show_sql">true</prop>
+		
 		</util:properties>
 		
 		<!-- datasource -->
