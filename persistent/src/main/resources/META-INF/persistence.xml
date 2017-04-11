@@ -5,9 +5,11 @@
 	version="2.0">
 	<persistence-unit name="com.github.sawied.persistent">
 	<!-- hibernate 5.0
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	 -->
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		 -->
 		<mapping-file>sawied/persistent/orm/persistent.orm.xml</mapping-file>
 		<mapping-file>sawied/persistent/orm/query.xml</mapping-file>
 	</persistence-unit>

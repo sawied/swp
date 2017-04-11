@@ -13,6 +13,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/service/target/classes"/>
-        <property name="context-root" value="persistent"/>
+        <property name="context-root" value="service"/>
     </wb-module>
 </project-modules>

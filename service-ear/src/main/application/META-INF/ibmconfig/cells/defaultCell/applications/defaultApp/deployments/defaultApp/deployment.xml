@@ -5,7 +5,7 @@
     <targetMappings xmi:id="DeploymentTargetMapping_1183122148265" enable="true" target="ServerTarget_1183122148265"/>
     -->
     <classloader xmi:id="Classloader_1183122148265" mode="PARENT_LAST"/>
-    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1183122148265" deploymentId="1"  classloaderMode="PARENT_LAST"  startingWeight="10000" uri="service.war">
+    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1183122148265" deploymentId="1"  classloaderMode="PARENT_LAST"  startingWeight="10000" uri="service-1.0.0-SNAPSHOT.war">
     <!-- 
       <targetMappings xmi:id="DeploymentTargetMapping_1183122148266" target="ServerTarget_1183122148265"/>
      -->

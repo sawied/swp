@@ -14,14 +14,15 @@
 	</parent>
 
 	<dependencies>
-	<!-- 
+ 
 		<dependency>
 			<groupId>com.github.sawied</groupId>
 			<artifactId>service</artifactId>
 			<type>war</type>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
-	 -->
+
+	 
 	</dependencies>
 
 

@@ -105,10 +105,10 @@
 		<httpclient.version>4.5.2</httpclient.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<spring.security.version>4.0.3.RELEASE</spring.security.version>
-		<!-- 
 		<hiberate.version>5.1.0.Final</hiberate.version>
+		<!-- 
+		<hiberate.version>4.3.8.Final</hiberate.version>
 		 -->
-		<hiberate.version>4.2.21.Final</hiberate.version>
 		
 		
 		
@@ -356,6 +356,12 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>${hiberate.version}</version>
+				<exclusions>
+				<exclusion>
+				<groupId>xml-apis</groupId>
+  <artifactId>xml-apis</artifactId>
+				</exclusion>
+				</exclusions>
 			</dependency>
 
 			<dependency>
@@ -363,6 +369,7 @@
 				<artifactId>hibernate-search-orm</artifactId>
 				<version>${hiberate.version}</version>
 			</dependency>
+
 
 			<!-- oracle JDBC Driver -->
 
@@ -689,7 +696,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
-
 
 </project>

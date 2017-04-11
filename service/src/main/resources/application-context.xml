@@ -34,7 +34,5 @@
 	<beans:bean id="loginLogRepository" class="com.danan.business.smot.repositories.impl.LoginLogRepositoryImpl"></beans:bean>
  -->
 	
- 
-
 
 </beans:beans>

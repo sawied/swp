@@ -16,8 +16,13 @@ import javax.persistence.criteria.Root;
 
 import junit.framework.TestCase;
 
-
-
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.BootstrapServiceRegistry;
+import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.tool.hbm2ddl.SchemaExport.Action;
+import org.hibernate.tool.schema.TargetType;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -70,8 +75,7 @@ public class ExportSQLScriptTest extends TestCase {
 		builder.bind("jdbc/oracleDS", dmds);
 		builder.activate();
 	}
-	/**
-	@Ignore
+	
 	@Test
 	public void exportSQLSchema(){
 		final BootstrapServiceRegistry bsr = new BootstrapServiceRegistryBuilder().build();
@@ -93,7 +97,7 @@ public class ExportSQLScriptTest extends TestCase {
 		schemaExport.setOutputFile("schema.sql");
 		schemaExport.execute(EnumSet.of(TargetType.SCRIPT), Action.BOTH, sources.getMetadataBuilder().build());
 	}
-	**/
+	
 	@Ignore
 	@Test
 	public void testSearchAuditLogByScalar(){
@@ -101,6 +105,7 @@ public class ExportSQLScriptTest extends TestCase {
 	    Assert.assertNotNull(searchAudit);
 	}
 	
+	@Ignore
 	@Test
 	public void testSearchAuditLogByMapping(){
 	    List<SearchAuditResponse> searchAudit = userAuditLogRepository.searchAuditUseResultMapping();
