@@ -30,19 +30,8 @@
 		  -->
 		</bean>
 		
-		<jpa:repositories base-package="com.github.sawied.persistent.repository">
+		<jpa:repositories base-package="com.github.sawied.persistent.repository"  repository-impl-postfix="Impl">
 		</jpa:repositories>
 		
-		
 		<tx:annotation-driven proxy-target-class="true"/>
-		
-		<bean id="userAuditLogRepository" class="com.github.sawied.persistent.repository.UserAuditLogRepository">
-		 <constructor-arg ref="entityManagerFactory"></constructor-arg>
-		</bean>
-		
-		<bean id="userRepostory" class="com.github.sawied.persistent.repository.UserRepository">
-		 <constructor-arg ref="entityManagerFactory"></constructor-arg>
-		</bean>
-
-
 </beans>

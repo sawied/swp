@@ -51,6 +51,7 @@
 	<security:csrf disabled="true"/>
 
 	<security:intercept-url pattern="/logon.**" access="permitAll" />
+	<security:intercept-url pattern="/**.jsp" access="permitAll"/>
 	<security:intercept-url pattern="/**"
 		access="hasRole('USER')" />
 	<security:custom-filter ref="deviceResolverRequestFilter" before="FIRST"/>

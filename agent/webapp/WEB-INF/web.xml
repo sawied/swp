@@ -48,10 +48,21 @@
 	 <servlet-name>logonRedirectServlet</servlet-name>
 	 <servlet-class>com.github.sawied.agent.web.LogonRedirectServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		JAX-RS Tools Generated - Do not modify</description>
+		<servlet-name>JAX-RS Servlet</servlet-name>
+		<servlet-class></servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	
 	<servlet-mapping>
 	<servlet-name>logonRedirectServlet</servlet-name>
 	<url-pattern>/logonRedirectServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JAX-RS Servlet</servlet-name>
+		<url-pattern>/jaxrs/*</url-pattern>
 	</servlet-mapping>	
 
 
