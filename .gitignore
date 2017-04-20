@@ -1,7 +1,8 @@
 **/target/
 **/WEB-INF/classes/
 **/WEB-INF/lib/
-**/.settings/**
+**/.settings/**/*.*
+**/.classpath
 **/.project
 *.jar
 **/.idea/**
