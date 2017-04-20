@@ -30,13 +30,12 @@ public class UsersTest {
 	}
 	
 	@Test
-	@Ignore
 	public void saveUserAndAddress(){
 		User user=new User();
 		user.setName("danan");
-		Address address=userRepository.loadAddress(this.address.getId());
-		user.getAddress().add(address);
-		address.getUsers().add(user);
+		//Address address=userRepository.loadAddress(this.address);
+		//user.getAddress().add(address);
+		//address.getUsers().add(user);
 		userRepository.save(user);
 	}
 	
@@ -47,8 +46,8 @@ public class UsersTest {
 	public void saveUserSuccess(){
 		User user=new User();
 		user.setName("danan");
-		//Address address=new Address();
-		//address.setAddress("XI'AN");
+		Address address=new Address();
+		address.setAddress("XI'AN");
 		user.getAddress().add(address);
 		userRepository.save(user);
 	}
