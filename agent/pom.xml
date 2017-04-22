@@ -19,9 +19,26 @@
 	   <dependency>
 	    <groupId>com.github.sawied</groupId>
 	    <artifactId>jwt</artifactId>
-	   </dependency> 
+	   </dependency>
 	   
+	   <!-- spring MVC dependence -->
 	   
+	   	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency> 
+	   
+	   <!-- other dependence -->
 	   <dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-servlet_3.0_spec</artifactId>
@@ -34,6 +51,11 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		
+		<dependency>		
+		 <groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
 		</dependency>
 
 
@@ -58,6 +80,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		 <groupId>org.springframework</groupId>
+		 <artifactId>spring-test</artifactId>
+		 <scope>test</scope>
 		</dependency>
 	</dependencies>
 

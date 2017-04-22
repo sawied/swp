@@ -7,9 +7,11 @@
 </head>
 <body>
 
-<form action="upload" enctype="application/x-www-form-urlencoded">
+<form action="files" enctype="multipart/form-data" method="post">
 
-
+<input type="text" name ="idCard" value="169"/>
+<input type="file" name="file"/>
+<input type="submit" value="Submit"/>
 </form>
 
 </body>
