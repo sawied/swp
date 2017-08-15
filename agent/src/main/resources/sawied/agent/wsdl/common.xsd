@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.github.com/sawied/bean/common"
+	xmlns:cm="http://www.github.com/sawied/bean/common" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
+	xmlns:b="http://www.github.com/sawied/bean/base"
+	elementFormDefault="qualified">
+	
+	
+	
+	<annotation>
+	<documentation xml:lang="en">
+	 This schema defined the object of File. 
+	</documentation>
+	</annotation>
+	
+	
+	<import namespace="http://www.github.com/sawied/bean/base" schemaLocation="base.xsd"></import>
+	
+	<complexType name="customer">
+	 <sequence maxOccurs="1" minOccurs="1">
+	  <element name="name" type="string"></element>
+	  <element name="imgData" type="cm:img" xmime:expectedContentTypes="application/octet-stream"></element>
+	  <element name="attachment" type="base64Binary" xmime:expectedContentTypes="application/octet-stream"></element>
+	  <element name="plainType" type="b:Opportunity" minOccurs="1" maxOccurs="1" nillable="false"></element>
+	  <element name="hasPage" type="boolean" nillable="false"></element>
+	 </sequence>
+	</complexType>
+	
+	<simpleType name="img">
+	 <restriction base="base64Binary">
+	 </restriction>
+	</simpleType>
+	
+	<complexType name="faultInfo">
+	 <sequence maxOccurs="1" minOccurs="1">
+	  <element name="errorCode" type="string">
+	  </element>
+	  <element name="reason" type="string"></element>
+	 </sequence>
+	</complexType>
+	
+</schema>

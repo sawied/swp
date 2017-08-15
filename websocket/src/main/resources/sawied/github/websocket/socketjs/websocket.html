@@ -14,31 +14,20 @@
 
 <script type="text/javascript">
 
-var sock = new SockJS('http://localhost:8888/service/endpoint');
+var sock = new SockJS('http://localhost:8000/endpoint');
 var client =Stomp.over(sock);
 
   
   client.connect({}, function(){
-  	console.log("connected");
+  		console.log("connected");
+		client.subscribe("/topic/time", function(e,b,c){
+			console.log(e,b,c);
+		});
   });
 
- client.disconnect(function(){
-    console.log("See you next time!");
-  });
-/**
-sock.onopen = function() {
-    console.log('open');
-};
-sock.onmessage = function(e) {
-    console.log('message', e.data);
-};
-sock.onclose = function() {
-    console.log('close');
-};
-**/
 
 document.getElementById("send").addEventListener("click",function(){
-
+	client.send("/topic/time", {priority: 9}, "Hello, STOMP");
 });
 
 </script>

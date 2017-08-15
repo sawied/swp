@@ -4,6 +4,4 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
 
 
-<package>com.github.sawied.persistent.domain</package>
-  
 </entity-mappings>

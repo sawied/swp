@@ -9,8 +9,8 @@
      <beans:import resource="classpath:com/danan/webservice/spring-ws-content.xml"/>
      <beans:import resource="classpath:com/danan/web/spring-security-context.xml"/>
      <beans:import resource="classpath:com/danan/database/spring-db-content.xml"/>
-     
       -->
+     <beans:import resource="classpath:com/danan/ws/spring-ws-xdt.xml"/>
 	<context:annotation-config />
 	<context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
 	<!-- <context:component-scan base-package="com.danan.smot.dao.impl"></context:component-scan> 

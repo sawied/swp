@@ -39,7 +39,6 @@ import com.github.sawied.persistent.domain.UserAuditLog;
  * @author DANAN
  * 
  */
-@Repository
 public class UserAuditLogRepositoryImpl implements UserAuditLogRepositoryCustom {
 
 	@PersistenceContext

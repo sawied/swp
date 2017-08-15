@@ -1,0 +1,1 @@
+wsimport -B-enableIntrospection -b D:\works\wsdl\bindings.xml -d D:\works\wsdl -extension  -Xsetters-mode=direct -keep -Xnocompile E:\work\swp\agent\src\main\resources\sawied\agent\wsdl\application.wsdl

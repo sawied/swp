@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.github.com/sawied/services/appResourceService"
+	xmlns:tns="http://www.github.com/sawied/services/appResourceService"
+	xmlns:cm="http://www.github.com/sawied/bean/common"
+	elementFormDefault="qualified">
+	<import namespace="http://www.github.com/sawied/bean/common" schemaLocation="common.xsd"></import>
+	<element name="RetrvApplicationInfoRequest">
+		<complexType>
+			<sequence>
+				<element name="in" type="string" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="RetrvApplicationInfoResponse">
+		<complexType>
+			<sequence>
+				<element name="out" type="string" />
+				<element name="info" type="cm:customer"></element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
