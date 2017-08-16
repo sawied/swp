@@ -10,6 +10,7 @@
 		<project>persistent</project>
 		<project>primary-source</project>
 		<project>logging</project>
+		<project>fun-boot</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

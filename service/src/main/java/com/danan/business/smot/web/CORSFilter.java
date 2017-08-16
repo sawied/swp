@@ -17,7 +17,7 @@ import org.springframework.http.HttpMethod;
 /**
  * Servlet Filter implementation class CORSFilter
  */
-@WebFilter("/*")
+@WebFilter("/CORS")
 public class CORSFilter implements Filter {
 
     /**

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[3.6.4.201503051146-RELEASE]]></pluginVersion>
+	<pluginVersion><![CDATA[3.9.0.201707061730-RELEASE]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
@@ -14,6 +14,7 @@
 		<config>src/main/resources/com/danan/sftp/spring-sftp-context.xml</config>
 		<config>src/main/resources/com/danan/mail/spring-mail-content.xml</config>
 		<config>src/test/resources/com/danan/database/spring-db-content-test.xml</config>
+		<config>src/main/resources/com/danan/xml/xml-process.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

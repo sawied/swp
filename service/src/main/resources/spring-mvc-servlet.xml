@@ -39,6 +39,10 @@
     </bean>
 	
 
+	<mvc:resources location="/,/resources/" mapping="/**"/>
+
+
+
 	<!-- String converter & requestJwt -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>

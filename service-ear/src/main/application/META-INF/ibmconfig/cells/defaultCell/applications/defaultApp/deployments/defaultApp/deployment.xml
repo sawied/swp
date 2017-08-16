@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_1183122148265">
-  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="ApplicationDeployment_1183122148265" deploymentId="0" startingWeight="1"  reloadEnabled="true">
-   <!-- 
-    <targetMappings xmi:id="DeploymentTargetMapping_1183122148265" enable="true" target="ServerTarget_1183122148265"/>
-    -->
-    <classloader xmi:id="Classloader_1183122148265" mode="PARENT_LAST"/>
-    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1183122148265" deploymentId="1"  classloaderMode="PARENT_LAST"  startingWeight="10000" uri="service-1.0.0-SNAPSHOT.war">
-    <!-- 
-      <targetMappings xmi:id="DeploymentTargetMapping_1183122148266" target="ServerTarget_1183122148265"/>
-     -->
-      <classloader xmi:id="Classloader_1183122148266" mode="PARENT_LAST"/>
-    </modules>
+<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_1494986284694">
+  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="ApplicationDeployment_1494986284695" startingWeight="10" warClassLoaderPolicy="MODULE">
+    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1494986284695" startingWeight="10000" uri="service-1.0.0-SNAPSHOT.war" classloaderMode="PARENT_LAST"/>
+    <classloader xmi:id="Classloader_1494986284695" mode="PARENT_LAST"/>
   </deployedObject>
-  <!-- 
-  <deploymentTargets xmi:type="appdeployment:ServerTarget" xmi:id="ServerTarget_1183122148265" name="server1" nodeName="danan-PCNode01"/>
-   -->
 </appdeployment:Deployment>

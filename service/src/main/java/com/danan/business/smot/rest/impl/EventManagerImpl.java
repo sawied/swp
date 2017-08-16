@@ -25,9 +25,11 @@ public class EventManagerImpl implements EventManager {
     
     @Autowired
     private UserAuditLogRepository userAuditLogRepository=null;
+    
 
     @Override
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @ResponseBody
     public List<Event> retrieveEvent(@PathVariable String id) throws Exception {
 
 	if (StringUtils.isEmpty(id) || id.length() > 3) {

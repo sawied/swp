@@ -32,8 +32,8 @@ public class MessageEeventSource extends HttpServlet {
 		response.setContentType("text/event-stream");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		AsyncContext ac = request.startAsync();
-		ac.setTimeout(60000);
+		final AsyncContext ac = request.startAsync();
+		ac.setTimeout(0);
 		ac.addListener(new AsyncListener() {
 			
 			private  Log log=LogFactory.getLog(AsyncListener.class);
@@ -41,6 +41,7 @@ public class MessageEeventSource extends HttpServlet {
 			@Override
 			public void onTimeout(AsyncEvent arg0) throws IOException {
 				log.debug("timeOut");
+				ac.complete();
 			}
 			
 			@Override
@@ -52,6 +53,7 @@ public class MessageEeventSource extends HttpServlet {
 			@Override
 			public void onError(AsyncEvent arg0) throws IOException {
 				log.debug("error");
+				ac.complete();
 				
 			}
 			
@@ -62,7 +64,7 @@ public class MessageEeventSource extends HttpServlet {
 			}
 		});
 		log.debug(ac.getTimeout());
-		ac.start(new PushMsg(ac));
+		ac.start(new TimeTracer(ac));
 	}
 
 
