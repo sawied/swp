@@ -218,8 +218,12 @@
 				<groupId>net.sf.dozer</groupId>
 				<artifactId>dozer</artifactId>
 		</dependency>
-
-
+		<!-- 
+		 -->
+<dependency>
+<groupId>org.apache.ws.commons.axiom</groupId>
+				<artifactId>axiom-impl</artifactId>
+</dependency>
 
 
 		<!-- -->

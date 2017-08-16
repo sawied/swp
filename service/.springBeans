@@ -14,7 +14,7 @@
 		<config>src/main/resources/com/danan/sftp/spring-sftp-context.xml</config>
 		<config>src/main/resources/com/danan/mail/spring-mail-content.xml</config>
 		<config>src/test/resources/com/danan/database/spring-db-content-test.xml</config>
-		<config>src/main/resources/com/danan/xml/xml-process.xml</config>
+		<config>src/main/resources/com/danan/ws/spring-ws-xdt.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

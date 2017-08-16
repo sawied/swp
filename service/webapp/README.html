@@ -44,10 +44,10 @@ w32tm /config /manualpeerlist:"time.windows.com time.nist.gov" /syncfromflags:ma
 </h2>
 <ul>
 <li>
-setspn -A HTTP/appserver.danan.local appserver
+setspn -A HTTP/appserver.danan.local wpsadm
 </li>
 <li>
-ktpass /out appserver.keytab /princ HTTP/appserver.danan.local@DANAN.LOCAL /mapuser appserver@DANAN.LOCAL /pass Danan.2015 /crypto RC4-HMAC-NT /kvno 0 /ptype KRB5_NT_PRINCIPAL
+ktpass /out appserver.keytab /princ HTTP/appserver.danan.local@DANAN.LOCAL /mapuser wpsadm@DANAN.LOCAL /pass Danan.2015 /crypto RC4-HMAC-NT /kvno 0 /ptype KRB5_NT_PRINCIPAL
 </li>
 <li>
 ksetup /SetEncTypeAttr HADOOP.COM DES-CBC-CRC DES-CBC-MD5 RC4-HMAC-MD5 AES128-CTS-HMAC-SHA1-96 AES256-CTS-HMAC-SHA1-96
@@ -58,8 +58,11 @@ cd D:\Program Files\IBM\WebSphere\AppServer\profiles\AppSrv01\bin
 wsadmin<br>
 $AdminTask getUser {-uniqueName cn=wasadmin,cn=Users,dc=danan,dc=local}
 $AdminTask getMembershipOfUser {-uniqueName cn=Administrator,cn=Users,dc=danan,dc=local}
-$AdminTask createKrbConfigFile {-krbPath c:/java/config/krb5.ini -realm DANAN.LOCAL -kdcHost dc01.danan.local -dns danan.local -keytabPath c:/java/config/appserver.keytab}
+$AdminTask createKrbConfigFile {-krbPath D:/works/lib/authentication/krb5.ini -realm DANAN.LOCAL -kdcHost dc01.danan.local -dns danan.local -keytabPath D:/works/lib/authentication/appserver.keytab}
 </code>
+</li>
+<li>
+
 </li>
 </ul>
 
