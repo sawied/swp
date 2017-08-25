@@ -14,11 +14,14 @@
 
 <script type="text/javascript">
 
-var sock = new SockJS('http://localhost:8000/endpoint');
+var sock = new SockJS('http://localhost:8080/endpoint');
 var client =Stomp.over(sock);
 
+client.heartbeat.outgoing = 4000; // client will send heartbeats every 5000ms
+client.heartbeat.incoming = 4000;     // client does not want to receive heartbeats
+                                   // from the server
   
-  client.connect({}, function(){
+client.connect({}, function(){
   		console.log("connected");
 		client.subscribe("/topic/time", function(e,b,c){
 			console.log(e,b,c);

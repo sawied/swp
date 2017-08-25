@@ -3,7 +3,7 @@ package com.github.wasmq.rest;
 import java.io.IOException;
 
 import javax.jms.JMSException;
-
+import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
@@ -32,16 +32,28 @@ public class Q2MessageListener implements SessionAwareMessageListener<TextMessag
 		
 		TextMessage response = session.createTextMessage(new String(bytes));
 		
-		response.setJMSCorrelationID(message.getJMSCorrelationID());
+		response.setJMSCorrelationIDAsBytes(correlationidDecode(message.getJMSMessageID().substring("ID:".length())));
 		
 		MessageProducer consumer = session.createProducer(message.getJMSReplyTo());
 		
-		consumer.send(response);
+		
+		consumer.send(response,Message.DEFAULT_DELIVERY_MODE,Message.DEFAULT_PRIORITY,15000);
 		
 		
 		
 		System.out.println(message);
 				
+	}
+	
+	
+	public byte[] correlationidDecode(String str){
+		byte[] bytes = new byte[24];
+		int count=str.length()/2;
+		for(int i=0;i<count;i++){
+		   Integer r=Integer.decode("0X"+str.substring(i*2, (i+1)*2));
+		   bytes[i]=r.byteValue();
+		}
+		return bytes;
 	}
 
 

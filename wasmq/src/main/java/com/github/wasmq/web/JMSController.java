@@ -1,7 +1,6 @@
 package com.github.wasmq.web;
 
-import java.util.Random;
-import java.util.UUID;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.jms.Destination;
@@ -52,6 +51,9 @@ public class JMSController {
 	private Destination replyAlias;
 	
 	private AtomicInteger count=new AtomicInteger(0);
+	
+	
+	private ThreadLocal<javax.jms.Message> tl= new ThreadLocal<javax.jms.Message>();
 
 	
 	
@@ -64,17 +66,30 @@ public class JMSController {
 		System.out.println("JMSCorrelationID:"+identificationId);
 		
 		
-		
 		jmsTemplate.send(requestDestination, new MessageCreator() {
 			@Override
 			public javax.jms.Message createMessage(Session session) throws JMSException {
 				TextMessage msg = session.createTextMessage(String.valueOf(System.currentTimeMillis()));
 				msg.setJMSReplyTo(rr);
 				msg.setJMSCorrelationID(identificationId);
+				msg.setJMSExpiration(System.currentTimeMillis()+60000);
+				tl.set(msg);
 				return msg;
 			}
 		});
-		javax.jms.TextMessage jms = (TextMessage)jmsTemplate.receiveSelected(replyDetination,"JMSCorrelationID"+"="+"'"+generateCorrelationIdSelector(identificationId)+"'");
+		
+		System.out.println("message id :" + tl.get().getJMSMessageID());
+		
+		
+		String messageId= tl.get().getJMSMessageID();
+		
+		//javax.jms.Message receivedMsg = jmsTemplate.receive(replyDetination);
+		
+		//System.out.println("received message : " + receivedMsg);
+		
+		System.out.println("Message Id : " + messageId);
+		
+		javax.jms.TextMessage jms = (TextMessage)jmsTemplate.receiveSelected(replyDetination,"JMSCorrelationID"+"="+"'"+messageId+"'");
 		
 		return jms.getText();	
 	}

@@ -17,7 +17,12 @@
 		<websocket:sockjs>
 		</websocket:sockjs>
 	</websocket:stomp-endpoint>
-	<websocket:stomp-broker-relay prefix="/topic,/queue"/>
+	<!-- 
+	<websocket:simple-broker prefix="/topic,/queue"/>
+	 -->
+	 <!-- Full-Featured Broker -->
+	 <websocket:stomp-broker-relay relay-host="localhost" relay-port="61613" prefix="/topic,/queue"/>
+	 
 	</websocket:message-broker>
 	
 <mvc:resources location="classpath:sawied/github/websocket/socketjs/" mapping="/socketjs/**"></mvc:resources>
