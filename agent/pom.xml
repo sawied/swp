@@ -41,8 +41,7 @@
 		<dependency>
 		<groupId>org.springframework.ws</groupId>
         <artifactId>spring-ws-core</artifactId>
-        <version>2.4.0.RELEASE</version>
-		</dependency>
+        </dependency>
 		
 			<dependency>
 			<groupId>javax</groupId>
@@ -52,7 +51,6 @@
 		<dependency>
             <groupId>wsdl4j</groupId>
             <artifactId>wsdl4j</artifactId>
-            <version>1.6.2</version>
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.apache.ws.commons.schema/XmlSchema -->
