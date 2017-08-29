@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {fetchTodoList} from './actions/actions';
+import {fetchTodoList} from './../actions/actions';
 class Todos extends React.Component {
 
 
@@ -13,11 +13,11 @@ class Todos extends React.Component {
 
      let todoList = this.props.todos;
      let tbody=null;
-     if(todoList.length==0){
+     if(todoList.length!==0){
 
        tbody= <tbody>{todoList.map((todo,index)=>
            <tr>
-             <td>{index}</td><td>{todo.text}</td><td>{todo.status}</td>
+             <td>{index}</td><td>{todo.title}</td><td>{todo.status}</td>
            </tr>
          )}</tbody>;
 

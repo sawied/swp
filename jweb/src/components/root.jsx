@@ -1,14 +1,17 @@
+
+import React from 'react';
 import {Provider} from 'react-redux';
-import App from 'AppCore';
-import Home from 'Home';
-import FileManager from 'FileManager';
-import Todos from 'todos';
+import App from './AppCore';
+import Home from './Home';
+import FileManager from './FileManager';
+import Todos from './todos';
 import TodosReducers from './../reducers';
 import {Router,Route,browserHistory,IndexRoute} from 'react-router';
 import createDefaultStore from './../stores/defaultStore';
 
 let store = createDefaultStore(TodosReducers);
-export default class extends Component{
+
+export default class Root extends React.Component{
   render(){
     return (<Provider store={store}>
     <Router history={browserHistory}>

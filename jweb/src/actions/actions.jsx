@@ -7,17 +7,17 @@ export function addTodo(text){
 
 
 export const receiveTodoList = (json) => {
-  console.log('the retrieved response from server: ',json);
+
  return {
    type: RECEIVE_TODOLIST,
-   todoList: json.data.map(child => child.data),
+   todoList: json.data,
    receivedAt: Date.now()
  };
 }
 
 
-export function fetchTodoList(dispatch){
- return fetch('data/todoList.json')
-        .then(response=>response.json)
-        .then(json=>dispatch(receiveTodoList(json)));
+export function fetchTodoList(){
+ return dispatch=>{ return fetch('data/todoList.json')
+        .then(response=>response.json())
+        .then(json=>dispatch(receiveTodoList(json)));}
 }
