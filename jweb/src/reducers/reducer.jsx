@@ -32,7 +32,7 @@ const todos = (state = [], action) => {
         todo(t, action)
       )
       case 'RECEIVE_TODOLIST':
-       return [...state,...(action.todoList)]
+       return [...(action.todoList)]
     default:
       return state
   }
