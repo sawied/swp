@@ -2,9 +2,7 @@ const todo = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return {
-        id: action.id,
-        text: action.text,
-        completed: false
+        text: action.text
       }
     case 'TOGGLE_TODO':
       if (state.id !== action.id) {
@@ -32,7 +30,7 @@ const todos = (state = [], action) => {
         todo(t, action)
       )
       case 'RECEIVE_TODOLIST':
-       return [...(action.todoList)]
+       return [...(action.data)]
     default:
       return state
   }
