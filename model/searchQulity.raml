@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: Search Qulity of Production
+version: 1.0
+baseUri: https://localhost/apis
+mediaType: application/json
+types:
+  Production:
+    type: object
+    properties:
+      productionId:
+        type: string
+        required: true
+        description: production id for refer a production
+        pattern: "[0-9|-]+"
+        maxLength: 15
+        minLength: 15
+      name:
+        type: string
+        required: false
+
+/productions:
+  get:
+    headers:
+      token-id:
+        type: string
+        required: true
+        minLength: 20
+        maxLength: 20
+        description: valid token for access
+    body:
+      application/json:
+        type: Production

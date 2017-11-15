@@ -1,5 +1,10 @@
 package com.github.sawied.websocket;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.springframework.util.FileCopyUtils;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -30,9 +35,13 @@ public class WebSocketAppTest
 
     /**
      * Rigourous Test :-)
+     * @throws IOException 
      */
-    public void testApp()
+    public void testApp() throws IOException
     {
         assertTrue( true );
+       File file= new File(".","../../a.pdf");
+       FileCopyUtils.copy("Hello".getBytes(),file);
+        
     }
 }
