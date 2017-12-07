@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>EventSource</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet"
+	href="css/bootstrap.min.css" />
+</head>
+<body>
+
+	<h2>Event Source</h2>
+	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var evtSource = new EventSource('MessagePush');
+			evtSource.onmessage=function(e){
+				
+				$("#messageList").append('<li>'+"message:" + e.data+"</li>");
+			}
+			
+			evtSource.onerror=function(e){
+				console.log("EventSource failed.",e);
+			}
+		});
+	</script>
+
+<div id="messageBox">
+ <ul id="messageList"></ul>
+</div>
+	
+
+</body>
+</html>

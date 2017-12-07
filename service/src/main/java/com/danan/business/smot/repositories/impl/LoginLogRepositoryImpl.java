@@ -1,4 +1,4 @@
-package com.danan.business.smot.repositories.impl;
+/**package com.danan.business.smot.repositories.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -36,3 +36,4 @@ public class LoginLogRepositoryImpl implements LoginLogRepository {
 	}
 
 }
+**/

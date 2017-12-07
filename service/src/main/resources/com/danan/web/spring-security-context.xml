@@ -13,6 +13,7 @@
 
 	<security:http entry-point-ref="spnegoEntryPoint"
 		use-expressions="true">
+		<security:csrf disabled="true"/>
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/home" access="permitAll" />
 		<security:intercept-url pattern="/**.htm" access="authenticated" />

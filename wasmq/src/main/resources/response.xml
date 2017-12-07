@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+    <soapenv:Header>
+        <ISMHdr xmlns="http://ism.hsbc.com/ISMHdr/V2.0" ISMHdrVersNum="02.00" RqstIndictr="N" ConsumerId="VTM_ENQ"
+            MsgInstcId="30" MsgCreatTmspType="Z" MsgCreatTmsp="2017-07-10T09:28:41.109000+00:00">
+            <EAIRespeCde>
+                <RespeCde RtrnCde="00" ReasCde="00000" />
+            </EAIRespeCde>
+        </ISMHdr>
+        <OpHdr xmlns="http://ism.hsbc.com/OpHdr/V2.0" OpDefCnt="1" IgnrErrFlag="Y">
+            <OpDefHdr seq="1" SvceId="VTM_ENQ" OpId="ENQCUS2" SvceVersNum="01.00" OperVersNum="01.00" OPUId="CN"
+                CountryCde="CN" />
+            <AppExtnsArea>
+                <AppExtnGrp seq="1">
+                    <AppExtn item="1" type="OH_SERVICE_HEADER"
+                        UserData="0100000   VTM_CNHASE                                                                  " />
+                </AppExtnGrp>
+            </AppExtnsArea>
+            <RespeCdeGrp>
+                <RespeCde seq="1" RtrnCde="00" ReasCde="00000" />
+            </RespeCdeGrp>
+        </OpHdr>
+    </soapenv:Header>
+    <soapenv:Body>
+        <RespePayload>
+            <OpDefRespe seq="1"><![CDATA[27594ENQCUS2CNHASEHUBVT01VT010000000000      000000000VTM0002Customer not found                                                            ]]></OpDefRespe>
+        </RespePayload>
+    </soapenv:Body>
+</soapenv:Envelope>

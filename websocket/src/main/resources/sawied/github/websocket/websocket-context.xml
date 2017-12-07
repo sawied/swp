@@ -10,16 +10,24 @@
 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd">
 
 
-<bean id="simpleMessgae" class="com.github.sawied.websocket.SimpleMessageWebsocketHandler"></bean>
  
-
 <websocket:message-broker application-destination-prefix="/console">
-<websocket:stomp-endpoint path="/endpoint">
-	<websocket:sockjs name="console" websocket-enabled="true">
-	</websocket:sockjs>
-</websocket:stomp-endpoint>
-<websocket:simple-broker prefix="/topic"/>
-</websocket:message-broker>
+
+	<websocket:stomp-endpoint path="/endpoint">
+		<websocket:sockjs>
+		</websocket:sockjs>
+	</websocket:stomp-endpoint>
+	
+	<!-- 
+	 -->
+	<websocket:simple-broker prefix="/topic,/queue"/>
+	 <!-- Full-Featured Broker
+	 <websocket:stomp-broker-relay relay-host="localhost" relay-port="61613" prefix="/topic,/queue"/>
+	  -->
+	 
+	</websocket:message-broker>
+	
 <mvc:resources location="classpath:sawied/github/websocket/socketjs/" mapping="/socketjs/**"></mvc:resources>
+ 
 
 </beans>

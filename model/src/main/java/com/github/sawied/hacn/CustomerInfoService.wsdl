@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.hangseng.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.hangseng.com" xmlns:intf="http://service.hangseng.com" xmlns:tns1="http://entity.hangseng.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.hangseng.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://entity.hangseng.com"/>
+   <element name="customerInfoEntity">
+    <complexType>
+     <sequence>
+      <element name="certNo" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="customerInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="customerInfoReturn"  form="unqualified"  type="tns1:CustomerInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://entity.hangseng.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="CustomerInfo">
+    <sequence>
+     <element name="companyType" nillable="true" type="xsd:string"/>
+     <element name="contactCheckPhoneTime" nillable="true" type="xsd:dateTime"/>
+     <element name="customerBirthday" nillable="true" type="xsd:dateTime"/>
+     <element name="customerBuyType" nillable="true" type="xsd:string"/>
+     <element name="customerCarNum" nillable="true" type="xsd:int"/>
+     <element name="customerCertiNo" nillable="true" type="xsd:string"/>
+     <element name="customerCertiType" nillable="true" type="xsd:string"/>
+     <element name="customerEmail" nillable="true" type="xsd:string"/>
+     <element name="customerHouseAddress" nillable="true" type="xsd:string"/>
+     <element name="customerHouseHold" nillable="true" type="xsd:string"/>
+     <element name="customerHouseNum" nillable="true" type="xsd:int"/>
+     <element name="customerHouseStatus" nillable="true" type="xsd:string"/>
+     <element name="customerLiveAddress" nillable="true" type="xsd:string"/>
+     <element name="customerMarriageStatus" nillable="true" type="xsd:string"/>
+     <element name="customerMinorChildrenNum" nillable="true" type="xsd:int"/>
+     <element name="customerMobile" nillable="true" type="xsd:string"/>
+     <element name="customerMonthAfterTaxIncome" nillable="true" type="xsd:decimal"/>
+     <element name="customerName" nillable="true" type="xsd:string"/>
+     <element name="customerNation" nillable="true" type="xsd:string"/>
+     <element name="customerSex" nillable="true" type="xsd:string"/>
+     <element name="customerSpouseCertiNo" nillable="true" type="xsd:string"/>
+     <element name="customerSpouseHouseHold" nillable="true" type="xsd:string"/>
+     <element name="customerSpouseLiveAddress" nillable="true" type="xsd:string"/>
+     <element name="customerSpouseMobile" nillable="true" type="xsd:string"/>
+     <element name="customerSpouseName" nillable="true" type="xsd:string"/>
+     <element name="customerSpouseWorkPhone" nillable="true" type="xsd:string"/>
+     <element name="customerWorkAddress" nillable="true" type="xsd:string"/>
+     <element name="customerWorkPosition" nillable="true" type="xsd:string"/>
+     <element name="customerWorkUnit" nillable="true" type="xsd:string"/>
+     <element name="customerYearAfterTaxIncome" nillable="true" type="xsd:decimal"/>
+     <element name="customerYearsOfWorking" nillable="true" type="xsd:decimal"/>
+     <element name="customerhomePhone" nillable="true" type="xsd:string"/>
+     <element name="cutomerWorkPhone" nillable="true" type="xsd:string"/>
+     <element name="educationLevelOther" nillable="true" type="xsd:string"/>
+     <element name="emergencyContactCheck" nillable="true" type="xsd:dateTime"/>
+     <element name="emergencyContactCheckPhone" nillable="true" type="xsd:string"/>
+     <element name="emergencyContactCheckUser" nillable="true" type="xsd:string"/>
+     <element name="emergencyContactPerson" nillable="true" type="xsd:string"/>
+     <element name="emergencyContactPhone" nillable="true" type="xsd:string"/>
+     <element name="isDrivingLicense" nillable="true" type="xsd:string"/>
+     <element name="isHavaCar" nillable="true" type="xsd:string"/>
+     <element name="isHaveAccFund" nillable="true" type="xsd:string"/>
+     <element name="isHaveSocialSecurity" nillable="true" type="xsd:string"/>
+     <element name="isInHacn" nillable="true" type="xsd:string"/>
+     <element name="isReceiveEmail" nillable="true" type="xsd:string"/>
+     <element name="isReceiveSms" nillable="true" type="xsd:string"/>
+     <element name="isSpouseDrivingLicense" nillable="true" type="xsd:string"/>
+     <element name="loanAppNo" nillable="true" type="xsd:string"/>
+     <element name="relationship" nillable="true" type="xsd:string"/>
+     <element name="relativeName" nillable="true" type="xsd:string"/>
+     <element name="systemType" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="customerInfoResponse">
+
+      <wsdl:part element="impl:customerInfoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="customerInfoRequest">
+
+      <wsdl:part element="impl:customerInfoEntity" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CustomerInfoService">
+
+      <wsdl:operation name="customerInfo">
+
+         <wsdl:input message="impl:customerInfoRequest" name="customerInfoRequest"/>
+
+         <wsdl:output message="impl:customerInfoResponse" name="customerInfoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CustomerInfoServiceSoapBinding" type="impl:CustomerInfoService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="customerInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="customerInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="customerInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CustomerInfoServiceService">
+
+      <wsdl:port binding="impl:CustomerInfoServiceSoapBinding" name="CustomerInfoService">
+
+         <wsdlsoap:address location="https://cnhmimhq9971u.cn.hsbc:9443/HACN_MAS_WS/services/CustomerInfoService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

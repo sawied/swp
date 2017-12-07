@@ -20,6 +20,10 @@
 		<AppenderRef ref="Console" />
 	</Logger>
 	
+	<Logger name="org.springframework.ws.client.MessageTracing" level="TRACE">
+	<AppenderRef ref="Console" />
+	</Logger>
+	
 		<Root level="DEBUG">
 			<AppenderRef ref="Console"/>
 		</Root>

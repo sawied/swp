@@ -16,8 +16,8 @@ class AppCore extends React.Component {
         <div className="left-panel">
           <ul>
             <li><CustLink to="/" onlyActiveOnIndex>Home</CustLink></li>
-            <li><CustLink to="/todos">Todos</CustLink></li>
-            <li><CustLink to="/fileManager">File Manager</CustLink></li>
+            <li><CustLink to="/todos">Todo list</CustLink></li>
+            <li><CustLink to="/fileManager">File manager</CustLink></li>
           </ul>
         </div>
         <div className="right-panel">

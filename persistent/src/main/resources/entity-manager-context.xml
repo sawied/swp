@@ -24,21 +24,12 @@
 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		 <property name="dataSource"  ref="datasource"></property>
 		 <property name="jpaProperties" ref="jpaProperties"></property>
+		 <property name="packagesToScan" value="com.github.sawied.persistent.domain"></property>
+		 <property name="persistenceProviderClass" value="org.hibernate.ejb.HibernatePersistence"></property>
 		</bean>
 		
-		<jpa:repositories base-package="com.github.sawied.persistent.repository">
+		<jpa:repositories base-package="com.github.sawied.persistent.repository"  repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager">
 		</jpa:repositories>
 		
-		
 		<tx:annotation-driven proxy-target-class="true"/>
-		
-		<bean id="userAuditLogRepository" class="com.github.sawied.persistent.repository.UserAuditLogRepository">
-		 <constructor-arg ref="entityManagerFactory"></constructor-arg>
-		</bean>
-		
-		<bean id="userRepostory" class="com.github.sawied.persistent.repository.UserRepository">
-		 <constructor-arg ref="entityManagerFactory"></constructor-arg>
-		</bean>
-
-
 </beans>

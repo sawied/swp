@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>service-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>service-ear</name>
+	<description>This project used to do deployment.</description>
+
+	<parent>
+		<groupId>com.github.sawied</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<dependencies>
+ 
+		<dependency>
+			<groupId>com.github.sawied</groupId>
+			<artifactId>service</artifactId>
+			<type>war</type>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+	 
+	</dependencies>
+
+
+	<build>
+	<finalName>service-ear</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<version>6</version>
+					<!-- <earSourceExcludes>lib/*.jar</earSourceExcludes> -->
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+</project>

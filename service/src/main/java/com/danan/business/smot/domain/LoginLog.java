@@ -2,11 +2,11 @@ package com.danan.business.smot.domain;
 
 import java.util.Date;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+//import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.danan.business.smot.repositories.LoginLogRepository;
 
-@Document(collection = "loginLog")
+//@Document(collection = "loginLog")
 public class LoginLog {
 
 	private String id = null;

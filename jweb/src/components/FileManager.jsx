@@ -3,7 +3,9 @@ import React from 'react';
 class FileManager extends React.Component {
   render() {
     return (
-      <div>FileManager component</div>
+      <div>
+        <h3>FileManager component</h3>
+      </div>
     );
   }
 }

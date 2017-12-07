@@ -28,8 +28,11 @@
 	<bean id="securityKeyAuthenticationProvider" class="com.github.sawied.security.jwt.TDESSecurityKeyAuthenticationProvider">
 	</bean>
 
-	<security:authentication-manager alias="authentication">
+
+	<security:authentication-manager alias="authentication" >
 		<security:authentication-provider ref="securityKeyAuthenticationProvider" >
 		</security:authentication-provider>
+		<security:authentication-provider ref=""></security:authentication-provider>
+		
 	</security:authentication-manager>
 </beans>

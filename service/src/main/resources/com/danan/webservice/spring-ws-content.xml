@@ -14,7 +14,7 @@
 	<int-ws:outbound-gateway id="webservice"
 		request-channel="inputChannel" message-factory="messageFactory"
 		fault-message-resolver="faultMessageResolver"
-		uri="http://127.0.0.1:8081/smot/AppMgmtService" marshaller="marshaller">
+		uri="http://127.0.0.1:8081/smot/AppMgmtService" marshaller="marshaller" interceptor="">
 	</int-ws:outbound-gateway>
 	
 	<bean id="faultMessageResolver" class="com.danan.business.smot.service.AMFaultMessageResolver"></bean>

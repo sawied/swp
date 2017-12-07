@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_1494986284694">
+  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="ApplicationDeployment_1494986284695" startingWeight="10" warClassLoaderPolicy="MODULE">
+    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_1494986284695" startingWeight="10000" uri="service-1.0.0-SNAPSHOT.war" classloaderMode="PARENT_LAST"/>
+    <classloader xmi:id="Classloader_1494986284695" mode="PARENT_LAST"/>
+  </deployedObject>
+</appdeployment:Deployment>

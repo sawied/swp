@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+    (c) RenderX, 2000
+    This file makes part of the RenderX XSL FO Test Suite. Permission is
+    granted to copy and modify this file as a whole or in part, provided
+    that any work derived from it bear a reference to the original
+    document.
+  -->
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+   <fo:layout-master-set>
+       <fo:simple-page-master master-name="all-pages"
+          page-width="210mm" page-height="297mm"
+          margin-top="1cm"   margin-bottom="1cm"
+          margin-left="1cm"  margin-right="1cm">
+          <fo:region-body   margin="0cm"/>
+          <fo:region-before extent="2cm"/>
+          <fo:region-after  extent="2cm"/>
+          <fo:region-start  extent="2cm"/>
+          <fo:region-end    extent="1cm"/>
+      </fo:simple-page-master>
+   </fo:layout-master-set>
+   
+   <fo:page-sequence master-reference="all-pages">
+      <fo:static-content flow-name="xsl-region-after">
+         <fo:table font-family="SimSun" font-size="8pt" font-style="italic" >
+          <fo:table-body>
+             <fo:table-row>
+                <fo:table-cell text-align="left"><fo:block text-align="start" font-weight="bold" wrap-option="no-wrap">恒生银行(中国)有限公司 Hang Seng Bank (China) Limited</fo:block></fo:table-cell>
+                <fo:table-cell text-align="center">
+                   <fo:block><fo:page-number/></fo:block>
+                   </fo:table-cell>
+                <fo:table-cell text-align="right"><fo:block>汇丰集团成员 Member HSBC Group</fo:block></fo:table-cell>
+             </fo:table-row>
+          </fo:table-body>
+       </fo:table>
+      </fo:static-content>
+      
+      
+      <fo:flow flow-name="xsl-region-body">
+         <fo:table border-width="0.2mm" border-style="solid" border-color="green" table-layout="fixed" width="100%" border-collapse="collapse">
+          <fo:table-column />
+          <fo:table-column  />
+          <fo:table-column />
+          <fo:table-column />
+          <fo:table-body font-family="SimSun">
+             <fo:table-row>
+                <fo:table-cell number-columns-spanned="4">
+                   <fo:block font-family="SimSun" font-size="15pt" text-align="center" line-height="2cm">恒生（中国）个人消费贷款申请表 </fo:block>    
+                </fo:table-cell>
+             </fo:table-row>
+             <fo:table-row>
+                <fo:table-cell number-columns-spanned="4" height="1cm" padding-start="1cm">
+                <fo:block >致：恒生银行（中国）有限公司 </fo:block>
+                </fo:table-cell>
+             </fo:table-row>
+             <fo:table-row>
+                <fo:table-cell number-columns-spanned="2" text-indent="1cm">
+                   <fo:block> <fo:inline font-style="oblique" font-weight="bold">西安市白沙路</fo:inline>分行</fo:block>
+                </fo:table-cell>
+                <fo:table-cell number-columns-spanned="2" >
+                   <fo:block > &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;日期 :2017年10月25日</fo:block>
+                </fo:table-cell>
+             </fo:table-row>
+          </fo:table-body>
+       </fo:table>
+
+      </fo:flow>     
+   </fo:page-sequence>
+</fo:root>

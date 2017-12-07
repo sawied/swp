@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:sch="http://www.github.com/sawied/services/appResourceService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.github.com/sawied/services/appResourceService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.github.com/sawied/services/appResourceService">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cm="http://www.github.com/sawied/bean/common" elementFormDefault="qualified" targetNamespace="http://www.github.com/sawied/services/appResourceService">
+	<import namespace="http://www.github.com/sawied/bean/common" schemaLocation="common.xsd"/>
+	<element name="RetrvApplicationInfoRequest">
+		<complexType>
+			<sequence>
+				<element name="in" type="string"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="RetrvApplicationInfoResponse">
+		<complexType>
+			<sequence>
+				<element name="out" type="string"/>
+				<element name="info" type="cm:customer"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="RetrvApplicationInfoRequest">
+    <wsdl:part element="tns:RetrvApplicationInfoRequest" name="RetrvApplicationInfoRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetrvApplicationInfoResponse">
+    <wsdl:part element="tns:RetrvApplicationInfoResponse" name="RetrvApplicationInfoResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AppResource">
+    <wsdl:operation name="RetrvApplicationInfo">
+      <wsdl:input message="tns:RetrvApplicationInfoRequest" name="RetrvApplicationInfoRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:RetrvApplicationInfoResponse" name="RetrvApplicationInfoResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AppResourceSoap12" type="tns:AppResource">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="RetrvApplicationInfo">
+      <soap12:operation soapAction=""/>
+      <wsdl:input name="RetrvApplicationInfoRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RetrvApplicationInfoResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AppResourceSoap11" type="tns:AppResource">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="RetrvApplicationInfo">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="RetrvApplicationInfoRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RetrvApplicationInfoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AppResourceService">
+    <wsdl:port binding="tns:AppResourceSoap11" name="AppResourceSoap11">
+      <soap:address location="/appService/"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:AppResourceSoap12" name="AppResourceSoap12">
+      <soap12:address location="/appService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

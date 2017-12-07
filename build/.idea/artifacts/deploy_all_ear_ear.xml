@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="ear" name="deploy-all-ear:ear">
-    <output-path>$PROJECT_DIR$/../deploy-all-ear/target</output-path>
-    <root id="archive" name="deploy-all-ear-1.0.0-SNAPSHOT.ear">
-      <element id="artifact" artifact-name="deploy-all-ear:ear exploded" />
-    </root>
-  </artifact>
-</component>
