@@ -1,0 +1,12 @@
+server:
+    port: ${port:8000}
+    
+logging:
+  level:  
+    com.github.sawied.websocket: DEBUG
+    net.sf.ehcache: TRACE
+  file: websoket.log
+  path: .
+spring:
+  main:
+    banner-mode: "console"

@@ -33,7 +33,7 @@
   
 	  <beans:bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 	  <beans:property name="connectionFactory" ref="connectionFactory"></beans:property>
-	  <beans:property name="receiveTimeout" value="10000"></beans:property>s
+	  <beans:property name="receiveTimeout" value="10000"></beans:property>
 	  <beans:property name="explicitQosEnabled" value="true"></beans:property>
 	  <beans:property name="timeToLive" value="15000"></beans:property>
 	  </beans:bean>

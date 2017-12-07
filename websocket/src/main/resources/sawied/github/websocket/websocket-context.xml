@@ -17,6 +17,7 @@
 		<websocket:sockjs>
 		</websocket:sockjs>
 	</websocket:stomp-endpoint>
+	
 	<!-- 
 	 -->
 	<websocket:simple-broker prefix="/topic,/queue"/>
