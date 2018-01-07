@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+
+<oauth2:authorization-server  client-details-service-ref="inmemoryClientDetails" check-token-enabled="true">
+ <oauth2:authorization-code disabled="false"/>
+ <oauth2:refresh-token disabled="false"/>
+</oauth2:authorization-server>
+
+
+<oauth2:client-details-service id="inmemoryClientDetails" >
+  <oauth2:client  client-id="api-gateway" authorities="ROLE_CLIENT" authorized-grant-types="authorization_code,refresh_token" resource-ids="sawied-resource-service" scope="read,write" secret="secret"/>
+</oauth2:client-details-service>
+
+</beans>

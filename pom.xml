@@ -40,6 +40,9 @@
 		<module>kerberos</module>
 		<module>wasmq</module>
 		<module>websocket</module>
+		<module>microservice-authorization</module>
+		<module>microservice-client</module>
+		<module>microservice-resource</module>
 		<module>deploy-all-ear</module>
 	</modules>
 

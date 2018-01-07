@@ -2,6 +2,10 @@ package com.github.sawied.websocket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.core.annotation.Order;
+import org.springframework.web.WebApplicationInitializer;
 
 /**
  * Hello world!
@@ -9,9 +13,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class WebsocketApp 
+@Order(1)
+public class WebsocketApp extends SpringBootServletInitializer implements WebApplicationInitializer
 {
-    public static void main( String[] args )
+	
+    @Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(WebsocketApp.class);
+	}
+
+	public static void main( String[] args )
     {
         SpringApplication.run(WebsocketApp.class, args);
     }

@@ -38,5 +38,6 @@
 	
 	 <int-sftp:outbound-channel-adapter session-factory="ftpSessionFactory" channel="ftpOutboundChannel" remote-directory="store">
 	 </int-sftp:outbound-channel-adapter>
+	 
 
 </beans>
