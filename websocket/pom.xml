@@ -3,7 +3,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>websocket</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 
 	<parent>
@@ -95,7 +95,7 @@
     </dependency>
 			
 			<!-- netty-all -->
-	
+
 
 
 	<dependency>
@@ -122,10 +122,9 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-		</dependency>
+
+		
+		
 	</dependencies>
 	
 	

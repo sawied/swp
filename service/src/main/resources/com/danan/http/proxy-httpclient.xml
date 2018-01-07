@@ -8,6 +8,8 @@
 
 <!-- HTTP Client factory  -->
 <bean id="proxyHttpClient" class="com.danan.business.smot.integration.http.HttpProxyClientfactory">
+<property name="keystoreResource" value="classpath:com/danan/http/jssecacerts"></property>
+<property name="keystorePasswd" value="changeit"></property>
 </bean>
 
 		

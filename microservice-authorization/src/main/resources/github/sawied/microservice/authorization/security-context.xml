@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+	<security:http auto-config="true" create-session="ifRequired"
+		authentication-manager-ref="authenticationManager">
+     <security:intercept-url pattern="/login.html" access="permitAll"/>
+     <security:intercept-url pattern="/*" access="hasRole('USER')"/>
+     <security:form-login 
+     authentication-failure-url="/login.html?authentication_error=true"
+     login-page="/login.html"
+     login-processing-url="/login"/>
+     <security:csrf disabled="true" />
+     <security:logout logout-url="/logout" logout-success-url="/login.html"/>
+	</security:http>
+	
+	
+	
+
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider >
+			<security:user-service>
+				<security:user name="danan" password="danan" authorities="ROLE_USER" />
+				<security:user name="api-gateway" password="secret" authorities="ROLE_CLIENT"/>
+				<security:user name="sawied-user-resource" password="sawied-1990" authorities="ROLE_RESOURCE"/>
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

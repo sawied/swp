@@ -9,8 +9,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.server.ServletServerHttpRequest;
-import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,7 +22,7 @@ public class NormalHTTPTest {
 	 
 	 @Test
 	 public void httpFetchSuccess(){
-		 HttpGet get = new HttpGet("https://www.google.com.hk");
+		 HttpGet get = new HttpGet("https://kyfw.12306.cn/otn/login/init");
 		 try {
 			HttpResponse response = httpClient.execute(get);
 			System.out.println(response.getStatusLine());

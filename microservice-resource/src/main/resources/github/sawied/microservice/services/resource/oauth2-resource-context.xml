@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+
+	<oauth2:resource-server stateless="true"  token-services-ref="tokenService" 
+		resource-id="sawied-resource-service" id="oauth2-security-resource"/>
+	
+	<bean id="tokenService" class="org.springframework.security.oauth2.provider.token.RemoteTokenServices">
+	<property name="checkTokenEndpointUrl" value="http://localhost:8080/microservice-authorization-SNAPSHOT/oauth/check_token"></property>
+	<property name="clientId" value="sawied-user-resource"></property>
+	<property name="clientSecret" value="sawied-1990"></property>
+	</bean>
+		
+
+</beans>

@@ -3,7 +3,6 @@
 **/WEB-INF/lib/
 **/.settings/**/*.*
 **/.classpath
-**/.project
 *.jar
 **/.idea/**
 **/*.iml
@@ -11,3 +10,4 @@
 **/bin/
 **/dojo/**
 *.log
+Servers/**
