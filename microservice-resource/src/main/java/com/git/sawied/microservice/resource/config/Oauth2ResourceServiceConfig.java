@@ -8,8 +8,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +21,8 @@ public class Oauth2ResourceServiceConfig extends ResourceServerConfigurerAdapter
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		resources.resourceId("sawied-resource-service");
+		
+		resources.resourceId("sawied-resource-service").tokenServices(tokenService());
 	}
 	
 	
@@ -31,8 +35,31 @@ public class Oauth2ResourceServiceConfig extends ResourceServerConfigurerAdapter
 	}
 
 
+	@Bean
+	public TokenStore jwtTokenStore() {
+		return new JwtTokenStore(jwtTokenConverter());
+	}
 
 
+
+
+	@Bean
+	public JwtAccessTokenConverter jwtTokenConverter() {
+		JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+		jwtAccessTokenConverter.setSigningKey("secert");
+		return jwtAccessTokenConverter;
+	}
+
+	
+	@Bean
+	public ResourceServerTokenServices tokenService() {
+		DefaultTokenServices tokenService = new DefaultTokenServices();
+		tokenService.setTokenStore(jwtTokenStore());
+		return tokenService;
+	}
+	
+
+	/**
 	@Bean
 	public ResourceServerTokenServices tokenService() {
 		RemoteTokenServices tokenService = new RemoteTokenServices();
@@ -41,7 +68,7 @@ public class Oauth2ResourceServiceConfig extends ResourceServerConfigurerAdapter
 		tokenService.setClientSecret("sawied-1990");
 		return tokenService;
 	}
-
+**/
 	
 	
 }

@@ -10,9 +10,9 @@
 	<form action="login" method="post">
 
 		<input id="username" class="form-control" type='text' name='username'
-			value="danan" />
+			value="sawied" />
 			
-		<input id="passwd" class="form-control" type="password" name="password" value="danan"/>
+		<input id="passwd" class="form-control" type="password" name="password" value="password"/>
 
 
 	<button class="btn btn-primary" type="submit">Login</button>

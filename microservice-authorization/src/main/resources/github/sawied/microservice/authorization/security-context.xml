@@ -19,14 +19,19 @@
 	
 	
 
-	<security:authentication-manager id="authenticationManager">
-		<security:authentication-provider >
+	<security:authentication-manager id="authenticationManager" alias="authenticationManagerAlias" erase-credentials="true">
+		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="danan" password="danan" authorities="ROLE_USER" />
 				<security:user name="api-gateway" password="secret" authorities="ROLE_CLIENT"/>
 				<security:user name="sawied-user-resource" password="sawied-1990" authorities="ROLE_RESOURCE"/>
 			</security:user-service>
-		</security:authentication-provider>
+		</security:authentication-provider >
+		<security:authentication-provider  user-service-ref="customerUserDetail">
+		</security:authentication-provider>		
 	</security:authentication-manager>
+
+		<bean id="customerUserDetail" class="com.github.sawied.microservice.authorization.userdetails.SimpleUserDetails"></bean>
+
 
 </beans>
