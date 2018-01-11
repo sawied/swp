@@ -19,12 +19,22 @@
 <constructor-arg ref="inmemoryClientDetails"></constructor-arg>
 </bean>
 
-<!-- token store  -->
+<!-- token store  12 hours-->
 <bean id="defaultTokenService" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
 <property name="tokenStore" ref="jwtKeyStore"></property>
 <property name="supportRefreshToken" value="true"></property>
-<property name="tokenEnhancer" ref="jwtAccessTokenConverter"></property>
+<property name="tokenEnhancer" ref="tokenEnhancerChain"></property>
 </bean>
+
+<bean id="tokenEnhancerChain" class="org.springframework.security.oauth2.provider.token.TokenEnhancerChain">
+<property name="tokenEnhancers">
+ <list>
+ <ref bean="jwtAccessTokenConverter"/>
+ <bean class="com.github.sawied.microservice.authorization.token.AdditionInfoTokenEnhancer"></bean>
+ </list>
+</property>
+</bean>
+
 
 <bean id="jwtKeyStore" class="org.springframework.security.oauth2.provider.token.store.JwtTokenStore">
 <constructor-arg ref="jwtAccessTokenConverter"></constructor-arg>

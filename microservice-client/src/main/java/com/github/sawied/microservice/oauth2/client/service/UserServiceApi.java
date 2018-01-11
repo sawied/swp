@@ -1,10 +1,9 @@
 package com.github.sawied.microservice.oauth2.client.service;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserServiceApi {
 
 	@Autowired
+	@Qualifier("oauth2RestTemplate")
 	private OAuth2RestTemplate restTemplate;
 	
 	@Value("${userServiceurl}")
@@ -26,7 +26,6 @@ public class UserServiceApi {
 	@RequestMapping("/users")
 	public Map<String,?> getUser() {
 		OAuth2AccessToken accessToken=restTemplate.getAccessToken();
-		
 		Jwt jwt = JwtHelper.decode(accessToken.getValue());
 		String claims = jwt.getClaims();
 		accessToken.getTokenType();
@@ -35,6 +34,7 @@ public class UserServiceApi {
 		map.put("tokenType", accessToken.getTokenType());
 		map.put("userName", null);
 		map.put("expiration", accessToken.getExpiration().getTime());
+		
 		return map;
 	}
 	

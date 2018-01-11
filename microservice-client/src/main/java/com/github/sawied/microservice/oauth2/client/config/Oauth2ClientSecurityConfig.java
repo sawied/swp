@@ -41,5 +41,27 @@ public class Oauth2ClientSecurityConfig {
 	public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext clientContext) {
 		return new OAuth2RestTemplate(resourceService(), clientContext);
 	}
+	
+	
+	@Bean
+	public OAuth2RestTemplate trustOauth2RestTemplate(OAuth2ClientContext clientContext) {
+		return new OAuth2RestTemplate(trustResourceService(), clientContext);
+	}
+	
+	
+	@Bean
+	public OAuth2ProtectedResourceDetails trustResourceService() {
+		AuthorizationCodeResourceDetails details = new AuthorizationCodeResourceDetails();
+		details.setId("sawied-resource");
+		details.setClientId("api-gateway");
+		details.setClientSecret("secret");
+		details.setAccessTokenUri(accessTokenUri);
+		details.setUserAuthorizationUri(userAuthorizationUri);
+		details.setScope(Arrays.asList("read", "write"));
+		details.setUseCurrentUri(true);
+		details.setGrantType("password");
+		return details;
+		
+	}
 
 }
