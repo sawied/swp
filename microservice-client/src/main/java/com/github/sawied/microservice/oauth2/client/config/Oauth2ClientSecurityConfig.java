@@ -2,15 +2,20 @@ package com.github.sawied.microservice.oauth2.client.config;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
+import org.springframework.util.Assert;
 
 @Configuration
 @EnableOAuth2Client
@@ -23,6 +28,9 @@ public class Oauth2ClientSecurityConfig {
 	
 	@Value("${userAuthorizationUri}")
 	private String userAuthorizationUri;
+	
+	
+	public static final String CLIENT_HEADER ="X-Client-Info";
 	
 	@Bean
 	public OAuth2ProtectedResourceDetails resourceService() {
@@ -42,24 +50,24 @@ public class Oauth2ClientSecurityConfig {
 		return new OAuth2RestTemplate(resourceService(), clientContext);
 	}
 	
-	
 	@Bean
-	public OAuth2RestTemplate trustOauth2RestTemplate(OAuth2ClientContext clientContext) {
-		return new OAuth2RestTemplate(trustResourceService(), clientContext);
+	public OAuth2RestTemplate trustOauth2RestTemplate(@Qualifier("trustResourceService") OAuth2ProtectedResourceDetails trustResourceService ,OAuth2ClientContext clientContext) {
+		return new OAuth2RestTemplate(trustResourceService, clientContext);
 	}
 	
-	
 	@Bean
-	public OAuth2ProtectedResourceDetails trustResourceService() {
-		AuthorizationCodeResourceDetails details = new AuthorizationCodeResourceDetails();
+	@Scope(proxyMode=ScopedProxyMode.TARGET_CLASS,value="request")
+	public ResourceOwnerPasswordResourceDetails trustResourceService( @Value("#{request.getHeader('"+CLIENT_HEADER+"')}") String username) {
+		Assert.hasText(username, "client info must be present in headers of " + CLIENT_HEADER);
+		ResourceOwnerPasswordResourceDetails details = new ResourceOwnerPasswordResourceDetails();
 		details.setId("sawied-resource");
 		details.setClientId("api-gateway");
 		details.setClientSecret("secret");
 		details.setAccessTokenUri(accessTokenUri);
-		details.setUserAuthorizationUri(userAuthorizationUri);
 		details.setScope(Arrays.asList("read", "write"));
-		details.setUseCurrentUri(true);
 		details.setGrantType("password");
+		details.setUsername("mvtm01");
+		details.setPassword("password");
 		return details;
 		
 	}

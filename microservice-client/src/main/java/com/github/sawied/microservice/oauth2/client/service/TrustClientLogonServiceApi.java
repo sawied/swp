@@ -1,12 +1,12 @@
 package com.github.sawied.microservice.oauth2.client.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TrustClientLogonServiceApi {
 
 	
-	public static final String CLIENT_HEADER ="X-Client-Info";
+
 	
 	@Autowired
 	@Qualifier("trustOauth2RestTemplate")
@@ -23,9 +23,12 @@ public class TrustClientLogonServiceApi {
 	
 	
 	@RequestMapping("login")
-	public Map<String,?> trustClientSignin(@RequestHeader(CLIENT_HEADER) String clientInfo){
-		Assert.hasText(clientInfo, "encrpted client info can't empty");
-		return null;
+	public Map<String,?> trustClientSignin(){
+		OAuth2AccessToken token = restTemplate.getAccessToken();
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		map.put("additionInfo", token.getAdditionalInformation());
+		map.put("expiration", token.getExpiration());
+		return map;
 	}
 	
 	
