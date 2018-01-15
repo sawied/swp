@@ -26,7 +26,8 @@
 				<security:user name="api-gateway" password="secret" authorities="ROLE_CLIENT"/>
 				<security:user name="sawied-user-resource" password="sawied-1990" authorities="ROLE_RESOURCE"/>
 			</security:user-service>
-		</security:authentication-provider >
+		</security:authentication-provider>
+		
 		<security:authentication-provider  user-service-ref="customerUserDetail">
 		</security:authentication-provider>		
 	</security:authentication-manager>

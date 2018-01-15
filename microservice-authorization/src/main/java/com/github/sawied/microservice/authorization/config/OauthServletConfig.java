@@ -3,7 +3,6 @@ package com.github.sawied.microservice.authorization.config;
 import java.util.Arrays;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +17,6 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-
-import freemarker.template.TemplateExceptionHandler;
 
 @Configuration
 @EnableWebMvc
