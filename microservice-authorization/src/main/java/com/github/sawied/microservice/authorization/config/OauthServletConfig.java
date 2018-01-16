@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.MediaType;
+import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
 import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
@@ -68,6 +69,12 @@ public class OauthServletConfig extends WebMvcConfigurerAdapter{
 		freeMarkerConfigure.setFreemarkerSettings(p);
 		return freeMarkerConfigure;
 	}
+	
+	
+	/**@Bean
+	public  LdapAuthenticationProvider ldapAuthenticationProvider(){
+		return null;
+	}**/
 	
 
 

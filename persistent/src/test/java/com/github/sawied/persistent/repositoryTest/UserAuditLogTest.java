@@ -3,32 +3,28 @@ package com.github.sawied.persistent.repositoryTest;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.sawied.persistent.domain.AuditLogDetail;
 import com.github.sawied.persistent.domain.UserAuditLog;
 import com.github.sawied.persistent.repository.UserAuditLogRepository;
-import com.github.sawied.persistent.repository.UserAuditLogRepositoryImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:sawied/persistent/test/persistent-test-context.xml" })
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserAuditLogTest {
 
     @Autowired
@@ -48,27 +44,22 @@ public class UserAuditLogTest {
 	AuditLogDetail details=new AuditLogDetail("logon","user "+userAuditLog.getCode() +"sign in system.");
 	details.setAuditLog(userAuditLog);
 	userAuditLog.getLogDetails().add(details);
-	userAuditLogRepository.save(userAuditLog);
-	Assert.assertEquals(1, userAuditLogRepository.count());
+	UserAuditLog result = userAuditLogRepository.save(userAuditLog);
+	Assert.assertNotNull(result);
     }
     
-    @Ignore
+
     @Test
     public void searchUserSuccess(){
-    	final String name ="0";
-    	/** List<UserAuditLog> result = userAuditLogRepository.findAll(new Specification<UserAuditLog>() {
-			@Override
-			public Predicate toPredicate(Root<UserAuditLog> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				return cb.like(root.<String>get("message"), "%"+name+"%");
-			}
-		});
-    	Assert.assertEquals(1, result.size());
-    	**/
+    	Assert.assertEquals(1, userAuditLogRepository.count());
+    	List<UserAuditLog> logs = userAuditLogRepository.searchLastAuditLog("400");
+    	Assert.assertTrue("should have a record with 400 code", !logs.isEmpty());
     }
     
 
   
     @Test
+    @Ignore
     public void searchAuditLogTest() {
     	
 	Sort.Order order = new Sort.Order(Direction.ASC,"message");

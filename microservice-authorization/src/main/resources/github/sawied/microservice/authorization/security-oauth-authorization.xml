@@ -22,7 +22,7 @@
 <!-- token store  12 hours-->
 <bean id="defaultTokenService" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
 <property name="tokenStore" ref="jwtKeyStore"></property>
-<property name="supportRefreshToken" value="true"></property>
+<property name="supportRefreshToken" value="false"></property>
 <property name="tokenEnhancer" ref="tokenEnhancerChain"></property>
 </bean>
 

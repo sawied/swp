@@ -18,6 +18,8 @@ public class LoginPageController {
 		// We can add more stuff to the model here for JSP rendering. If the client was a machine then
 		// the JSON will already have been rendered.
 		model.put("message", "There was a problem with the OAuth2 protocol");
+	    
+		
 		return "oauth_error";
 	}
 	

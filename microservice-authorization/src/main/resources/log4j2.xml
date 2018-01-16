@@ -11,7 +11,7 @@
 	
 	<Loggers>
 	
-	<Logger name="org.springframework.security" level="info">
+	<Logger name="org.springframework.security" level="debug">
 			<AppenderRef ref="Console" />
 		</Logger>
 			<Logger name="freemarker" level="trace">
