@@ -14,7 +14,8 @@ public class OauthSecurityAuthorizationConfig extends AbstractAnnotationConfigDi
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[]{OauthApplicaionRootConfig.class};
+		//return new Class[]{OauthApplicaionRootConfig.class};
+		return null;
 	}
 
 	@Override

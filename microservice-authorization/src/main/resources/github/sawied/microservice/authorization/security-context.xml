@@ -16,17 +16,52 @@
      <security:logout logout-url="/logout" logout-success-url="/login.html"/>
 	</security:http>
 	
-	
+
+	<security:debug/>	
 	
 
-	<security:authentication-manager id="authenticationManager">
-		<security:authentication-provider >
+	<security:authentication-manager id="authenticationManager" alias="authenticationManagerAlias" erase-credentials="true">
+		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="danan" password="danan" authorities="ROLE_USER" />
 				<security:user name="api-gateway" password="secret" authorities="ROLE_CLIENT"/>
 				<security:user name="sawied-user-resource" password="sawied-1990" authorities="ROLE_RESOURCE"/>
 			</security:user-service>
 		</security:authentication-provider>
+		<security:authentication-provider ref="ldapAuthProvider"></security:authentication-provider>
+		<security:authentication-provider  user-service-ref="customerUserDetail">
+		</security:authentication-provider>		
 	</security:authentication-manager>
+
+		<bean id="customerUserDetail" class="com.github.sawied.microservice.authorization.userdetails.SimpleUserDetails"></bean>
+		
+		
+		<!-- AD Server authentication -->
+		
+		<bean id="contextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+		    <constructor-arg value="ldaps://192.168.89.253:3269/dc=ad,dc=service,dc=com"></constructor-arg>
+			<property name="userDn" value="cn=vtm,cn=Users,dc=ad,dc=service,dc=com"/>
+			<property name="password" value="zhangchong,.8904"/>
+		</bean>
+		
+       <bean id="ldapAuthProvider" class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">
+        <constructor-arg>
+         <bean class="org.springframework.security.ldap.authentication.BindAuthenticator">
+          <constructor-arg ref="contextSource"/>
+          <property name="userDnPatterns">
+           <list>
+            <value>CN={0},cn=Users</value>
+           </list>
+          </property>
+         </bean>
+        </constructor-arg>
+        <constructor-arg>
+         <bean class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator">
+          	<constructor-arg ref="contextSource"/>
+			<constructor-arg value="ou=application"/>
+			<property name="groupRoleAttribute" value="cn"/>
+         </bean>
+        </constructor-arg>
+       </bean>
 
 </beans>

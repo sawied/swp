@@ -45,7 +45,7 @@ public class UserAuditLog {
 	private Collection<AuditLogDetail> logDetails =new ArrayList<AuditLogDetail>();
 	
 	@ManyToOne(targetEntity=User.class)
-	@JoinColumn(name="userId",nullable=false)
+	@JoinColumn(name="userId",nullable=true)
 	private User user=null;
 
 	@Transient

@@ -8,14 +8,55 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 
-<oauth2:authorization-server  client-details-service-ref="inmemoryClientDetails" check-token-enabled="true">
+<oauth2:authorization-server  client-details-service-ref="inmemoryClientDetails"  authorization-request-manager-ref="defaultOauth2RequestFactory"   token-services-ref="defaultTokenService"  user-approval-handler-ref="tokenStoreUserApproval" check-token-enabled="true" >
  <oauth2:authorization-code disabled="false"/>
  <oauth2:refresh-token disabled="false"/>
+ <oauth2:password disabled="false" authentication-manager-ref="authenticationManager"/>
 </oauth2:authorization-server>
 
+<!-- oauth2 Request Factory -->
+<bean id="defaultOauth2RequestFactory" class="org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory">
+<constructor-arg ref="inmemoryClientDetails"></constructor-arg>
+</bean>
 
-<oauth2:client-details-service id="inmemoryClientDetails" >
-  <oauth2:client  client-id="api-gateway" authorities="ROLE_CLIENT" authorized-grant-types="authorization_code,refresh_token" resource-ids="sawied-resource-service" scope="read,write" secret="secret"/>
+<!-- token store  12 hours-->
+<bean id="defaultTokenService" class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
+<property name="tokenStore" ref="jwtKeyStore"></property>
+<property name="supportRefreshToken" value="true"></property>
+<property name="tokenEnhancer" ref="tokenEnhancerChain"></property>
+</bean>
+
+<bean id="tokenEnhancerChain" class="org.springframework.security.oauth2.provider.token.TokenEnhancerChain">
+<property name="tokenEnhancers">
+ <list>
+ <ref bean="jwtAccessTokenConverter"/>
+ <bean class="com.github.sawied.microservice.authorization.token.AdditionInfoTokenEnhancer"></bean>
+ </list>
+</property>
+</bean>
+
+
+<bean id="jwtKeyStore" class="org.springframework.security.oauth2.provider.token.store.JwtTokenStore">
+<constructor-arg ref="jwtAccessTokenConverter"></constructor-arg>
+</bean>
+
+ <bean id="jwtAccessTokenConverter" class="org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter">
+ <property name="signingKey" value="secert"></property>
+ </bean>
+
+<!-- 
+<bean id="inMemorytokenStore" class="org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore"></bean>
+ -->
+
+
+<bean id="tokenStoreUserApproval" class="org.springframework.security.oauth2.provider.approval.TokenStoreUserApprovalHandler">
+<property name="tokenStore" ref="jwtKeyStore"></property>
+<property name="clientDetailsService" ref="inmemoryClientDetails"></property>
+<property name="requestFactory" ref="defaultOauth2RequestFactory"></property>
+</bean>
+
+<oauth2:client-details-service id="inmemoryClientDetails">
+  <oauth2:client  client-id="api-gateway" autoapprove="true" authorities="ROLE_CLIENT" authorized-grant-types="authorization_code,refresh_token,password" resource-ids="sawied-resource-service" scope="read,write" secret="secret"/>
 </oauth2:client-details-service>
 
 </beans>

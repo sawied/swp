@@ -1,6 +1,7 @@
 package com.github.sawied.microservice.authorization.config;
 
 import java.util.Arrays;
+import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -36,6 +37,10 @@ public class OauthServletConfig extends WebMvcConfigurerAdapter{
 		jsonview.setExtractValueFromSingleKeyModel(true);
 		
 		FreeMarkerViewResolver freeMarkerViewResolver = new FreeMarkerViewResolver("",".ftl");
+		freeMarkerViewResolver.setExposeRequestAttributes(true);
+		freeMarkerViewResolver.setExposeSessionAttributes(true);
+		freeMarkerViewResolver.setRequestContextAttribute("request");
+		
 		
 		ContentNegotiatingViewResolver contentViewResolver = new ContentNegotiatingViewResolver();
 		contentViewResolver.setContentNegotiationManager(contentNegotiationManager.getObject());
@@ -46,12 +51,30 @@ public class OauthServletConfig extends WebMvcConfigurerAdapter{
 	
 	
 
+	
+
+
+	/**
+	 * the full configuration of freemarker see here 
+	 * <a href="https://freemarker.apache.org/docs/api/freemarker/template/Configuration.html#setSetting-java.lang.String-java.lang.String-">freemaker settings</a>
+	 * @return
+	 */
 	@Bean
 	public FreeMarkerConfigurer freeMarkerConfigure(){
 		FreeMarkerConfigurer freeMarkerConfigure = new FreeMarkerConfigurer();
 		freeMarkerConfigure.setTemplateLoaderPath("/WEB-INF/templates/");
+		Properties p = new Properties();
+		p.setProperty("template_exception_handler", "html_debug");
+		freeMarkerConfigure.setFreemarkerSettings(p);
 		return freeMarkerConfigure;
 	}
+	
+	
+	/**@Bean
+	public  LdapAuthenticationProvider ldapAuthenticationProvider(){
+		return null;
+	}**/
+	
 
 
 }
