@@ -21,6 +21,7 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordAccessTokenProvider;
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.web.context.SecurityContextPersistenceFilter;
@@ -41,9 +42,8 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	public static final String CLIENT_HEADER = "X-Client-Info";
 
-	@Autowired
-	private OAuth2ClientContextFilter oauth2ClientContextFilter;
 
+	
 	@Bean
 	@Primary
 	public OAuth2ProtectedResourceDetails resourceService() {
@@ -62,12 +62,15 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext clientContext) {
 		return new OAuth2RestTemplate(resourceService(), clientContext);
 	}
-
-	// @Bean
+	
+	/**
+	@Bean
 	public OAuth2RestTemplate trustOauth2RestTemplate(
 			@Qualifier("trustResourceService") OAuth2ProtectedResourceDetails trustResourceService,
 			OAuth2ClientContext clientContext) {
-		return new OAuth2RestTemplate(trustResourceService, clientContext);
+		OAuth2RestTemplate ort = new OAuth2RestTemplate(trustResourceService, clientContext);
+		ort.setAccessTokenProvider(new ResourceOwnerPasswordAccessTokenProvider());
+		return ort;
 	}
 
 	@Bean
@@ -87,9 +90,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		return details;
 
 	}
-	
-	
-	
+	**/
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
@@ -100,14 +101,12 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		 http
-	        .logout().logoutSuccessUrl("/").and()
+	        .logout().logoutSuccessUrl("/").and().formLogin().and()
 	            .authorizeRequests()
-	                .antMatchers("/index.html", "/app.html", "/", "/login").permitAll()
-	                .anyRequest().authenticated()
+	                .antMatchers("/index.html", "/app.html", "/", "/login","/auth/**").permitAll()
+	                .anyRequest().authenticated().and().csrf().disable()
 	             ;
 	            // @formatter:on
-		
-		
 	}
 
 

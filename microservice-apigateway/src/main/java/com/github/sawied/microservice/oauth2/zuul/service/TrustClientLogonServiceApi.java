@@ -1,4 +1,4 @@
-package com.github.sawied.microservice.oauth2.client.service;
+package com.github.sawied.microservice.oauth2.zuul.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/trust")
 public class TrustClientLogonServiceApi {
-
-	
-
 	
 	@Autowired
 	@Qualifier("trustOauth2RestTemplate")
@@ -28,6 +25,8 @@ public class TrustClientLogonServiceApi {
 		HashMap<String, Object> map = new HashMap<String,Object>();
 		map.put("additionInfo", token.getAdditionalInformation());
 		map.put("expiration", token.getExpiration());
+		map.put("accessToken", token.getValue());
+		map.put("refreshToken", token.getRefreshToken());
 		return map;
 	}
 	

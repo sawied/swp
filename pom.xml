@@ -42,6 +42,7 @@
 		<module>websocket</module>
 		<module>microservice-authorization</module>
 		<module>microservice-client</module>
+		<module>microservice-apigateway</module>
 		<module>microservice-resource</module>
 		<module>deploy-all-ear</module>
 	</modules>

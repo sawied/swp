@@ -5,11 +5,11 @@ debug: true
 management:
   security:
     enabled: false
-security:
-  oauth2:
-    resource:
-      jwt:
-        key-value: secert
+
+trust-oauth2:
+ base-url: http://localhost:8888/microservice-authorization-SNAPSHOT/
+ access-token-url: ${trust-oauth2.base-url}/oauth/token
+ 
 zuul:
   routes:
     ao:
@@ -19,7 +19,7 @@ zuul:
      sensitive-headers: Cookie,Set-Cookie
     auth:
       path: /auth/**
-      url: http://localhost:8888/microservice-authorization-SNAPSHOT/
+      url: ${trust-oauth2.base-url}
       custom-sensitive-headers: true
       sensitive-headers: Cookie,Set-Cookie
          
