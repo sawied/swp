@@ -14,6 +14,11 @@
 		<Logger name="org.springframework.security" level="trace">
 			<AppenderRef ref="Console" />
 		</Logger>
+		
+			<Logger name="org.springframework.cloud" level="trace">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
 		<Root level="INFO">
 			<AppenderRef ref="Console" />
 		</Root>

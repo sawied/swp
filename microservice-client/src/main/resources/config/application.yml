@@ -1,0 +1,19 @@
+server:
+  port: 9000
+  
+debug: true
+management:
+  security:
+    enabled: false
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: secert
+zuul:
+  routes:
+    ao:
+     path: /ao/**
+     url: http://localhost:8888/microservice-resource-SNAPSHOT/
+     custom-sensitive-headers: true
+     sensitive-headers: Cookie,Set-Cookie

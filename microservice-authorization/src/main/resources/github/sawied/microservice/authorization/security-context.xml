@@ -16,7 +16,8 @@
      <security:logout logout-url="/logout" logout-success-url="/login.html"/>
 	</security:http>
 	
-	
+
+	<security:debug/>	
 	
 
 	<security:authentication-manager id="authenticationManager" alias="authenticationManagerAlias" erase-credentials="true">

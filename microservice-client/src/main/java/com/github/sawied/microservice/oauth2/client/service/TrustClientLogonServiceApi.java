@@ -18,7 +18,7 @@ public class TrustClientLogonServiceApi {
 
 	
 	@Autowired
-	@Qualifier("trustOauth2RestTemplate")
+	//@Qualifier("trustOauth2RestTemplate")
 	private OAuth2RestTemplate restTemplate;
 	
 	
