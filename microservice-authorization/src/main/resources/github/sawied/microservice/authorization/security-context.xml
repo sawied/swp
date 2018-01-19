@@ -14,13 +14,14 @@
      login-processing-url="/login"/>
      <security:csrf disabled="true" />
      <security:logout logout-url="/logout" logout-success-url="/login.html"/>
-     <security:custom-filter after="BASIC_AUTH_FILTER" ref="tokenEndPointAuthenticationFiter"/>
 	</security:http>
 	
+	<!-- 
 	<bean id="tokenEndPointAuthenticationFiter" class="org.springframework.security.oauth2.provider.endpoint.TokenEndpointAuthenticationFilter">
 	 <constructor-arg ref="authenticationManagerAlias"></constructor-arg>
 	 <constructor-arg ref="defaultOauth2RequestFactory"></constructor-arg>
 	</bean>
+	 -->
 	
 
 	<security:debug/>	
@@ -35,18 +36,19 @@
 	-->
 	<security:authentication-manager id="authenticationManager" alias="authenticationManagerAlias" erase-credentials="false">
 		
-		<security:authentication-provider  user-service-ref="clientDetailsService">
+		<security:authentication-provider  user-service-ref="clientUserDetailsService">
 		</security:authentication-provider>		
 		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="danan" password="danan" authorities="ROLE_USER,ROLE_READ,ROLE_WRITE" />
+				<security:user name="mvtm01" password="password" authorities="ROLE_USER,ROLE_READ,ROLE_WRITE" />
 			</security:user-service>
 		</security:authentication-provider>
 		<security:authentication-provider ref="ldapAuthProvider"></security:authentication-provider>
 	</security:authentication-manager>
 
 
-	<bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+	<bean id="clientUserDetailsService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
 			<constructor-arg ref="inmemoryClientDetails"></constructor-arg>
 	</bean>
 		
