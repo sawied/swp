@@ -14,26 +14,41 @@
      login-processing-url="/login"/>
      <security:csrf disabled="true" />
      <security:logout logout-url="/logout" logout-success-url="/login.html"/>
+     <security:custom-filter after="BASIC_AUTH_FILTER" ref="tokenEndPointAuthenticationFiter"/>
 	</security:http>
+	
+	<bean id="tokenEndPointAuthenticationFiter" class="org.springframework.security.oauth2.provider.endpoint.TokenEndpointAuthenticationFilter">
+	 <constructor-arg ref="authenticationManagerAlias"></constructor-arg>
+	 <constructor-arg ref="defaultOauth2RequestFactory"></constructor-arg>
+	</bean>
 	
 
 	<security:debug/>	
 	
 
-	<security:authentication-manager id="authenticationManager" alias="authenticationManagerAlias" erase-credentials="true">
+
+	<!-- lookup order  
+		1.look up client by cient id 
+		2.look up user from ldap server
+		3.look up test account
+	
+	-->
+	<security:authentication-manager id="authenticationManager" alias="authenticationManagerAlias" erase-credentials="false">
+		
+		<security:authentication-provider  user-service-ref="clientDetailsService">
+		</security:authentication-provider>		
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="danan" password="danan" authorities="ROLE_USER" />
-				<security:user name="api-gateway" password="secret" authorities="ROLE_CLIENT"/>
-				<security:user name="sawied-user-resource" password="sawied-1990" authorities="ROLE_RESOURCE"/>
+				<security:user name="danan" password="danan" authorities="ROLE_USER,ROLE_READ,ROLE_WRITE" />
 			</security:user-service>
 		</security:authentication-provider>
 		<security:authentication-provider ref="ldapAuthProvider"></security:authentication-provider>
-		<security:authentication-provider  user-service-ref="customerUserDetail">
-		</security:authentication-provider>		
 	</security:authentication-manager>
 
-		<bean id="customerUserDetail" class="com.github.sawied.microservice.authorization.userdetails.SimpleUserDetails"></bean>
+
+	<bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+			<constructor-arg ref="inmemoryClientDetails"></constructor-arg>
+	</bean>
 		
 		
 		<!-- AD Server authentication -->

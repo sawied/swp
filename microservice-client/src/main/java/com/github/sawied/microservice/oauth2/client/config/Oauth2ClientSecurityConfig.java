@@ -53,7 +53,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		details.setClientSecret("secret");
 		details.setAccessTokenUri(accessTokenUri);
 		details.setUserAuthorizationUri(userAuthorizationUri);
-		details.setScope(Arrays.asList("read", "write"));
+		details.setScope(Arrays.asList("read", "write","user"));
 		details.setUseCurrentUri(true);
 		return details;
 	}

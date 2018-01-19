@@ -4,12 +4,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
 @Configuration
+@Order(1)
 public class OauthSecurityAuthorizationConfig extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer{
 
 	@Override

@@ -67,7 +67,7 @@ public class ZuulApiGatewayServletConfig extends WebMvcConfigurerAdapter{
 		details.setClientId("api-gateway");
 		details.setClientSecret("secret");
 		details.setAccessTokenUri(accessTokenUri);
-		details.setScope(Arrays.asList("read", "write"));
+		details.setScope(Arrays.asList("read", "write","user"));
 		details.setGrantType("password");
 		details.setUsername("mvtm01");
 		details.setPassword("password");
