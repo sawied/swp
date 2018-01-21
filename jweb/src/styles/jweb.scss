@@ -1,6 +1,21 @@
 /* Base Application Styles */
 
+// Import Bootstrap Compass integration
+// Import Bootstrap for Sass
+@import "bootstrap-sprockets";
+// Import custom Bootstrap variables
+@import "bootstrap-variables";
+
+//@import "bootstrap-custom";
+@import "bootstrap-custom";
+
+
+
+
+
 @import "compass/css3";
+
+
 @import "compass/layout/stretching";
 
 $company-blue: #1875e7;

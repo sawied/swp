@@ -30,7 +30,6 @@
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.5.0",
-    "bootstrap-loader": "^1.3.2",
     "bootstrap-sass": "^3.3.7",
     "bower-webpack-plugin": "^0.1.9",
     "browserslist": "^1.4.0",
@@ -75,10 +74,7 @@
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {
-    "bootstrap": "3.3.7",
     "core-js": "^2.0.0",
-    "jquery": "^1.12.1",
-    "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-redux": "^4.4.5",

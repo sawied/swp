@@ -34,7 +34,7 @@ function getDefaultModules() {
       },
       {
         test: /\.scss/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded&includePaths[]=' + path.resolve(__dirname, "../node_modules/compass-mixins/lib")
+        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded&includePaths[]=' + path.resolve(__dirname, "../node_modules/compass-mixins/lib")+"&includePaths[]="+(path.resolve(__dirname, "../node_modules/bootstrap-sass/assets/stylesheets"))
       },
       {
         test: /\.less/,
@@ -59,8 +59,7 @@ function getDefaultModules() {
       {
         test: /\.(mp4|ogg|svg)$/,
         loader: 'file-loader'
-      },
-      { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports?jQuery=jquery' }
+      }
     ]
   };
 }

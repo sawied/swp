@@ -9,5 +9,5 @@
 .**
 **/bin/
 **/dojo/**
-*.log
-Servers/**
+**/*.log
+Servers*/**
