@@ -31,7 +31,7 @@
 
 	<modules>
 		<module>model</module>
-		<module>itext-utility</module>
+		<module>jweb-service</module>
 		<module>jwt</module>
 		<module>agent</module>
 		<module>websocket</module>

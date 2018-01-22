@@ -1,13 +1,12 @@
 server:
   port: 9000
-  context-path: microsoft-apigateway-SNAPSHOT
 debug: true
 management:
   security:
     enabled: false
 
 trust-oauth2:
- base-url: http://localhost:8888/microservice-authorization-SNAPSHOT/
+ base-url: http://localhost:8888/microservice-authorization-SNAPSHOT
  access-token-url: ${trust-oauth2.base-url}/oauth/token
  
 zuul:

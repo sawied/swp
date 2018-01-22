@@ -26,13 +26,13 @@ public class Oauth2ResourceServiceConfig extends ResourceServerConfigurerAdapter
 	}
 	
 	
-	
-	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		super.configure(http);
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
+	
+	
 
 
 	@Bean

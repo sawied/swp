@@ -1,6 +1,7 @@
 package com.github.sawied.jweb.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -39,6 +40,12 @@ public class EventController {
 		event.setCreateTime(new Date());
 		event.setStatus(Event.IN_PROGRESS);
 		return eventRepository.save(event);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE)
+	public @ResponseBody List<Event> deleteEvent(@RequestBody List<Event> ids){
+		eventRepository.delete(ids);
+		return ids;
 	}
 	
 	
