@@ -8,7 +8,9 @@ export function addTodo(text){
     headers.append('Content-Type','application/json');
     return fetch('http://localhost:8900/event',{method:'post',headers:headers,body:JSON.stringify(data)}).then(
       response=>response.json()
-    ).then(dispatch(fetchTodoList()));
+    ).then(
+      dispatch(fetchTodoList())
+    );
   }
 }
 
