@@ -65,3 +65,26 @@ div.task-list-container{
   }
 }
 
+div.user-profile-panal{
+  margin: 15px 0;
+  border-bottom-color: #aaaaaa;
+  border-bottom-width: 1px;
+  box-sizing: border-box;
+  span.profile-detail-icon{
+    float: right;
+    padding: 5px;
+  }
+  div.profile-name{
+    span{
+      display: block;
+      padding: 0 15px;
+      &.sub-name{
+        font-style: italic;
+        font-size: smaller;
+      }
+    }
+
+  }
+  
+}
+
