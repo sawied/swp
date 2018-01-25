@@ -1,5 +1,7 @@
 package com.github.sawied.microservice.oauth2.client.test;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Key;
@@ -10,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.Date;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -40,8 +43,17 @@ public class DesedeEncryptTest {
 	
 	//private String str ="lONSLJ6KnX9dQO/3C1cOhikHa7qJro/c";
 	
+	long time = (1516637375*1000L);
 	
 	@Test
+	public void invaildTimeTest() {
+		System.out.println(new Date(time));
+		assertTrue(new Date(time).before(new Date()));
+	}
+	
+	
+	@Test
+	@Ignore
 	public void samekeyTest() throws Exception {
 		KeyStore keyStore = KeyStore.getInstance("jceks");
 		keyStore.load(null,null);
@@ -57,6 +69,7 @@ public class DesedeEncryptTest {
 	}
 	
 	@Test
+	@Ignore
 	public void encryptStrTest() throws Exception {
 		
 	    KeyStore keyStore = KeyStore.getInstance("jceks");

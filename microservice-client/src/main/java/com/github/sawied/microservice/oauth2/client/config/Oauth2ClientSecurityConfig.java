@@ -124,7 +124,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		 http
 	        .logout().logoutSuccessUrl("/").and().formLogin().and()
 	            .authorizeRequests()
-	                .antMatchers("/index.html", "/app.html", "/", "/login","/auth/**").permitAll()
+	                .antMatchers("/index.html", "/app.html", "/", "/login","/trust/**").permitAll()
 	                .anyRequest().authenticated().and().csrf().disable()
 	             ;
 	            // @formatter:on

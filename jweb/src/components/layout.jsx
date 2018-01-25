@@ -2,18 +2,19 @@
 require('styles/jweb.scss');
 
 import React from 'react';
+import UserProfile from './userProfile';
 import CustLink from './CustLink';
 
 
-class AppCore extends React.Component {
+class Layout extends React.Component {
   render() {
     return (
       <div id="app-root">
         <div className="header">
-          <p>React Training</p>
         </div>
         <div id="app-body">
         <div className="left-panel">
+        <UserProfile/>
           <ul>
             <li><CustLink to="/" onlyActiveOnIndex>Home</CustLink></li>
             <li><CustLink to="/todos">Todo list</CustLink></li>
@@ -30,7 +31,7 @@ class AppCore extends React.Component {
   }
 }
 
-AppCore.defaultProps = {
+Layout.defaultProps = {
 };
 
-export default AppCore;
+export default Layout;

@@ -1,5 +1,6 @@
 export const  ADD_TODO = 'ADD_TODO';
 export const  RECEIVE_TODOLIST = 'RECEIVE_TODOLIST';
+export const  REMOVE_ENENTS='REMOVE_ENENTS';
 
 export function addTodo(text){
   return dispatch=>{
@@ -7,14 +8,19 @@ export function addTodo(text){
     var data ={text};
     headers.append('Content-Type','application/json');
     return fetch('http://localhost:8900/event',{method:'post',headers:headers,body:JSON.stringify(data)}).then(
-      response=>response.json()
-    ).then(dispatch(fetchTodoList()));
+      response=>{
+        var result=response.json();
+        window.console.log('saved data into database',result);
+        return result;
+      }
+    ).then(
+      () => dispatch(fetchTodoList())
+    );
   }
 }
 
 
 export const receiveTodoList = (json) => {
-
  return {
    type: RECEIVE_TODOLIST,
    data: json.content,
@@ -24,7 +30,9 @@ export const receiveTodoList = (json) => {
 
 
 export function fetchTodoList(){
- return dispatch=>{ return fetch('http://localhost:8900/event')
+  return (dispatch,response)=>{
+    window.console.log('getting begin fetch events list',response);
+    return fetch('http://localhost:8900/event')
         .then(response=>response.json())
         .then(json=>dispatch(receiveTodoList(json)));}
 }

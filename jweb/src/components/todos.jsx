@@ -102,6 +102,7 @@ addNewEvent=(e)=>{
 deleteEvents=(e)=>{
   e.preventDefault();
   window.console.log('will be delete events ...',this.state['tids']);
+  this.dispatch(deleteEvents(this.state['tids']));
 }
 
 
