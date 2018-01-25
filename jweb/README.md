@@ -61,3 +61,8 @@ As usual ,we need to custom bootstrap components for using. you can create a fil
 @import "bootstrap/forms";
 @import "bootstrap/buttons";
 ```
+> some time ,you will encounter install error of node-sass, while downloading or installing. can try run following comands to fix the issue:
+
+1.Error: ENOENT: no such file or directory, scandir '**/node_modules/node-sass/vendor' 
+
+solution: run 'npm rebuild node-sass ' or download binary file form [github node-sass](https://github.com/sass/node-sass/releases)
