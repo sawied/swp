@@ -2,7 +2,8 @@
 
 // Import Bootstrap Compass integration
 // Import Bootstrap for Sass
-@import "bootstrap-sprockets";
+
+//@import "bootstrap-sprockets";
 // Import custom Bootstrap variables
 @import "bootstrap-variables";
 
@@ -19,8 +20,8 @@
 @import "compass/layout/stretching";
 
 $company-blue: #1875e7;
-$left-panel-width:320px;
-$header-height:45px;
+$left-panel-width:200px;
+$header-height:1px;
 
 div#app-container{
 @include stretch;
@@ -35,15 +36,13 @@ div#app-root{
 
   div.header{
     height: $header-height;
-    border-bottom: 5px solid #000;
-    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(blue, 0.2) 2px 2px 0, rgba(blue, 0.2) 3px 3px 0);
+    background-color: #000;
   }
 
  div.left-panel{
    padding: 10px;
    width: $left-panel-width;
-   background-color: #f8f8f8;
-   border-right: 1px solid #000;
+   background-color:aliceblue;
    @include stretch(0,0,0,0);
  }
 
@@ -55,15 +54,41 @@ div#app-root{
 }
 div.footer{
   @include stretch(auto,0,0,0);
-  height: 5px;
+  height: 1px;
   @include background-image(linear-gradient(white, #000 50%, #fff));
-}
-
-div.header>p{
-  font-size: 20px;
-  font-style: oblique;
 }
 
 div.task-list-container{
   margin: 5px 0;
+  div.row{
+    margin: 5px 0;
+  }
 }
+
+div.user-profile-panal{
+  margin: 15px 0;
+  border-bottom-color: #aaaaaa;
+  border-bottom-width: 1px;
+  box-sizing: border-box;
+  span.profile-detail-icon{
+    float: right;
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  div.profile-name{
+    span{
+      display: block;
+      padding: 0 15px;
+      &.sub-name{
+        font-size: smaller;
+      }
+      &.profile-main-name{
+        font-weight: bold;
+      }
+    }
+
+  }
+  
+}
+

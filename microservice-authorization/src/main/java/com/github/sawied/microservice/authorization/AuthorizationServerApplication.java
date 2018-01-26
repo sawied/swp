@@ -16,7 +16,6 @@ import org.springframework.web.WebApplicationInitializer;
  * @author James X W Zhang
  *
  */
-
 @SpringBootApplication
 public class AuthorizationServerApplication extends SpringBootServletInitializer implements WebApplicationInitializer {
 

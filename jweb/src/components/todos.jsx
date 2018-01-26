@@ -4,10 +4,11 @@ import {fetchTodoList,addTodo} from './../actions/actions';
 class Todos extends React.Component {
 
 
-  constructor(props) {
+  constructor(props){
     super(props);
     this.dispatch = this.props.dispatch;
     this.eventInput=null;
+    this.state={'newEventText':null,'tids':[]};
   }
 
  componentDidMount(){
@@ -23,13 +24,13 @@ class Todos extends React.Component {
 
        tbody= <tbody>{todoList.map((todo,index)=>
            <tr key={todo.id}>
-             <td>{index}</td><td>{todo.text}</td><td>{todo.status}</td>
+             <td><input type="checkbox" onChange={this.handleChange} name="tids" value={todo.id}/></td><td>{todo.id}</td><td>{todo.text}</td><td>{todo.status}</td>
            </tr>
          )}</tbody>;
 
      }else{
        tbody =<tbody><tr className="center">
-            <td colSpan="3">No Data to display.</td>
+            <td colSpan="4">No Data to display.</td>
             </tr></tbody>;
      }
 
@@ -45,18 +46,20 @@ class Todos extends React.Component {
   
           <div className="col-md-6">
           <div className="input-group">
-          <input type="text" ref={(input)=>{this.eventInput=input;}} className="form-control" placeholder="Add New Event..."/>
+          <input type="text" onChange={this.handleChange}  name="newEventText" className="form-control" placeholder="Add New Event..."/>
           <span className="input-group-btn">
             <button className="btn btn-primary" type="button" onClick={this.addNewEvent}>ADD</button>
+            <button className="btn btn-danger" type="button" onClick={this.deleteEvents}>DELETE</button>
           </span>
           </div>
+          
   </div>
   </div>
 
   <table className="table table-bordered">
         
         <thead>
-          <tr><th>Index</th><th>desc</th><th>Status</th></tr>
+          <tr><th></th><th>Index</th><th>desc</th><th>Status</th></tr>
         </thead>
         {tbody}
       </table>
@@ -65,16 +68,41 @@ class Todos extends React.Component {
     );
   }
 
+
+/**
+ * onChange event
+ */
+
+handleChange=(event)=>{
+  const target = event.target;
+  const value = target.value;
+  const name = target.name;
+    this.setState({
+      [name]: Array.isArray(this.state[name])?[value,...this.state[name]]:value
+    });
+}
+
+
 /**
  * handler new event
  * prevent default event and add new event into repository
  */
 addNewEvent=(e)=>{
   e.preventDefault();
-  window.console.log('will be add new event ...',this.eventInput.value);
-  if(this.eventInput.value){
-    this.dispatch(addTodo(this.eventInput.value));
+  window.console.log('will be add new event ...',this.state['newEventText']);
+  const newEventText=this.state['newEventText'];
+  if(newEventText){
+    this.dispatch(addTodo(newEventText));
   }
+}
+
+/**
+ * handle deleting event
+ */
+deleteEvents=(e)=>{
+  e.preventDefault();
+  window.console.log('will be delete events ...',this.state['tids']);
+  this.dispatch(deleteEvents(this.state['tids']));
 }
 
 
