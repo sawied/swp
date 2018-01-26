@@ -1,6 +1,6 @@
 server:
   port: 9000
-  
+  context-path: microsoft-apigateway-SNAPSHOT
 debug: true
 management:
   security:
@@ -18,7 +18,7 @@ zuul:
      custom-sensitive-headers: true
      sensitive-headers: Cookie,Set-Cookie
     auth:
-      path: /auth/**
+      path: auth/**
       url: ${trust-oauth2.base-url}
       custom-sensitive-headers: true
       sensitive-headers: Cookie,Set-Cookie

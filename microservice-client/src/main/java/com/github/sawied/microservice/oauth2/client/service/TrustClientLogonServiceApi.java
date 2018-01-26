@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,6 @@ public class TrustClientLogonServiceApi {
 
 	
 	@Autowired
-	@Qualifier("trustOauth2RestTemplate")
 	private OAuth2RestTemplate restTemplate;
 	
 	

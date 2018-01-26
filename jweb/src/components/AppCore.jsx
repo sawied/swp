@@ -1,4 +1,4 @@
-require('normalize.css/normalize.css');
+//require('normalize.css/normalize.css');
 require('styles/jweb.scss');
 
 import React from 'react';

@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Tue Aug 08 23:39:34 CST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-015d-c280-4b95-000000724630 
-on database directory memory:E:\work\swp\persistent\sawied with class loader sun.misc.Launcher$AppClassLoader@f47396 
-Loaded from file:/C:/Users/danan/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
+Mon Jan 15 19:21:09 CST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0160-f98d-3532-0000056d3c20 
+on database directory memory:C:\works\sawied\swp\persistent\sawied with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Loaded from file:/C:/Users/James%20X%20W%20Zhang/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_45-b18
-user.dir=E:\work\swp\persistent
-os.name=Windows 8
-os.arch=x86
-os.version=6.2
+java.runtime.version=1.8.0_111-b14
+user.dir=C:\works\sawied\swp\persistent
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
