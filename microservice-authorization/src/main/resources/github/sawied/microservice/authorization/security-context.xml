@@ -57,8 +57,8 @@
 		
 		<bean id="contextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
 		    <constructor-arg value="ldaps://192.168.89.253:3269/dc=ad,dc=service,dc=com"></constructor-arg>
-			<property name="userDn" value="cn=vtm,cn=Users,dc=ad,dc=service,dc=com"/>
-			<property name="password" value="zhangchong,.8904"/>
+			<property name="userDn" value="${ldap.user}"/>
+			<property name="password" value="${ldap.password}"/>
 		</bean>
 		
        <bean id="ldapAuthProvider" class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">

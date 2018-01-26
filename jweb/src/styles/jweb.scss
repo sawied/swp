@@ -73,14 +73,18 @@ div.user-profile-panal{
   span.profile-detail-icon{
     float: right;
     padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
   }
   div.profile-name{
     span{
       display: block;
       padding: 0 15px;
       &.sub-name{
-        font-style: italic;
         font-size: smaller;
+      }
+      &.profile-main-name{
+        font-weight: bold;
       }
     }
 

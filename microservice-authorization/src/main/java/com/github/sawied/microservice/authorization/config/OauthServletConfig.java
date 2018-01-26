@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.core.annotation.Order;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
 import org.springframework.web.servlet.View;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 @EnableWebMvc
+@PropertySources({ @PropertySource({"classpath:github/sawied/microservice/authorization/ldap.properties"}) })
 @ImportResource({ "classpath:github/sawied/microservice/authorization/security-context.xml",
 "classpath:github/sawied/microservice/authorization/security-oauth-authorization.xml" })
 @ComponentScan(basePackages= {"com.github.sawied.microservice.authorization.controller"})

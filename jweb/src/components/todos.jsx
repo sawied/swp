@@ -30,7 +30,7 @@ class Todos extends React.Component {
 
      }else{
        tbody =<tbody><tr className="center">
-            <td colSpan="3">No Data to display.</td>
+            <td colSpan="4">No Data to display.</td>
             </tr></tbody>;
      }
 
