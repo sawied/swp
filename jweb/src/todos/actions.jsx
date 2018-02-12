@@ -1,0 +1,16 @@
+import * as types from './actionTypes';
+import service from '../services/';
+
+
+export const addEvent=(text)=>{
+    return {type:types.ADD_EVENT,text};
+}
+
+
+export const loadEvents=(param)=>{
+    return {type:types.LOAD_EVENT,payload:service(types.LOAD_EVENT)};
+}
+
+export const toggleEvent=(id)=>{
+    return {type:types.TOGGLE_EVENT};
+}

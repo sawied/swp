@@ -4,6 +4,7 @@ require('styles/jweb.scss');
 import React from 'react';
 import UserProfile from './userProfile';
 import Navigation from './navigation';
+import ErrorPanel from './errorPanel';
 
 
 class Layout extends React.Component {
@@ -22,6 +23,7 @@ class Layout extends React.Component {
         </div>
         </div>
         <div className="footer"></div>
+        <ErrorPanel/>
       </div>
     );
   }

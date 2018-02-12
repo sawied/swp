@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux'
-import todos from './reducer'
+import { combineReducers } from 'redux';
+import todoNode from '../todos/reducer';
+import error from './reducer';
 
-const todoApp = combineReducers({
-  todos
+const rootReducer = combineReducers({
+  todoNode,error
 })
 
-export default todoApp
+export default rootReducer

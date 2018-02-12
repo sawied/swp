@@ -3,8 +3,8 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import Layout from './layout';
 import Home from './Home';
-import FileManager from './FileManager';
-import Todos from './todos';
+import Uploader from './uploader';
+import TodoApp from '../todos';
 import {Router,Route,browserHistory,IndexRoute} from 'react-router';
 import configureStore from './../store/configureStore';
 
@@ -16,8 +16,8 @@ export default class Root extends React.Component{
     <Router history={browserHistory}>
       <Route path='/' component={Layout}>
         <IndexRoute component={Home}/>
-        <Route path="/todos" component={Todos}/>
-        <Route path='/fileManager' component={FileManager}/>
+        <Route path="/todoApp" component={TodoApp}/>
+        <Route path='/uploader' component={Uploader}/>
       </Route>
     </Router>
     </Provider>);
