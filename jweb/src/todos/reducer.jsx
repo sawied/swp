@@ -1,15 +1,16 @@
 import {LOAD_EVENT} from './actionTypes';
+import typeToReducer from 'type-to-reducer';
 
-
-function todoReducer(state = {loading:true,todos:[]}, action){
-    switch(action.type){
-        case '${LOAD_EVENT}_PENDING':
-        return Object.assign({},{loading:true});
-        case '${LOAD_EVENT}_FULFILLED':
-        return Object.assign({},{todos:action.payload.content,loading:false});
-        default:
-         return state;
-    }
+const initialState = {
+    loading:true,
+    todos:[]
 }
+
+const  todoReducer=typeToReducer({
+    [LOAD_EVENT]:{
+        PENDING:(state) => Object.assign({},state,{loading:true}),
+        FULFILLED:(state,action)=>Object.assign({},{todos:action.payload.content,loading:false})
+    }
+},initialState);
 
 export default todoReducer;

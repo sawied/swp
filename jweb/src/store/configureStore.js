@@ -52,9 +52,10 @@ import errorMiddlewar from'./globalErrorMiddleware';
 
 import rootReducer from '../reducers';
 
+
 //create the root store for APP
 
-const middleware = [ reduxThunk,errorMiddlewar(),promiseMiddleware() ];
+const middleware = [ reduxThunk,errorMiddlewar(),promiseMiddleware()];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(logger());
 }

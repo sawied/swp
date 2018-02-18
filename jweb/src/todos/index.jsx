@@ -15,23 +15,23 @@ class TodoApp extends React.Component{
     }
 
     render(){
-        let {todoLs,enterInputHandler,onTodoClick} = this.props;
+        let {todoList,enterInputHandler,onTodoClick} = this.props;
         return (<div>
             <Adder enterInputHandler={enterInputHandler}/>
-            <Todolist {...todoLs} onTodoClick={onTodoClick}/>
+            <Todolist {...todoList} onTodoClick={onTodoClick}/>
         </div>)
     }
 }
 
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     
     return {
-      todoLs:state.todoNode
+      todoList:state.todoNode
     }
   }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         enterInputHandler:(text) => {
         dispatch(actions.addEvent(text))

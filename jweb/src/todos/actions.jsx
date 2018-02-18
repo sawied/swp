@@ -8,9 +8,9 @@ export const addEvent=(text)=>{
 
 
 export const loadEvents=(param)=>{
-    return {type:types.LOAD_EVENT,payload:service(types.LOAD_EVENT)};
+    return {type:types.LOAD_EVENT,payload:service(types.LOAD_EVENT,param)};
 }
 
 export const toggleEvent=(id)=>{
-    return {type:types.TOGGLE_EVENT};
+    return {type:types.TOGGLE_EVENT,id:id};
 }

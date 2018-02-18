@@ -33,14 +33,11 @@ export default function globalErrorMiddleware() {
         // Dispatch initial pending promise, but catch any errors
         return next(action).catch(error => {
           
-            console.warn(`${action.type} caught at middleware with reason: ${JSON.stringify(error.message)}.`);
-            store.dispatch({type:'GLOBAL_ERROR',display:true,error});
+            window.console.warn(`${action.type} caught at middleware with reason: ${JSON.stringify(error.message)}.`);
+            store.dispatch({type:'GLOBAL_ERROR',error});
         });
      // }
   
-      return next(action);
+     // return next(action);
     };
   }
-
-
- 

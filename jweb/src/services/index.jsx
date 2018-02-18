@@ -18,19 +18,19 @@ const services=Object.assign(
 var apis=function(name,params=null){
   if(name==null){
     window.console.error('service name can\'t empty');
-    throw new Error("miss required parameter 'service name'");
-  } 
+    throw new Error('miss required parameter \'service name\'');
+  }
   var serviceConfig=services[name];
   if(!serviceConfig){
     window.console.error('did you config service named ',name);
-    throw new Error("can't find service configurations of "+ name);
+    throw new Error('can\'t find service configurations of '+ name);
   }
   //apply params of this service
   var request=applyParams(params,Object.assign({},serviceConfig));
    return fetch(request.endpoint,request).then(function(response){
      if(response.ok){
-      var contentType = response.headers.get("content-type");
-      if(contentType && contentType.includes("application/json")) {
+      var contentType = response.headers.get('content-type');
+      if(contentType && contentType.includes('application/json')) {
         return response.json();
       }
        return response;
@@ -46,14 +46,14 @@ var apis=function(name,params=null){
 var applyParams=(param,request)=>{
   //apply params into request body
     if(param){
-        if(params.body&&request.headers&&request.headers['Content-Type']){
+        if(param.body&&request.headers&&request.headers['Content-Type']){
             if(request.headers['Content-Type'].indexOf('json')!=-1){
               request.body=JSON.stringify(param);
             }else if(request.headers['Content-Type'].indexOf('x-www-form-urlencoded')!=-1){
-              var keys=bject.keys(obj);
+              var keys=Object.keys(param);
               var usr=new URLSearchParams();
               for(var key in keys){
-                usr.append(key,usr[key]);
+                usr.append(key,param[key]);
               }
               request.body=usr.toString();
             }

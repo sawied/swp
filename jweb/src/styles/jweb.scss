@@ -95,8 +95,15 @@ div.user-profile-panal{
 div#error-panel{
   position: absolute;
   width: 500px;
-  top:0;
+  top:-50px;
   left:50%;
+  max-height: 200px;
   margin-left: -250px;
+  transition: top 2s;
+  &.error-panel-collapse{
+    top:-200px;
+  }
+  &.error-panel-extend{
+    top:0px;
+  }
 }
-
