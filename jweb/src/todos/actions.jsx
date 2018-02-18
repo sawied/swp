@@ -3,7 +3,7 @@ import service from '../services/';
 
 
 export const addEvent=(text)=>{
-    return {type:types.ADD_EVENT,text};
+    return {type:types.ADD_EVENT,payload:service(types.ADD_EVENT,{text})};
 }
 
 

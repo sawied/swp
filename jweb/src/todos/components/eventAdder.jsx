@@ -13,7 +13,7 @@ class EventAdder extends React.Component{
           
         return (
             <div>
-                <input onKeyDown={this.handleAddEvent} type="text" name="eventText" placeholder="Please input what you will do here."/>
+                <input onKeyDown={this.handleAddEvent} className="form-control" type="text" name="eventText" placeholder="Please input what you will do here."/>
             </div>
         )
       }
@@ -21,6 +21,7 @@ class EventAdder extends React.Component{
       handleAddEvent = (e) => {
           if(e.which==13&&e.target.value){
               this.enterInputHandler(e.target.value);
+              e.target.value='';
           }
       }
 

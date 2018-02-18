@@ -30,8 +30,6 @@ class Todo extends React.Component {
 }
 
 
-Todo.defaultProps = {};
-
 //define
 Todo.propTypes={
     onClick:PropTypes.func.isRequired,

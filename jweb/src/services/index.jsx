@@ -46,7 +46,7 @@ var apis=function(name,params=null){
 var applyParams=(param,request)=>{
   //apply params into request body
     if(param){
-        if(param.body&&request.headers&&request.headers['Content-Type']){
+        if(param&&request.headers&&request.headers['Content-Type']){
             if(request.headers['Content-Type'].indexOf('json')!=-1){
               request.body=JSON.stringify(param);
             }else if(request.headers['Content-Type'].indexOf('x-www-form-urlencoded')!=-1){

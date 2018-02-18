@@ -6,5 +6,10 @@ export default {
         method:'GET',
         headers:{'Content-Type': 'application/json'},
         options:{timeout:3000}
+    },
+    [types.ADD_EVENT]:{
+        endpoint:'http://localhost:8900/event',
+        method:'POST',
+        headers:{'Content-Type': 'application/json'}
     }
 }

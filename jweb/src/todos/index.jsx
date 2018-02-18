@@ -34,7 +34,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         enterInputHandler:(text) => {
-        dispatch(actions.addEvent(text))
+        dispatch(actions.addEvent(text)).then(()=>dispatch(actions.loadEvents()));
       },
       onTodoClick:(id)=>{
           dispatch(actions.toggleEvent(id))

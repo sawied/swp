@@ -12,14 +12,15 @@ class TodoList extends React.Component {
         let {todos,onTodoClick,loading } = this.props;
         let view =<div>loading...</div>;
         if(!loading){
-          view = (
+         return (
             <ul>
-                {todos.map((todo,index) => {
+                {todos.map((todo,index) => (
                     <Todo key={index} {...todo} onClick={()=>onTodoClick(index)}></Todo>
-                })}
+                ))}
             </ul>
         )
-        }
+        }else
+
         return view;
       }
 }
