@@ -3,14 +3,24 @@ package com.github.sawied.microservice.authorization.config;
 import java.util.Arrays;
 import java.util.Properties;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -73,9 +83,12 @@ public class OauthServletConfig extends WebMvcConfigurerAdapter{
 	}
 	
 	
+	
+	
 	/**@Bean
-	public  LdapAuthenticationProvider ldapAuthenticationProvider(){
-		return null;
+	@Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
+	public  HttpServletRequestWrapper requestWrapper(HttpServletRequest request){
+		return new HttpServletRequestWrapper(request);
 	}**/
 	
 

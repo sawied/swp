@@ -15,7 +15,7 @@
 			<AppenderRef ref="Console" />
 		</Logger>
 		
-			<Logger name="org.springframework.cloud" level="trace">
+			<Logger name="com.netflix.hystrix" level="trace">
 			<AppenderRef ref="Console" />
 		</Logger>
 		

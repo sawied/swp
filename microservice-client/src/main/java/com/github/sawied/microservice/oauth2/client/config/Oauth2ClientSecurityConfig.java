@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoRestTemplateFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -42,7 +43,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	public static final String CLIENT_HEADER = "X-Client-Info";
 
 
-	/**
+	
 	@Bean
 	@Primary
 	public OAuth2ProtectedResourceDetails resourceService() {
@@ -61,7 +62,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext clientContext) {
 		return new OAuth2RestTemplate(resourceService(), clientContext);
 	}
-	**/
+	
 	
 	@Bean
 	public AccessTokenProvider userAccessTokenProvider() {
@@ -70,7 +71,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	@Bean
-	public UserInfoRestTemplateFactory userInfoRestTemplateFactory(@Autowired @Qualifier("trustOauth2RestTemplate") final OAuth2RestTemplate trustOauth2RestTemplate) {
+	public UserInfoRestTemplateFactory userInfoRestTemplateFactory(@Autowired  final OAuth2RestTemplate trustOauth2RestTemplate) {
 		return new UserInfoRestTemplateFactory(){
 
 			@Override
@@ -84,7 +85,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	
 	
-	
+	/**
 	@Bean
 	public OAuth2RestTemplate trustOauth2RestTemplate(
 			@Qualifier("trustResourceService") OAuth2ProtectedResourceDetails trustResourceService,OAuth2ClientContext clientContext) {
@@ -111,7 +112,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		return details;
 
 	}
-	
+	**/
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {

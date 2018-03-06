@@ -2,8 +2,9 @@ package com.github.sawied.microservice.oauth2.client.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
@@ -22,6 +23,13 @@ public class UserServiceApi {
 	
 	@Value("${userServiceurl}")
 	private String userServiceurl;
+	
+	
+	@RequestMapping("/fetch")
+	public String fetchResponse() throws InterruptedException, ExecutionException {
+		return new UserServiceHystrixCommand().queue().get();
+	}
+	
 	
 	@RequestMapping("/users")
 	public Map<String,?> getUser() {
