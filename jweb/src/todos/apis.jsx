@@ -11,5 +11,9 @@ export default {
         endpoint:'http://localhost:8900/event',
         method:'POST',
         headers:{'Content-Type': 'application/json'}
+    },
+    [types.TOGGLE_EVENT]:{
+        endpoint:(id)=>`http://localhost:8900/event/${id}`,
+        method:'PUT'
     }
 }

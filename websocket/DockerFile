@@ -1,0 +1,12 @@
+FROM websphere-liberty
+
+# define share path
+
+ENV path="/vol/"
+
+MAINTAINER "danan.2009@gmail.com"
+
+# copy server configuration file and deploying modules into images
+ADD server.xml /config/
+
+ADD *.war /config/dropins/

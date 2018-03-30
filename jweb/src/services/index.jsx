@@ -27,6 +27,10 @@ var apis=function(name,params=null){
   }
   //apply params of this service
   var request=applyParams(params,Object.assign({},serviceConfig));
+  if(typeof request.endpoint==='function'){
+    request.endpoint=request.endpoint(params);
+  }
+
    return fetch(request.endpoint,request).then(function(response){
      if(response.ok){
       var contentType = response.headers.get('content-type');

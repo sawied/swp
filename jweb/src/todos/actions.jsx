@@ -12,5 +12,5 @@ export const loadEvents=(param)=>{
 }
 
 export const toggleEvent=(id)=>{
-    return {type:types.TOGGLE_EVENT,id:id};
+    return {type:types.TOGGLE_EVENT,payload:service(types.TOGGLE_EVENT,id)};
 }

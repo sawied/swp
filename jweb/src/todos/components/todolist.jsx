@@ -15,7 +15,7 @@ class TodoList extends React.Component {
          return (
             <ul>
                 {todos.map((todo,index) => (
-                    <Todo key={index} {...todo} onClick={()=>onTodoClick(index)}></Todo>
+                    <Todo key={index} {...todo} onClick={()=>onTodoClick(todo.id)}></Todo>
                 ))}
             </ul>
         )

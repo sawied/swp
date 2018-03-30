@@ -10,7 +10,7 @@ public class WeConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		super.addCorsMappings(registry);
-		registry.addMapping("/**").allowedOrigins("*");
+		registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET","POST","DELETE","PUT");
 	}
 
 	
