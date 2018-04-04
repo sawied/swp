@@ -13,7 +13,7 @@ class TodoList extends React.Component {
         let view =<div>loading...</div>;
         if(!loading){
          return (
-            <ul>
+            <ul className='list-group'>
                 {todos.map((todo,index) => (
                     <Todo key={index} {...todo} onClick={()=>onTodoClick(todo.id)}></Todo>
                 ))}

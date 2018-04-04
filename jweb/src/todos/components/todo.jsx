@@ -16,6 +16,7 @@ class Todo extends React.Component {
         let {onClick,completed,text} = this.props;
         return (
             <li
+            className='list-group-item'
             onClick={onClick}
             style={{
                 textDecoration: completed ? 'line-through' : 'none'

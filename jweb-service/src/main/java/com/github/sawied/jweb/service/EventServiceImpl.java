@@ -1,11 +1,12 @@
 package com.github.sawied.jweb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.sawied.jweb.api.bean.Event;
 import com.github.sawied.jweb.entity.EventEntity;
 import com.github.sawied.jweb.repository.EventRepository;
 
@@ -15,18 +16,35 @@ public class EventServiceImpl implements EventService {
 	@Autowired
 	private EventRepository eventRepository;
 	
+	
+	/**
+	 *toggle specific event's status and retrieve latest data. 
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public Event toggleEvent(Long id){
-		EventEntity eventEntity=eventRepository.toggleEvent(id);
+	public EventEntity toggleEvent(Long id){
+		 
+		 return eventRepository.toggleEvent(id);
+	}
+
+
+	@Override
+	public Page<EventEntity> searchEvent(Pageable request) {
 		
-		Event event =new Event();
-		event.setId(eventEntity.getId());
-		event.setCompleted(event.getCompleted());
-		event.setCreateTime(event.getCreateTime());
-		event.setStatus(event.getStatus());
-		event.setText(event.getText());
-		
+		return eventRepository.findAll(request);
+	}
+
+
+	@Override
+	public EventEntity createEvent(EventEntity event) {
+		return eventRepository.save(event);
+	}
+
+
+	@Override
+	public EventEntity deleteEvent(Long id) {
+		EventEntity event = eventRepository.findOne(id);
+		eventRepository.delete(event);
 		return event;
 	}
 	

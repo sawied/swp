@@ -107,3 +107,15 @@ div#error-panel{
     top:0px;
   }
 }
+
+
+div.todo-panel-title{
+  span{
+    line-height: 34px;
+    font-weight: bold;
+  }
+  div.todo-panel-adder {
+    float: right;
+    width: 200px;
+}
+}

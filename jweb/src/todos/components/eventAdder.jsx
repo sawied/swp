@@ -7,12 +7,13 @@ class EventAdder extends React.Component{
     constructor(props){
         super(props);
         this.enterInputHandler =this.props.enterInputHandler;
+        this.rootClass=this.props.className;
       }
 
       render(){
           
         return (
-            <div>
+            <div className={this.rootClass}>
                 <input onKeyDown={this.handleAddEvent} className="form-control" type="text" name="eventText" placeholder="Please input what you will do here."/>
             </div>
         )

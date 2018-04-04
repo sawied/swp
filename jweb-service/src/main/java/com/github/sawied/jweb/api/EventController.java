@@ -1,7 +1,6 @@
 package com.github.sawied.jweb.api;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -19,19 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.sawied.jweb.api.bean.CreateEventRequest;
 import com.github.sawied.jweb.api.bean.SearchEventRequest;
 import com.github.sawied.jweb.entity.EventEntity;
-import com.github.sawied.jweb.repository.EventRepository;
+import com.github.sawied.jweb.service.EventService;
 
 @RestController
-@RequestMapping("/event")
+@RequestMapping("/events")
 public class EventController {
 
 	@Autowired
-	private EventRepository eventRepository;
+	private EventService eventService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody Page<EventEntity> searchEvent(SearchEventRequest request){
 		Pageable page =new PageRequest(request.getPage(),10);
-		return eventRepository.findAll(page);
+		return eventService.searchEvent(page);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
@@ -40,18 +39,17 @@ public class EventController {
 		event.setText(request.getText());
 		event.setCreateTime(new Date());
 		event.setStatus(EventEntity.IN_PROGRESS);
-		return eventRepository.save(event);
+		return eventService.createEvent(event);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE)
-	public @ResponseBody List<EventEntity> deleteEvent(@RequestBody List<EventEntity> ids){
-		eventRepository.delete(ids);
-		return ids;
+	@RequestMapping(path="/{id}",method=RequestMethod.DELETE)
+	public @ResponseBody EventEntity deleteEvent(@PathVariable("id") Long id){
+		return eventService.deleteEvent(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,path="/{id}")
 	public @ResponseBody EventEntity toggleEvent(@PathVariable("id") Long id) {
-		return eventRepository.toggleEvent(id);
+		return eventService.toggleEvent(id);
 	}
 	
 	

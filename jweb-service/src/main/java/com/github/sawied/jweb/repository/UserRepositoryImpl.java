@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
-import com.github.sawied.jweb.entity.User;
+import com.github.sawied.jweb.entity.UserEntity;
 
 public class UserRepositoryImpl implements UserRepositoryCustom {
 	
@@ -15,19 +15,19 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
 	@Override
 	@Transactional
-	public User loadUserById(Long id) {
+	public UserEntity loadUserById(Long id) {
 		Session session=entityManager.unwrap(Session.class);
-		Criteria  criteria =session.createCriteria(User.class).add(Restrictions.idEq(id));
-		User user =(User) criteria.uniqueResult();
+		Criteria  criteria =session.createCriteria(UserEntity.class).add(Restrictions.idEq(id));
+		UserEntity user =(UserEntity) criteria.uniqueResult();
 		//System.out.println(user.getXmlData());
 		return user;
 	}
 
 	@Override
 	@Transactional
-	public User saveUser(final User user) {
+	public UserEntity saveUser(final UserEntity user) {
 		Session session=entityManager.unwrap(Session.class);
-		User exist = session.load(User.class, user.getId());
+		UserEntity exist = session.load(UserEntity.class, user.getId());
 		//exist.setXmlData(user.getXmlData());
 		session.update(exist);
 		return user;

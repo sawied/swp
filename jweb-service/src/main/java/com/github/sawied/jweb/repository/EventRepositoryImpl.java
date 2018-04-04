@@ -17,7 +17,7 @@ public class EventRepositoryImpl implements EventRepositoryCustom {
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public EventEntity toggleEvent(Long id) {
-		EventEntity event=entityManager.getReference(EventEntity.class, id);
+		EventEntity event=entityManager.find(EventEntity.class, id);
 		event.setCompleted(!event.getCompleted());
 		entityManager.persist(event);
 		return event;

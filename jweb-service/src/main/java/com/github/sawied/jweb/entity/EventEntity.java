@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.ColumnTransformer;
 
 @Entity
 public class EventEntity {
@@ -27,12 +26,6 @@ public class EventEntity {
 	@Column
 	private Boolean completed=false;
 	
-	@Column(name="xmlData",columnDefinition="XMLType")
-	@ColumnTransformer(read="xmltype(xmlData)",write="xmltype(?)")
-	private String xmlData=null;
-	
-	
-
 	public Long getId() {
 		return id;
 	}
@@ -71,14 +64,6 @@ public class EventEntity {
 
 	public void setCompleted(Boolean completed) {
 		this.completed = completed;
-	}
-
-	public String getXmlData() {
-		return xmlData;
-	}
-
-	public void setXmlData(String xmlData) {
-		this.xmlData = xmlData;
 	}
 	
 	

@@ -31,7 +31,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.github.sawied.jweb.entity.User;
+import com.github.sawied.jweb.entity.UserEntity;
 import com.github.sawied.jweb.repository.UserRepository;
 
 @RunWith(SpringRunner.class)
@@ -46,7 +46,7 @@ public class JwebServiceApplicationTests {
 
 	@Test
 	public void saveUserTest() throws IOException, ParserConfigurationException, SAXException {
-		User user = new User();
+		UserEntity user = new UserEntity();
 		user.setName("dan");
 		ClassPathResource notes = new ClassPathResource("com/github/sawied/jweb/notes.xml");
 		user.setXmlData(IOUtils.toByteArray(notes.getInputStream()));
@@ -55,7 +55,7 @@ public class JwebServiceApplicationTests {
 
 	@Test
 	public void queryXmlDataTest() throws TransformerFactoryConfigurationError, TransformerException, FileNotFoundException {
-		User user = userRepository.findOne(62L);
+		UserEntity user = userRepository.findOne(62L);
 		System.out.println(new String(user.getXmlData()));
 	}
 

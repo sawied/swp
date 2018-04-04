@@ -1,9 +1,18 @@
 package com.github.sawied.jweb.service;
 
-import com.github.sawied.jweb.api.bean.Event;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.github.sawied.jweb.entity.EventEntity;
 
 public interface EventService {
 
-	Event toggleEvent(Long id);
+	EventEntity toggleEvent(Long id);
+	
+	Page<EventEntity> searchEvent(Pageable request);
+	
+	EventEntity createEvent(EventEntity event);
+	
+	EventEntity deleteEvent(Long id);
 
 }

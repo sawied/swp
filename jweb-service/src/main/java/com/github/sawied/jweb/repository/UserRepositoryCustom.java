@@ -1,11 +1,11 @@
 package com.github.sawied.jweb.repository;
 
-import com.github.sawied.jweb.entity.User;
+import com.github.sawied.jweb.entity.UserEntity;
 
 public interface UserRepositoryCustom {
 	
-	User loadUserById(Long id);
+	UserEntity loadUserById(Long id);
 	
-	User saveUser(User user);
+	UserEntity saveUser(UserEntity user);
 
 }
