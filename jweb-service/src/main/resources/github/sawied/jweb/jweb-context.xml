@@ -10,6 +10,10 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
+<!-- 
+<jee:jndi-lookup id="dataSource"  jndi-name="jdbc/datasource" expected-type="javax.sql.DataSource"></jee:jndi-lookup>
+ -->
+
 
 <bean id="userService" class="com.github.sawied.jweb.service.UserServiceImpl"></bean>
 
