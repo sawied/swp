@@ -1,0 +1,30 @@
+{{!< default}}
+
+
+<div class="posts-list-container">
+{{#foreach posts}}
+<div class="post-item">
+<h2 class="post-card-title"><a class="post-card-content-link" href="{{url}}">{{title}}</a></h2>
+
+<div class="post-meta">
+    {{#primary_author}}
+    <a href="{{url}}">{{name}}</a>
+    {{/primary_author}}
+      published at
+      <time  datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at timeago="true"}}</time>
+     {{#if tags}}
+{{#foreach tags}}
+     <span><a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a></span>
+  {{/foreach}}   
+  {{/if}}
+    </div>
+
+<section class="post-card-excerpt">
+                <p>{{excerpt words="33"}}</p>
+            </section>
+</div>
+{{/foreach}}
+
+{{pagination}}
+
+</div>

@@ -24,6 +24,9 @@ public class WebsocketApp extends SpringBootServletInitializer implements WebApp
 
 	public static void main( String[] args )
     {
+		System.out.println(System.getProperty("user.home"));
         SpringApplication.run(WebsocketApp.class, args);
+        
+        
     }
 }

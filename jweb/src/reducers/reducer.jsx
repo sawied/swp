@@ -1,39 +1,8 @@
-const todo = (state, action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        text: action.text
-      }
-    case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state
-      }
+export default function(state={display:false},action){
+    if(action.type==='GLOBAL_ERROR'){
+      return Object.assign({},{display:action.display,error:action.error});
+    }else{
+      return state;
+    }
 
-      return {
-        ...state,
-        completed: !state.completed
-      }
-    default:
-      return state
-  }
 }
-
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action)
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(t =>
-        todo(t, action)
-      )
-      case 'RECEIVE_TODOLIST':
-       return [...(action.data)]
-    default:
-      return state
-  }
-}
-
-export default todos

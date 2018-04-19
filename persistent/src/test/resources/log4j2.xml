@@ -20,7 +20,27 @@
 		<AppenderRef ref="Console" />
 	</Logger>
 	
-		<Root level="INFO">
+	<Logger name="org.springframework.transaction" level="DEBUG" additivity="true">
+		<AppenderRef ref="Console" />
+	</Logger>
+		<Logger name="org.hibernate.transaction" level="DEBUG" additivity="true">
+		<AppenderRef ref="Console" />
+	</Logger>
+
+		<Logger name="org.hibernate.SQL" level="DEBUG" additivity="true">
+		<AppenderRef ref="Console" />
+	</Logger>
+	
+			<Logger name="org.hibernate.SQL" level="DEBUG" additivity="true">
+		<AppenderRef ref="Console" />
+	</Logger>
+	
+	<Logger name="org.hibernateL" level="TRANCE" additivity="true">
+		<AppenderRef ref="Console" />
+	</Logger>
+	
+	
+		<Root level="DEBUG">
 			<AppenderRef ref="Console"/>
 		</Root>
 		

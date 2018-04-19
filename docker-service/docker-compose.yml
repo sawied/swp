@@ -1,0 +1,14 @@
+version: '3'
+services:
+  liberty:
+    build: 
+     context: ./liberty
+     args: 
+      - profile: dev
+    ports: 
+     - "9080:9080"
+    container_name: liberty
+    volumes: 
+      - type: bind
+        source: /opt/data/
+        target: /data

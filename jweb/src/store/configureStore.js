@@ -45,15 +45,19 @@ import reduxThunk from 'redux-thunk';
 }
  */
 import logger from 'redux-logger';
-import { apiMiddleware } from 'redux-api-middleware'; // RSAA = '@@redux-api-middleware/RSAA'
+
+import promiseMiddleware from 'redux-promise-middleware';
+
+import errorMiddlewar from'./globalErrorMiddleware';
 
 import rootReducer from '../reducers';
 
+
 //create the root store for APP
 
-const middleware = [ reduxThunk,apiMiddleware ];
+const middleware = [ reduxThunk,errorMiddlewar(),promiseMiddleware()];
 if (process.env.NODE_ENV !== 'production') {
-    middleware.push(logger);
+    middleware.push(logger());
 }
 
 

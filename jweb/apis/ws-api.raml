@@ -1,0 +1,30 @@
+#%RAML 1.0
+title: server's api description
+baseUri: http://localhost:8888/
+mediaType: application/json
+protocols: [HTTP,HTTPS]
+types:
+  User:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+        description: customer name
+        maxLength: 20
+
+/users/{id}:
+  description: fetch user from repository
+  get:
+    queryParameters:
+      id:
+        type: string
+        description: customer id
+        required: true
+    responses:
+      200:
+        body:
+          application/json:
+            type: User
+            example: |
+             {"name":"danan"}

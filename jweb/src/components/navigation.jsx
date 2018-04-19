@@ -1,20 +1,29 @@
 import React from 'react';
-import ActiveLink from './activeLink';
+import {NavLink} from 'react-router-dom';
 
 class Navigation extends React.Component {
     render(){ return (
             <ul className="nav nav-pills nav-stacked">
-            <li role="presentation"><ActiveLink to="/" onlyActiveOnIndex>Home</ActiveLink></li>
-            <li><ActiveLink to="/todos">Todo list</ActiveLink></li>
-            <li><ActiveLink to="/fileManager">File manager</ActiveLink></li>
+             <li role="presentation"><NavLink to="/" exact={true} activeClassName="active">HOME</NavLink></li>
+            <li><NavLink to="/todoApp" activeClassName="active">TODOS</NavLink></li>
+            <li><NavLink to="/uploader" activeClassName="active">UPLOADER</NavLink></li>
             </ul>
     );
     }
 
 }
-
-
-Navigation.defaultProps = {
-};
-
+/**
+ *
+const CustomLink=({label, to, activeOnlyWhenExact })=>(
+    <Route
+    path={to}
+    exact={activeOnlyWhenExact}
+    children={({ match }) => (
+      <a className={match?'active':''}>
+        <NavLink to={to}>{label}</NavLink>
+      </a>
+    )}
+  />
+);
+ */
 export default Navigation;

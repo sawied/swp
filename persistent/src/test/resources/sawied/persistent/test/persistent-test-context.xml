@@ -8,7 +8,7 @@
 	
 		<util:properties id="jpaProperties">
 		 <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
-		 <prop key="hibernate.show_sql">true</prop>
+		 <prop key="hibernate.show_sql">false</prop>
 		 <!-- 
 		 <prop key="hibernate.default_schema">sawied</prop>
 		  -->

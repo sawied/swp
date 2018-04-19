@@ -1,25 +1,51 @@
 
+require('styles/jweb.scss');
+
 import React from 'react';
 import {Provider} from 'react-redux';
-import Layout from './layout';
+
+import UserProfile from './userProfile';
+import Navigation from './navigation';
+import ErrorPanel from './errorPanel';
+
 import Home from './Home';
-import FileManager from './FileManager';
-import Todos from './todos';
-import {Router,Route,browserHistory,IndexRoute} from 'react-router';
+import Uploader from './uploader';
+import TodoApp from '../todos';
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom';
 import configureStore from './../store/configureStore';
 
-let store = configureStore();
 
-export default class Root extends React.Component{
-  render(){
-    return (<Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path='/' component={Layout}>
-        <IndexRoute component={Home}/>
-        <Route path="/todos" component={Todos}/>
-        <Route path='/fileManager' component={FileManager}/>
-      </Route>
-    </Router>
-    </Provider>);
-  }
-}
+//create store
+let store = configureStore();
+const jwebRoot=()=>(
+  <Provider store={store}>
+  <BrowserRouter>
+<div id="app-root">
+<div className="header">
+</div>
+<div id="app-body">
+<div className="left-panel">
+<UserProfile/>
+<Navigation/>
+</div>
+<div className="right-panel">
+<Switch>
+        <Route exact path='/' component={Home} />
+        <Route path="/todoApp" component={TodoApp}/>
+        <Route path='/uploader' component={Uploader}/>
+  </Switch>
+</div>
+</div>
+<div className="footer"></div>
+<ErrorPanel/>
+</div>
+</BrowserRouter>
+</Provider>
+)
+
+
+export default jwebRoot;
