@@ -9,5 +9,3 @@ ADD default.conf /etc/nginx/conf.d/default.conf
 
 ADD *.tar /usr/share/nginx/html/
 
-
-VOLUME var/docker/

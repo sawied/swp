@@ -5,7 +5,7 @@ services:
     image: ghost:latest
     restart: always
     environment:
-      url: http://sawied.top/blog/
+      url: http://sawied.top
       database__client: mysql
       database__connection__host: db
       database__connection__user: root
@@ -16,12 +16,17 @@ services:
    restart: always
    environment:
      MYSQL_ROOT_PASSWORD: password-secret
-   volumes:
+   volumes: 
      - type: bind
        source: /var/data/mysql
        target: /var/lib/mysql
-  nginx:
+  nginx: 
     build: ./nginx
     restart: always
-    ports:
+    volumes:
+      - type: bind
+        source: /var/data/letsencrypt
+        target: /var/lib/letsencrypt
+    ports: 
       - "80:80"
+      - "443:443"  
