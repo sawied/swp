@@ -22,4 +22,7 @@ zuul:
       url: http://localhost:8888/microservice-authorization-SNAPSHOT/
       custom-sensitive-headers: true
       sensitive-headers: Cookie,Set-Cookie
-         
+        
+        
+        
+ 

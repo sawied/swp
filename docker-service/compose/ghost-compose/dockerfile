@@ -1,0 +1,33 @@
+FROM docker.io/websphere-liberty
+
+ARG profile
+ENV profile=$profile
+
+MAINTAINER "mvtm-team"
+
+VOLUME /output/logs/state
+    
+RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+
+ADD server_$profile.xml /config/server.xml
+
+ADD key.jks /opt/ibm/wlp/usr/servers/defaultServer/resources/security/
+
+ADD xdb6-12.1.0.2.0.jar /config/resources/
+ADD xmlparserv2.jar /config/resources/
+ADD ojdbc7-12.1.0.2.0.jar /config/resources/
+
+ADD privatekey /resource/sftp_privatekey/
+
+ADD wmq.jmsra.rar /config/resources/
+
+ADD mvtm.tar /root/
+
+ADD jvm.options /opt/ibm/wlp/usr/servers/defaultServer/
+
+ADD server-web.tar /approot/vtsLibrary/configurations/
+
+ADD *.war /config/dropins/
+
+RUN /opt/ibm/wlp/bin/installUtility install wmqJmsClient-2.0 --acceptLicense
+EXPOSE 9080

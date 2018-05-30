@@ -1,0 +1,7 @@
+security:
+  user:
+    name: sys
+    password: password
+  enable-csrf: false
+  
+    

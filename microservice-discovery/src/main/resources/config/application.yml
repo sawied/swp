@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: microservice-discovery
+  jmx:
+   default-domain: microservice-discovery
+   
+server:
+  port: 9000
+  
+logging:
+ level: 
+  root: WARN
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+      
