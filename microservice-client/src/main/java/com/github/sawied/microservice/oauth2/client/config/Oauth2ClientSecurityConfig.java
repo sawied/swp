@@ -42,10 +42,10 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	public static final String CLIENT_HEADER = "X-Client-Info";
 
-
+/**
 	
-	@Bean
-	@Primary
+	//@Bean
+	//@Primary
 	public OAuth2ProtectedResourceDetails resourceService() {
 		AuthorizationCodeResourceDetails details = new AuthorizationCodeResourceDetails();
 		details.setId("sawied-resource");
@@ -58,7 +58,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		return details;
 	}
 
-	@Bean
+	//@Bean
 	public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext clientContext) {
 		return new OAuth2RestTemplate(resourceService(), clientContext);
 	}
@@ -125,7 +125,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		 http
 	        .logout().logoutSuccessUrl("/").and().formLogin().and()
 	            .authorizeRequests()
-	                .antMatchers("/index.html", "/app.html", "/", "/login","/trust/**").permitAll()
+	                .antMatchers("/index.html", "/app.html", "/", "/login","/trust/**","/error").permitAll()
 	                .anyRequest().authenticated().and().csrf().disable()
 	             ;
 	            // @formatter:on

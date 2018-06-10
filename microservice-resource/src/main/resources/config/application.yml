@@ -1,0 +1,7 @@
+spring:
+  mvc:
+    static-path-pattern: /resources/**
+  resources:
+    add-mappings: true
+    static-locations:
+    - classpath:/static/

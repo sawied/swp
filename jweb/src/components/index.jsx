@@ -9,7 +9,7 @@ import Navigation from './navigation';
 import ErrorPanel from './errorPanel';
 
 import Home from './Home';
-import Uploader from './uploader';
+import imager from '../imager';
 import TodoApp from '../todos';
 import {
   BrowserRouter,
@@ -36,7 +36,7 @@ const jwebRoot=()=>(
 <Switch>
         <Route exact path='/' component={Home} />
         <Route path="/todoApp" component={TodoApp}/>
-        <Route path='/uploader' component={Uploader}/>
+        <Route path='/imager' component={imager}/>
   </Switch>
 </div>
 </div>

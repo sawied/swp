@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
@@ -34,6 +36,19 @@ public class ResourceApiServletConfig extends WebMvcConfigurerAdapter{
 		contentViewResolver.setDefaultViews(Arrays.<View> asList(jsonview));
 		return contentViewResolver;
 	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
+	}
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		super.addCorsMappings(registry);
+		registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET","POST","DELETE","PUT");
+	}
+	
+	
 	
 
 }

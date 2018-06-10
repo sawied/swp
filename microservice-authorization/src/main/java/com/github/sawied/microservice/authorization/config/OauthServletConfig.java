@@ -3,24 +3,13 @@ package com.github.sawied.microservice.authorization.config;
 import java.util.Arrays;
 import java.util.Properties;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.RequestContextListener;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -33,8 +22,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 @Configuration
 @EnableWebMvc
 @PropertySources({ @PropertySource({"classpath:github/sawied/microservice/authorization/ldap.properties"}) })
-@ImportResource({ "classpath:github/sawied/microservice/authorization/security-context.xml",
-"classpath:github/sawied/microservice/authorization/security-oauth-authorization.xml" })
+//@ImportResource({ "classpath:github/sawied/microservice/authorization/security-context.xml","classpath:github/sawied/microservice/authorization/security-oauth-authorization.xml" })
 @ComponentScan(basePackages= {"com.github.sawied.microservice.authorization.controller"})
 public class OauthServletConfig extends WebMvcConfigurerAdapter{
 
@@ -61,9 +49,6 @@ public class OauthServletConfig extends WebMvcConfigurerAdapter{
 		contentViewResolver.setDefaultViews(Arrays.<View> asList(jsonview));
 		return contentViewResolver;
 	}
-	
-	
-
 	
 
 
