@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.provider.approval.TokenStoreUserAppro
 import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -33,7 +34,7 @@ public class OauthSecurityAuthorizationConfig {
 		InMemoryClientDetailsServiceBuilder clientDetailsBuilder=new InMemoryClientDetailsServiceBuilder();
 		clientDetailsBuilder.withClient("api-gateway").autoApprove(true)
 		.authorities("ROLE_CLIENT").authorizedGrantTypes("authorization_code", "refresh_token", "password")
-		.resourceIds("sawied-resource-service").scopes("read", "write", "user").secret("secret").and()
+		.resourceIds("sawied-resource").scopes("read", "write", "user").secret("secret").and()
 		.withClient("sawied-client").secret("sawied-1990").authorities("ROLE_RESOURCE");
 		return clientDetailsBuilder.build();
 	}
@@ -58,9 +59,10 @@ public class OauthSecurityAuthorizationConfig {
 
 		@Bean
 		public TokenStore tokenStore() {
-			JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-			jwtAccessTokenConverter.setSigningKey("secert");
-			return new JwtTokenStore(jwtAccessTokenConverter);
+			//JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+			//jwtAccessTokenConverter.setSigningKey("secert");
+			//return new JwtTokenStore(jwtAccessTokenConverter);
+			return new InMemoryTokenStore();
 		}
 
 		@Bean
