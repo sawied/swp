@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// super.configure(http);
-		http.requestMatchers().antMatchers("/login", "/logout").and().authorizeRequests()
+		http.requestMatchers().antMatchers("/login","/login.html", "/logout","/oauth/authorize").and().authorizeRequests()
 				.antMatchers("/login.html", "/login").permitAll().and().formLogin().loginPage("/login.html")
 				.loginProcessingUrl("/login").failureUrl("/login.html?authentication_error=true").and().logout()
 				.logoutUrl("/logout").logoutSuccessUrl("/logout.html").and().csrf().disable().sessionManagement()

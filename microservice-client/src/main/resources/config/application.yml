@@ -19,8 +19,8 @@ security:
         write
         user
     resource:
-      jwt:
-        key-value: secert
+      token-info-uri: http://localhost:8888/microservice-authorization-SNAPSHOT/oauth/check_token
+      
 zuul:
   routes:
     ao:

@@ -97,7 +97,7 @@ public class OauthSecurityAuthorizationConfig {
 
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-			super.configure(security);
+			security.allowFormAuthenticationForClients().checkTokenAccess("isAuthenticated()");
 		}
 		
 	}
@@ -110,7 +110,7 @@ public class OauthSecurityAuthorizationConfig {
 
 		@Override
 		public void configure(ResourceServerSecurityConfigurer resources) {
-			resources.resourceId("sawied-resource").stateless(false);
+			resources.resourceId("sawied-resource").stateless(true);
 		}
 
 		@Override

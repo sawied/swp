@@ -1,6 +1,10 @@
 package com.github.sawied.microservice.oauth2.client.config;
 
 import java.util.Arrays;
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,18 +21,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.AccessTokenProvider;
+import org.springframework.security.oauth2.client.token.AccessTokenRequest;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordAccessTokenProvider;
-import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
-import org.springframework.util.Assert;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
 @Configuration
-@EnableOAuth2Client
 @EnableOAuth2Sso
 @EnableWebSecurity
 @PropertySource({ "classpath:sawied/microservice/client/apis/config/authorization-oauth2-urls.properties" })
@@ -42,10 +47,10 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	public static final String CLIENT_HEADER = "X-Client-Info";
 
-/**
+
 	
-	//@Bean
-	//@Primary
+	@Bean
+	@Primary
 	public OAuth2ProtectedResourceDetails resourceService() {
 		AuthorizationCodeResourceDetails details = new AuthorizationCodeResourceDetails();
 		details.setId("sawied-resource");
@@ -58,7 +63,7 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		return details;
 	}
 
-	//@Bean
+	@Bean
 	public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext clientContext) {
 		return new OAuth2RestTemplate(resourceService(), clientContext);
 	}
@@ -81,6 +86,33 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 			}
 			
 		};
+	}
+	
+	
+	@Primary
+	@Bean 
+	@Qualifier("clientContext")
+	@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, value = "request")
+	public OAuth2ClientContext clientContext(@Autowired @Qualifier("accessTokenRequest") AccessTokenRequest accessTokenRequest,HttpServletRequest httpRequest) {
+		HttpSession session=httpRequest.getSession(false);
+		
+		String token=extractHeaderToken(httpRequest);
+		if(token!=null) {
+			return  new DefaultOAuth2ClientContext(new DefaultOAuth2AccessToken(token));
+		}
+		
+		if(session!=null) {
+			Object clientContext = session.getAttribute("clientContext");
+			if(clientContext!=null) {
+				return (OAuth2ClientContext) clientContext;
+			}else{
+				clientContext=new DefaultOAuth2ClientContext(accessTokenRequest);
+				session.setAttribute("clientContext",clientContext);
+				return (OAuth2ClientContext) clientContext;
+			}
+		}
+		
+		return new DefaultOAuth2ClientContext(accessTokenRequest);
 	}
 	
 	
@@ -129,6 +161,33 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	                .anyRequest().authenticated().and().csrf().disable()
 	             ;
 	            // @formatter:on
+	}
+	
+	
+	/**
+	 * Extract the OAuth bearer token from a header.
+	 * 
+	 * @param request The request.
+	 * @return The token, or null if no OAuth authorization header was supplied.
+	 */
+	protected String extractHeaderToken(HttpServletRequest request) {
+		Enumeration<String> headers = request.getHeaders("Authorization");
+		while (headers.hasMoreElements()) { // typically there is only one (most servers enforce that)
+			String value = headers.nextElement();
+			if ((value.toLowerCase().startsWith(OAuth2AccessToken.BEARER_TYPE.toLowerCase()))) {
+				String authHeaderValue = value.substring(OAuth2AccessToken.BEARER_TYPE.length()).trim();
+				// Add this here for the auth details later. Would be better to change the signature of this method.
+				request.setAttribute(OAuth2AuthenticationDetails.ACCESS_TOKEN_TYPE,
+						value.substring(0, OAuth2AccessToken.BEARER_TYPE.length()).trim());
+				int commaIndex = authHeaderValue.indexOf(',');
+				if (commaIndex > 0) {
+					authHeaderValue = authHeaderValue.substring(0, commaIndex);
+				}
+				return authHeaderValue;
+			}
+		}
+
+		return null;
 	}
 
 
