@@ -1,9 +1,12 @@
 package com.github.sawied.microservice.oauth2.client.config;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Enumeration;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,13 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -32,6 +38,12 @@ import org.springframework.security.oauth2.client.token.grant.password.ResourceO
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetailsSource;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 
 @Configuration
 @EnableOAuth2Sso
@@ -117,6 +129,12 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	
 	
+	
+
+	 
+	
+	
+	
 	/**
 	@Bean
 	public OAuth2RestTemplate trustOauth2RestTemplate(
@@ -151,10 +169,23 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 		super.configure(web);
 		web.debug(true);
 	}
+	
+	
+
+	@Autowired
+	private ResourceServerTokenServices resoureServerTokenServices;
+	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		 http
+		Oauth2PreAuthenticationProcessingFilter oauth2PreAuthenticationProcessingFilter = new Oauth2PreAuthenticationProcessingFilter();
+		
+		OAuth2AuthenticationManager authManager = new OAuth2AuthenticationManager();
+		authManager.setTokenServices(resoureServerTokenServices);
+		oauth2PreAuthenticationProcessingFilter.setAuthenticationManager(authManager);
+		oauth2PreAuthenticationProcessingFilter.setAuthenticationDetailsSource(new OAuth2AuthenticationDetailsSource());
+		
+		 http.addFilterAfter(oauth2PreAuthenticationProcessingFilter, SecurityContextPersistenceFilter.class).sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER).and()
 	        .logout().logoutSuccessUrl("/").and().formLogin().and()
 	            .authorizeRequests()
 	                .antMatchers("/index.html", "/app.html", "/", "/login","/trust/**","/error").permitAll()
@@ -162,7 +193,6 @@ public class Oauth2ClientSecurityConfig extends WebSecurityConfigurerAdapter{
 	             ;
 	            // @formatter:on
 	}
-	
 	
 	/**
 	 * Extract the OAuth bearer token from a header.
