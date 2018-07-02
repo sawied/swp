@@ -4,7 +4,8 @@ server:
 logging:
   level:  
     com.github.sawied.websocket: DEBUG
-    net.sf.ehcache: TRACE
+    org.springframework: DEBUG
+    root: INFO
   file: websoket.log
   path: .
 spring:

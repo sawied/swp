@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.sawied.jboot.jpa.Transaction;
@@ -39,11 +40,11 @@ public class TransactionController implements TransactionService{
     }
 
 	@Override
-	public BusinessTransaction save(BusinessTransaction bt) {
+	public BusinessTransaction save(@RequestBody BusinessTransaction bt) {
 		Transaction t = new Transaction();
 		t.setName(bt.getName());
-	    transactionRepository.save(t);
-	    bt.setId(t.getId());
+		Transaction transaction=transactionRepository.save(t);
+	    bt.setId(transaction.getId());
 		return bt;
 	}
 

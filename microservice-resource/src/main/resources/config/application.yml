@@ -5,3 +5,5 @@ spring:
     add-mappings: true
     static-locations:
     - classpath:/static/
+    
+    
