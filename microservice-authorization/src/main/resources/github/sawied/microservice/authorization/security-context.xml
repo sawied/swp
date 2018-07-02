@@ -7,7 +7,9 @@
 	<security:http auto-config="true" create-session="ifRequired"
 		authentication-manager-ref="authenticationManager">
      <security:intercept-url pattern="/login.html" access="permitAll"/>
-     <security:intercept-url pattern="/*" access="hasRole('USER')"/>
+     <security:intercept-url pattern="/login" access="permitAll"/>
+     <security:intercept-url pattern="/oauth/*" access="hasRole('')" />
+     <security:intercept-url pattern="/**" access="hasRole('USER')"/>
      <security:form-login 
      authentication-failure-url="/login.html?authentication_error=true"
      login-page="/login.html"

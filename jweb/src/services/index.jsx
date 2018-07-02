@@ -1,4 +1,5 @@
 import todoApi from '../todos/apis'
+import imagerApi from '../imager/apis'
 
 
 //define services list of this function
@@ -11,8 +12,8 @@ const services=Object.assign(
       options:{timeout:3000}
     }
   },
-  todoApi
-
+  todoApi,
+  imagerApi
 );
 
 var apis=function(name,params=null){
@@ -36,8 +37,11 @@ var apis=function(name,params=null){
       var contentType = response.headers.get('content-type');
       if(contentType && contentType.includes('application/json')) {
         return response.json();
+      }else if(contentType && contentType.includes('image/jpeg')){
+        return response.blob();
+      }else{
+        return response;
       }
-       return response;
      }
      throw new Error('Network response was not ok.');
    },function(e){

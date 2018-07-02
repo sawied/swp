@@ -31,5 +31,4 @@ public class ZuulGatewayApplication extends SpringBootServletInitializer impleme
 		super.onStartup(servletContext);
 	}
 
-
 }

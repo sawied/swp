@@ -28,6 +28,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 	public UserEntity saveUser(final UserEntity user) {
 		Session session=entityManager.unwrap(Session.class);
 		UserEntity exist = session.load(UserEntity.class, user.getId());
+		//session.createSQLQuery("").setResultTransformer(transformer)
 		//exist.setXmlData(user.getXmlData());
 		session.update(exist);
 		return user;

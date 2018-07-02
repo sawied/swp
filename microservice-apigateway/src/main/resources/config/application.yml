@@ -10,6 +10,8 @@ trust-oauth2:
  access-token-url: ${trust-oauth2.base-url}/oauth/token
  
 zuul:
+  add-proxy-headers: true
+  add-host-header: true
   routes:
     ao:
      path: /ao/**

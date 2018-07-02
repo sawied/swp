@@ -1,0 +1,7 @@
+/*
+!.gitignore
+!/content
+/content/*
+!/content/themes
+/content/themes/*
+!/content/themes/mika

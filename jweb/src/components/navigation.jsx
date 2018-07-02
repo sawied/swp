@@ -6,7 +6,7 @@ class Navigation extends React.Component {
             <ul className="nav nav-pills nav-stacked">
              <li role="presentation"><NavLink to="/" exact={true} activeClassName="active">HOME</NavLink></li>
             <li><NavLink to="/todoApp" activeClassName="active">TODOS</NavLink></li>
-            <li><NavLink to="/uploader" activeClassName="active">UPLOADER</NavLink></li>
+            <li><NavLink to="/imager" activeClassName="active">IMAGER</NavLink></li>
             </ul>
     );
     }

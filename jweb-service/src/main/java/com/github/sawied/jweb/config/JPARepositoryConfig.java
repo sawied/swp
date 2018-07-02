@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -22,8 +23,8 @@ public class JPARepositoryConfig {
 		DriverManagerDataSource ds=new DriverManagerDataSource();
 		ds.setDriverClassName("oracle.jdbc.OracleDriver");
 		ds.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		ds.setUsername("danan");
-		ds.setPassword("danan");
+		ds.setUsername("user");
+		ds.setPassword("password");
 		return ds;
 	}
 	
@@ -35,9 +36,9 @@ public class JPARepositoryConfig {
 		return transactionManager;
 	}
 	
-	
-	
 	/**
+	 * 
+	@Profile("pro")
 	@Primary
 	@Bean
 	DataSource datasource() throws SQLException {

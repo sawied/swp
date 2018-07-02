@@ -12,19 +12,14 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/endPoint");
+		registry.addEndpoint("/endpoint").withSockJS();
 	}
 
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-		super.configureMessageBroker(registry);
-		registry.enableSimpleBroker("/topic");
+		registry.enableStompBrokerRelay("/topic","/queue").setRelayHost("192.168.88.8").setRelayPort(15673);
 		registry.setApplicationDestinationPrefixes("/app");
 	}
-	
-	
-
-	
 
 }

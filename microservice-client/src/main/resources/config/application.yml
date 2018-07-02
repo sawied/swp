@@ -1,15 +1,26 @@
 server:
   port: 9000
-  
+  context-path: /microservice-client-SNAPSHOT
 debug: true
 management:
   security:
     enabled: false
 security:
   oauth2:
+    client:
+      access-token-uri: http://localhost:8888/microservice-authorization-SNAPSHOT/oauth/token
+      user-authorization-uri: http://localhost:8888/microservice-authorization-SNAPSHOT/oauth/authorize
+      use-current-uri: true
+      client-id: api-gateway
+      id: sawied-apigateway
+      client-secret: secret
+      scope:
+        read
+        write
+        user
     resource:
-      jwt:
-        key-value: secert
+      token-info-uri: http://localhost:8888/microservice-authorization-SNAPSHOT/oauth/check_token
+      
 zuul:
   routes:
     ao:
@@ -22,4 +33,7 @@ zuul:
       url: http://localhost:8888/microservice-authorization-SNAPSHOT/
       custom-sensitive-headers: true
       sensitive-headers: Cookie,Set-Cookie
-         
+        
+        
+        
+ 

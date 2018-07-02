@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/apis")
 public class UserServiceApi {
 
-	@Autowired
+	//@Autowired
 	//@Qualifier("oauth2RestTemplate")
 	private OAuth2RestTemplate restTemplate;
 	

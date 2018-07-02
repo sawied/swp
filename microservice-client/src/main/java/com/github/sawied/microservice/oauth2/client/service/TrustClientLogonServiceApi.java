@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/trust")
 public class TrustClientLogonServiceApi {
 
-	@Autowired
+	//@Autowired
 	private OAuth2RestTemplate restTemplate;
 	
 	@Autowired

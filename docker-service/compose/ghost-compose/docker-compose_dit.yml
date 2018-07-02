@@ -1,0 +1,34 @@
+version: '3.2'
+services:
+  apigateway-dit:
+    build:
+      context: ./apigateway
+      dockerfile: Dockerfile
+      args:
+        - profile=dit
+    container_name: apigateway-dit
+    hostname: apigateway-dit
+    image: mvtm/apigateway-dit
+    volumes:
+      - apigateway-dit:/output/logs/state/
+  ihsserver-dit:
+    build:
+      context: ./ihsserver
+      dockerfile: Dockerfile
+      args:
+        - profile=dit
+        - export=8002
+    container_name: ihsserver-dit
+    depends_on:
+      - apigateway-dit
+    hostname: ihsserver-dit
+    image: mvtm/ihsserver-dit
+    links:
+      - apigateway-dit
+    volumes:
+      - "/approot/frontside/dit:/opt/IBM/HTTPServer/htdocs"
+      - apigateway-dit:/output/logs/state/
+    ports:
+     - "8002:8002"
+volumes:
+  apigateway-dit:

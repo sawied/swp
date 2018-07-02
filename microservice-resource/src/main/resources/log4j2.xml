@@ -11,10 +11,10 @@
 	
 	<Loggers>
 	
-	<Logger name="org.springframework.security" level="trace">
+	<Logger name="org.springframework.security" level="debug">
 			<AppenderRef ref="Console" />
 		</Logger>
-		<Root level="INFO">
+		<Root level="info">
 			<AppenderRef ref="Console" />
 		</Root>
 
