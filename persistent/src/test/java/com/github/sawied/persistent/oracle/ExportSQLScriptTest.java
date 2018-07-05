@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -16,6 +18,7 @@ import javax.persistence.criteria.Root;
 
 import junit.framework.TestCase;
 
+import org.hibernate.Session;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.BootstrapServiceRegistry;
 import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
@@ -64,6 +67,7 @@ public class ExportSQLScriptTest extends TestCase {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
 
 	
 	@BeforeClass
@@ -73,11 +77,12 @@ public class ExportSQLScriptTest extends TestCase {
 		dmds.setDriverClassName("oracle.jdbc.OracleDriver");
 		dmds.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 		dmds.setUsername("danan");
-		dmds.setPassword("password");
+		dmds.setPassword("danan");
 		builder.bind("jdbc/oracleDS", dmds);
 		builder.activate();
 	}
 	
+	@Ignore
 	@Test
 	public void exportSQLSchema(){
 		final BootstrapServiceRegistry bsr = new BootstrapServiceRegistryBuilder().build();
@@ -154,10 +159,14 @@ public class ExportSQLScriptTest extends TestCase {
 	}
 	
 	
-	@Ignore
+
 	@Test
 	public void sqlInjectTest(){
-		final String name ="%";
+		//final String name ="%";
+		
+		userAuditLogRepository.queryUserLogs();
+		
+		//Assert.assertNotNull(session);
 		/**
 		 Page<UserAuditLog> page = userAuditLogRepository.findAll(new Specification<UserAuditLog>() {	
 			@Override

@@ -1,10 +1,6 @@
 server:
     port: ${port:8888}
     
-logging:
-  level:
-    org.springframework.web: INFO
-    org.apache.commons.jcs: DEBUG
 spring:
   main:
     banner-mode: "off"

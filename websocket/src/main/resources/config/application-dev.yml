@@ -1,13 +1,5 @@
 server:
     port: ${port:8000}
-    
-logging:
-  level:  
-    com.github.sawied.websocket: DEBUG
-    org.springframework: DEBUG
-    root: INFO
-  file: websoket.log
-  path: .
 spring:
   main:
     banner-mode: "console"

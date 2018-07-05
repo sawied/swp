@@ -10,4 +10,15 @@
 <return-scalar column="duration" type="integer" />
 </resultset>
 
+<resultset name="transactionQuery">
+ <return alias="t" class="">
+  <return-property name="" column=""></return-property>
+  <return-property name=""> 
+  </return-property>
+ </return>
+ <load-collection alias="" role="">
+  <return-property name=""></return-property>
+ </load-collection>
+</resultset>
+
 </hibernate-mapping>

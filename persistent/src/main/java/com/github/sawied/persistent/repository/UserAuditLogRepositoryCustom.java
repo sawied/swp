@@ -20,5 +20,8 @@ public interface UserAuditLogRepositoryCustom {
 	List<SearchAuditResponse> searchAuditUssScalar();
 
 	List<SearchAuditResponse> searchAuditUseResultMapping();
+	
+	
+	List<UserAuditLog> queryUserLogs();
 
 }

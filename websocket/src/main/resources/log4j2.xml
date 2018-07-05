@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration schema="Log4j-config.xsd" status="trace" monitorInterval="30">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		
+	<RabbitMQ name="RabbitMQ"
+        addresses="192.168.88.8:5672" user="danan" password="danan" virtualHost="/rabbitmqm"
+        exchange="log4j2" exchangeType="topic" declareExchange="false" durable="true" autoDelete="false"
+        applicationId="websocket"
+        routingKeyPattern="logger.%X{applicationId}.%c.%p"
+        contentType="text/plain" contentEncoding="UTF-8" generateId="true" deliveryMode="NON_PERSISTENT" 
+        charset="UTF-8"
+        senderPoolSize="3" maxSenderRetries="5">
+        <PatternLayout pattern="%d{ISO8601} %X{applicationId} [%t] %-5level %logger{36} %L - %msg%n"/>
+    </RabbitMQ>
+
+	</Appenders>
+
+
+
+	<Loggers>
+
+		<Logger name="com.github.sawied" level="DEBUG">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RabbitMQ"/>
+		</Logger>
+<!-- 
+
+		<Logger name="reactor.io.net.impl.nett" level="debug">
+			<AppenderRef ref="RabbitMQ" />
+		</Logger>
+		
+		<Logger name="org.springframework.messaging" level="debug">
+			<AppenderRef ref="RabbitMQ" />
+		</Logger>
+ -->
+		
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+		</Root>
+
+	</Loggers>
+</Configuration>
