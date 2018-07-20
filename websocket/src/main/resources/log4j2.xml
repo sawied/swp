@@ -24,7 +24,7 @@
 
 		<Logger name="com.github.sawied" level="DEBUG">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="RabbitMQ"/>
+			<AppenderRef ref="RabbitMQ" />
 		</Logger>
 <!-- 
 
@@ -32,10 +32,10 @@
 			<AppenderRef ref="RabbitMQ" />
 		</Logger>
 		
-		<Logger name="org.springframework.messaging" level="debug">
-			<AppenderRef ref="RabbitMQ" />
-		</Logger>
  -->
+		<Logger name="org.springframework.web" level="debug">
+			<AppenderRef ref="Console" />
+		</Logger>
 		
 		<Root level="INFO">
 			<AppenderRef ref="Console" />
