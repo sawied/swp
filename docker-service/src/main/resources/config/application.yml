@@ -1,7 +1,5 @@
 spring:
  application:
-  name: docker
+  name: docker-service
   
 ### specfic loan project template storage path
-loan:
-  path: ${user.home}/config/${spring.application.name}/template

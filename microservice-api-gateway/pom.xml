@@ -22,12 +22,12 @@
     </properties>
 
     <dependencies>
-        <!-- spring boot web start dependency
+        <!-- spring boot web start dependency-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
-        -->
+        
 
         <!-- spring cloud dependencies-->
         <dependency>
