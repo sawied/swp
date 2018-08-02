@@ -14,7 +14,7 @@ import org.springframework.web.WebApplicationInitializer;
  */
 
 @SpringBootApplication
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 @Order(1)
 public class WebsocketApp extends SpringBootServletInitializer implements WebApplicationInitializer
 {

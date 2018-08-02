@@ -10,7 +10,7 @@ import org.springframework.ldap.core.support.LdapContextSource;
 public class ServiceConfig {
 	
 	@Bean
-	public LdapContextSource ldapContextSource(@Value("ldap.url") String ldapUrl,@Value("ldap.base") String base,@Value("ldap.user")String userDn,@Value("ldap.password")String password) {
+	public LdapContextSource ldapContextSource(@Value("${ldap.url}") String ldapUrl,@Value("${ldap.base}") String base,@Value("${ldap.user}")String userDn,@Value("${ldap.password}")String password) {
 		LdapContextSource ldapContextSource = new LdapContextSource();
 		ldapContextSource.setUrl(ldapUrl);
 		ldapContextSource.setBase(base);

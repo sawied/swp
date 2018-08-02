@@ -35,12 +35,10 @@
  -->
 		<Logger name="org.springframework.web" level="debug">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="RabbitMQ" />
-		</Logger>
+			</Logger>
 		
 		<Root level="INFO">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="RabbitMQ" />
 		</Root>
 
 	</Loggers>

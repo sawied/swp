@@ -5,6 +5,8 @@ management:
   security:
     enabled: false
 
+
+
 trust-oauth2:
  base-url: http://localhost:8888/microservice-authorization-SNAPSHOT
  access-token-url: ${trust-oauth2.base-url}/oauth/token
@@ -23,4 +25,10 @@ zuul:
       url: ${trust-oauth2.base-url}
       custom-sensitive-headers: true
       sensitive-headers: Cookie,Set-Cookie
+    pool:
+      path: /pool/**
+      url: http://localhost:8000/
+  host:
+    connect-timeout-millis: 100000
+    socket-timeout-millis: -1
          

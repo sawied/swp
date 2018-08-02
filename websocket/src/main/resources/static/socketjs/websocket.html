@@ -66,7 +66,7 @@ $(document).ready(function(){
 		if(!client||!client.connected){			
 			//init sockjs instance and estiblish connection with server
 	        // bind connection 
-			var sock = new SockJS('/endpoint'/**,null,{ transports: "eventsource" }**/);
+			var sock = new SockJS('/endpoint'/**,null,{ transports: "xhr-polling" }**/);
 			client =Stomp.over(sock);
 			
 			client.heartbeat.outgoing = 4000; // client will send heartbeats every 5000ms

@@ -42,6 +42,7 @@ public class SimpleMessageProcessor {
 	@MessageMapping("time")
 	@SendTo("/topic/time")
 	public String handle(String greeting) {
+		
 		return String.valueOf(System.currentTimeMillis());
 	}
 

@@ -22,9 +22,13 @@ spring:
         
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG    
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.boot: debug
+
 eureka:
   client:
+    enabled: true  
     register-with-eureka: true
     fetch-registry: true
     service-url:
