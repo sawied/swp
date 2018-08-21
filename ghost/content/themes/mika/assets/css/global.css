@@ -1,5 +1,4 @@
 div.inner{
-    width: 800px;
     margin: 0 auto;
 }
 
@@ -20,8 +19,9 @@ div.site-header-content .site-description{
 }
 
 div.posts-list-container{
-    width: 800px;
+    max-width: 1024px;
     margin: 50px auto;
+    padding: 0 30px;
 }
 div.post-item .post-card-title{
     font-size: 2em;
@@ -43,7 +43,7 @@ nav.pagination{
     font-size: 18px;
 }
 section.copyright{
-    text-align: right;
+    text-align: center;
     font-style: italic;
     font-size: 12px;
 }
@@ -73,8 +73,9 @@ h1.post-title{
     font-size: 2.0em;
 }
 div.post-detail{
+    max-width: 1024px;
     margin: 30px auto;
-    padding: 30px 0;
+    padding: 30px 30px;
     border-width: 1px 0;
     border-color:  #e5e4e1;
     border-style: solid;
