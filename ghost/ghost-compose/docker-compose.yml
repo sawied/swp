@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  ghost:
+    image: ghost:latest
+    restart: always
+    environment:
+      url: http://sawied.top
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: password-secret
+      database__connection__database: ghost
+    networks:
+      network-default: {}
+  db:
+   image: mysql:5.7
+   restart: always
+   environment:
+     MYSQL_ROOT_PASSWORD: password-secret
+   volumes:
+     - type: bind
+       source: /var/data/mysql
+       target: /var/lib/mysql
+   ports:
+     - "3306:3306"
+   networks:
+     network-default: {}
+  nginx:
+    build: ./nginx
+    restart: always
+    volumes:
+      - type: bind
+        source: /var/data/letsencrypt
+        target: /var/lib/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8088:8088"
+    networks:
+     network-default: {}
+  phpmyadmin: 
+    image: phpmyadmin/phpmyadmin
+    restart: "no"
+    ports:
+      - "9080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ABSOLUTE_URI: https://sawied.top/mysql/
+    networks:
+      network-default: {}
+       
+     
+     
+     
+networks:
+  network-default:
+    external: true
+    name: ghost-core

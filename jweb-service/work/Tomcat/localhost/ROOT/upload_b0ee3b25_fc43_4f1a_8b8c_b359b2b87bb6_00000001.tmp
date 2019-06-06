@@ -1,0 +1,46 @@
+研发与交付流程建设工作组
+IPD
+市场管理
+
+
+计划---->开发---->验证----->发布
+服务策略
+
+
+市场人员
+
+HRBP--->
+
+$AdminApp install c:/a.war
+
+
+
+sudo ./imcl install com.ibm.websphere.DEVELOPERSILAN.v85_8.5.5000.20130514_1044 -repositories /home/zhangchong/was/  -installationDirectory /opt/IBM/WebSphere/AppServer/   -sharedResourcesDirectory /opt/IBM/IMShared/  -acceptLicense  -showVerboseProgress
+
+
+sudo ./manageprofiles.sh -create -templatePath /opt/IBM/WebSphere/AppServer/profileTemplates/default -profileName AppSrv01 -profilePath /opt/IBM/WebSphere/AppServer/profiles/AppSrv01
+
+
+sudo ./wasservice.sh  -add server1 -serverName server1 -profilePath "/opt/IBM/WebSphere/AppServer/profiles/AppSrv01" -logRoot "opt/IBM/WebSphere/AppServer//profiles/AppSrv01/logs/server1" -restart true -startType automatic
+
+
+
+
+1.ihs
+unzip *.zip -d ihs
+2.
+IBM/InstallManager/eclipse/tools
+sudo ./imcl listAvailablePackages -repositories /home/zhangchong/ihs/
+package-name
+3.
+sudo ./imcl install package -repositories /home/zhangchong/ihs/  -installationDirectory /opt/IBM/IHS -acceptLicense  -showVerboseProgress
+4.create web server from websphere admin console
+5.
+configureIHSPlugin.bat -plugin.home C:\works\IBM\WebSphere\Plugins -plugin.config.xml C:\works\IBM\WebSphere\Plugins\config\IHS\plugin-cfg.xml -ihs.conf C:\works\IBM\HTTPServer\conf\httpd.conf -WAS.webserver.name IHS -operating.system.arch 64
+6.DAV
+
+
+
+
+
+

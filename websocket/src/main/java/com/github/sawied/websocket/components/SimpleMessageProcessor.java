@@ -27,20 +27,22 @@ public class SimpleMessageProcessor {
 
 	@SubscribeMapping(value = "/time")
 	public String subscribeTime(@Headers Map<String, Object> headers) {
-		LOGER.info("subecribed with header", headers);
+		LOGER.debug("subecribed with header", headers);
 		return "time subscriber";
 	}
 
 	@RequestMapping(path = "/triggerTime", method = RequestMethod.GET)
 	@ResponseBody
 	public String triggerTime() {
-		template.convertAndSend("/topic/time", System.currentTimeMillis());
+		//template.convertAndSend("/topic/time", System.currentTimeMillis());
+		LOGER.debug("invoke trigger time function");
 		return "DONE";
 	}
 
 	@MessageMapping("time")
 	@SendTo("/topic/time")
 	public String handle(String greeting) {
+		
 		return String.valueOf(System.currentTimeMillis());
 	}
 

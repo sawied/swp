@@ -525,7 +525,7 @@ firstly,ehcache looks for configuration file called ehcache.xml in classpath.
      <persistence strategy="localTempSwap"/>
   </defaultCache> 
   
- 
+ <!-- 
  <cache 
  	name="lanternCache"
  	eternal="false"
@@ -552,5 +552,6 @@ firstly,ehcache looks for configuration file called ehcache.xml in classpath.
   <cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
 properties="hostName=localhost, port=1110,
 socketTimeoutMillis=2000"/>
+  -->
   
 </ehcache>

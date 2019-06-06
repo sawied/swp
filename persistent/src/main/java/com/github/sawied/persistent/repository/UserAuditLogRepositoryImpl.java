@@ -17,6 +17,7 @@ import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
@@ -172,5 +173,17 @@ public class UserAuditLogRepositoryImpl implements UserAuditLogRepositoryCustom 
 	}
 	return list;
     }
+
+    
+    @Transactional
+	@Override
+	public List<UserAuditLog> queryUserLogs() {
+    	Session session=em.unwrap(Session.class);
+    	SQLQuery query = session.createSQLQuery("SELECT {ulog.*},{detail.*} FROM userauditlog ulog left join AUDITLOGDETAIL detail on(ulog.id=detail.auditlogid)");
+    	query.addEntity("ulog", UserAuditLog.class).addJoin("detail", "ulog.logDetails");
+    	query.setResultTransformer(Criteria.ROOT_ENTITY);
+    	List<?> list=query.list();
+		return null;
+	}
 
 }

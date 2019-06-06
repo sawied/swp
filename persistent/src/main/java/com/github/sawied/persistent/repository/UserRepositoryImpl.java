@@ -67,7 +67,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
 	@Transactional(propagation=Propagation.REQUIRED)
 	public List<User> searchUsers() {
 		Session session=em.unwrap(Session.class);
-		
+		//session.createSQLQuery("")
 		return session.createCriteria(User.class).setFetchMode("logs", FetchMode.JOIN).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 	

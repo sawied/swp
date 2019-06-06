@@ -3,9 +3,29 @@
 <head>
 <title>default</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="sockjs.js"></script>
 <script type="text/javascript" src="stomp.js"></script>
+<style type="text/css">
+body{
+margin: 0 10px;
+background-color: #fff;
+}
+div.controller{
+margin: 20px 0;
+}
+ul#logger-panel{
+list-style: none;
+font-family: sans-serif;
+font-size: 12px;
+margin: 5px 0;
+padding: 0;
+}
+</style>
+
 </head>
+
 <body>
 
 
@@ -13,32 +33,72 @@
 <video src="http://192.168.88.8:8022/39.mp4" width="800" height="400" autoplay="autoplay" controls="controls"></video>
  -->
 
-<input type="button" id="send" value="send"/>
-<input type="button" id="connect" value="connect"/>
-<input type="button" id="disconnect" value="disconnect"/>
+<div class="btn-group controller">
+<input type="button" id="send" class="btn btn-primary" value="Send"/>
+<input type="button" id="connect" class="btn btn-primary"  value="Connect"/>
+<input type="button" id="disconnect" class="btn btn-primary"  value="Disconnect"/>
+</div>
+
+
+
+<div class="card">
+  <h5 class="card-header">Logger</h5>
+  <div class="card-body">
+    <ul id="logger-panel">
+    
+    </ul>
+  </div>
+</div>
 
 
 
 <script type="text/javascript">
-
-var sock = new SockJS('http://localhost:8000/endpoint'/**,null,{ transports: "eventsource" }**/);
-var client =Stomp.over(sock);
-
-client.heartbeat.outgoing = 4000; // client will send heartbeats every 5000ms
-client.heartbeat.incoming = 4000;     // client does not want to receive heartbeats
-                                   // from the server
+$(document).ready(function(){
+	
+	
+	var client=null;
+	var topic =  "/exchange/log4j2"; 
+	var tid= null;
+	var logSubscribe=null;
+	
+	
+	$("#connect").click(function(){
+		if(!client||!client.connected){			
+			//init sockjs instance and estiblish connection with server
+	        // bind connection 
+			var sock = new SockJS('/endpoint'/**,null,{ transports: "xhr-polling" }**/);
+			client =Stomp.over(sock);
+			
+			client.heartbeat.outgoing = 4000; // client will send heartbeats every 5000ms
+			client.heartbeat.incoming = 4000;     // client does not want to receive heartbeats
+			                                   // from the server
+			client.connect({}, function(e){
+			  		console.log("connected");
+					tid="T-sub-"+Math.floor(Math.random()*1000000);                                   
+					logSubscribe=client.subscribe(topic+"/logger.#", function(e){
+						$("#logger-panel").append("<li>"+e.body+"</li>");
+					},{id:tid});
+			  });
+		}
+	});
+	
+	$("#disconnect").click(function(){
+		if(logSubscribe){
+			logSubscribe.unsubscribe();
+		}
+		if(client){
+			client.disconnect();
+		}
+	});
+	
   
-client.connect({}, function(){
-  		console.log("connected");
-		client.subscribe("/topic/time", function(e,b,c){
-			console.log(e,b,c);
-		});
-  });
+});
 
-
+/**
 document.getElementById("send").addEventListener("click",function(){
 	client.send("/app/time", {priority: 9}, "Hello, STOMP");
 });
+**/
 
 </script>
 

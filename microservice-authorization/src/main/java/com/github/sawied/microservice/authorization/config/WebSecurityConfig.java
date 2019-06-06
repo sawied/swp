@@ -3,11 +3,9 @@ package com.github.sawied.microservice.authorization.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,7 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(clientDetailsUserDetailsService).and().inMemoryAuthentication().withUser("danan")
 				.password("danan").authorities("ROLE_USER", "ROLE_READ", "ROLE_WRITE").and().withUser("mvtm")
 				.password("password").authorities("ROLE_USER", "ROLE_READ", "ROLE_WRITE").and().and()
-				.eraseCredentials(false);
+				.eraseCredentials(false)
+				.ldapAuthentication().contextSource().url("ldaps://192.168.89.253:3269/dc=ad,dc=service,dc=com").managerDn("system").managerPassword("password").
+				and().userDnPatterns("CN={0},cn=Users").groupSearchBase("ou=application").groupSearchFilter("cn");
 	}
 
 	@Bean
@@ -37,7 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// super.configure(http);
 		http.requestMatchers().antMatchers("/login","/login.html", "/logout","/oauth/authorize").and().authorizeRequests()
 				.antMatchers("/login.html", "/login").permitAll().and().formLogin().loginPage("/login.html")
 				.loginProcessingUrl("/login").failureUrl("/login.html?authentication_error=true").and().logout()

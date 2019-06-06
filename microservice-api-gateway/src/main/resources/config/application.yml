@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: spring-boot2-zuul-api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: service-websocket
+        uri: lb://service-websocket
+        predicates: 
+        - Path=/endpoint/info/**
+        filters:
+        - Hystrix=websocketCommand
+      - id: websocket
+        uri: lb:ws://service-websocket
+        predicates: 
+        - Path=/endpoint/**
+        filters:
+      - id: resource-websocket
+        uri: lb://service-websocket
+        predicates: 
+        - Path=/xhr/**
+        
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.boot: debug
+
+eureka:
+  client:
+    enabled: true  
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+        
+      
+

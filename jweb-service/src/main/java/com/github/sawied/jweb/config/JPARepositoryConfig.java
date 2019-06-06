@@ -23,8 +23,8 @@ public class JPARepositoryConfig {
 		DriverManagerDataSource ds=new DriverManagerDataSource();
 		ds.setDriverClassName("oracle.jdbc.OracleDriver");
 		ds.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		ds.setUsername("user");
-		ds.setPassword("password");
+		ds.setUsername("danan");
+		ds.setPassword("danan");
 		return ds;
 	}
 	

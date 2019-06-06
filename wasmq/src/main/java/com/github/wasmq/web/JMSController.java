@@ -66,6 +66,8 @@ public class JMSController {
 		System.out.println("JMSCorrelationID:"+identificationId);
 		
 		
+		
+		
 		jmsTemplate.send(requestDestination, new MessageCreator() {
 			@Override
 			public javax.jms.Message createMessage(Session session) throws JMSException {
@@ -78,20 +80,21 @@ public class JMSController {
 			}
 		});
 		
-		System.out.println("message id :" + tl.get().getJMSMessageID());
-		
-		
 		String messageId= tl.get().getJMSMessageID();
-		
-		//javax.jms.Message receivedMsg = jmsTemplate.receive(replyDetination);
-		
-		//System.out.println("received message : " + receivedMsg);
 		
 		System.out.println("Message Id : " + messageId);
 		
 		javax.jms.TextMessage jms = (TextMessage)jmsTemplate.receiveSelected(replyDetination,"JMSCorrelationID"+"="+"'"+messageId+"'");
 		
 		return jms.getText();	
+	}
+	public String generateCorrelationIdSelector(String var){
+		byte[] bytes= new byte[24];
+		byte[] ids=var.getBytes();
+		for(int i=0;i<bytes.length&&i<ids.length;i++){
+			bytes[i]=ids[i];
+		}
+		return "ID:"+Hex.encodeHexString(bytes);
 	}
 	
 	@RequestMapping("/sa")
@@ -112,14 +115,6 @@ public class JMSController {
 	}
 	
 	
-	public String generateCorrelationIdSelector(String var){
-		byte[] bytes= new byte[24];
-		byte[] ids=var.getBytes();
-		for(int i=0;i<bytes.length&&i<ids.length;i++){
-			bytes[i]=ids[i];
-		}
-		return "ID:"+Hex.encodeHexString(bytes);
-	}
 	
 	
 	@RequestMapping("/mq")

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://sawied.github.com/cxf" xmlns:x1="http://sawied.github.com/cxf/types" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" name="HelloWorld" targetNamespace="http://sawied.github.com/cxf">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:x1="http://sawied.github.com/cxf/types" targetNamespace="http://sawied.github.com/cxf/types" elementFormDefault="qualified">
+            <element name="sayHi">
+                <complexType>
+                 <sequence>
+                  <element name="request" type="string"/>
+                 </sequence>
+                </complexType>
+            </element>
+            <element name="sayHiResponse">
+                <complexType>
+                    <sequence>
+                        <element name="response" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="sayHiRequest">
+        <wsdl:part name="in" element="x1:sayHi"/>
+    </wsdl:message>
+    <wsdl:message name="sayHiResponse">
+        <wsdl:part name="out" element="x1:sayHiResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="Greeter">
+        <wsdl:operation name="sayHi">
+            <wsdl:input name="sayHiRequest" message="tns:sayHiRequest"/>
+            <wsdl:output name="sayHiResponse" message="tns:sayHiResponse"/>
+        </wsdl:operation>       
+    </wsdl:portType>
+    <wsdl:binding name="Greeter_SOAPBinding" type="tns:Greeter">
+        <soap12:binding transport="http://www.w3.org/2003/05/soap/bindings/HTTP/" style="document"/>
+        <operation name="sayHi">
+            <soap12:operation style="document" soapAction=""/>
+            <input>
+                <soap12:body use="literal"/>
+            </input>
+            <output>
+                <soap12:body use="literal"/>
+            </output>
+        </operation>
+    </wsdl:binding>
+    <wsdl:service name="SOAPService">
+        <wsdl:port name="SoapPort" binding="tns:Greeter_SOAPBinding">
+            <soap12:address location="http://localhost:9000/SoapContext/SoapPort"/>
+        </wsdl:port>
+    </wsdl:service>
+</definitions>

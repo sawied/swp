@@ -1,8 +1,6 @@
 spring:
   application:
     name: microservice-discovery
-  jmx:
-   default-domain: microservice-discovery
    
 server:
   port: 9000
@@ -15,8 +13,8 @@ eureka:
     hostname: localhost
     prefer-ip-address: true
   client:
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
-      defaultZone: http://localhost:9001/eureka
+      defaultZone: http://localhost:9000/eureka
       
