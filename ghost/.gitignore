@@ -1,6 +1,7 @@
 /*
 !.gitignore
 !/content
+!/ghost-compose
 /content/*
 !/content/themes
 /content/themes/*
