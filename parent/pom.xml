@@ -15,7 +15,7 @@
 		<ehcache.version>2.10.3</ehcache.version>
 		<httpclient.version>4.5.2</httpclient.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
-		<spring.security.version>4.0.3.RELEASE</spring.security.version>
+		<spring.security.version>5.2.10.RELEASE</spring.security.version>
 		<hiberate.version>5.1.0.Final</hiberate.version>
 		<spring.mobile.version>1.1.4.RELEASE</spring.mobile.version>
 		<jjwt.version>0.7.0</jjwt.version>
